@@ -16,6 +16,8 @@ public class MovementSystem : MonoBehaviour
 
     [SerializeField]
     private float moveSpeed = 10f;
+    [SerializeField]
+    private InventoryManager inventoryManager;
 
     [SerializeField]
     private GameObject panel;//debug code
@@ -78,9 +80,11 @@ public class MovementSystem : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if(canInteract)
+        Debug.Log("Interact");
+        if (canInteract)
         {
-            
+            Object newObject = ObjectToPickUp.GetComponent<Object>();
+            inventoryManager.CheckList(newObject.itemID);
         }
     }
 }
