@@ -80,11 +80,12 @@ public class MovementSystem : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        Debug.Log("Interact");
         if (canInteract)
         {
             Object newObject = ObjectToPickUp.GetComponent<Object>();
             inventoryManager.CheckList(newObject.itemID);
+            Destroy(ObjectToPickUp);
+            ObjectToPickUp = null;
         }
     }
 }
