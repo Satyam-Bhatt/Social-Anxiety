@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class NPCMovement : MonoBehaviour
 {
@@ -12,12 +13,14 @@ public class NPCMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = movePath[movePathIndex].position - transform.position;
+        Vector3 direction = (movePath[movePathIndex].position - transform.position).normalized;
         
-        transform.Translate(direction * 1 * Time.deltaTime, Space.Self);
+        transform.Translate(direction * 1 * Time.deltaTime, Space.World);
 
         //For linear motion
-        //transform.position = Vector3.MoveTowards(transform.position, movePath[movePathIndex].position, 1 * Time.unscaledDeltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, movePath[movePathIndex].position, 1 * Time.deltaTime);
+
+        transform.rotation = Quaternion.AngleAxis(GetAngleFromVectorFloat(direction), Vector3.forward);
 
         if (Vector3.Distance(movePath[movePathIndex].position, transform.position) < 0.1f)
         {
@@ -30,5 +33,16 @@ public class NPCMovement : MonoBehaviour
                 movePathIndex = 0;
             }
         }
+    }
+
+    private float GetAngleFromVectorFloat(Vector3 dir)
+    {
+        dir = dir.normalized;
+        float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        if (n < 0)
+        {
+            n += 360;
+        }
+        return n;
     }
 }
