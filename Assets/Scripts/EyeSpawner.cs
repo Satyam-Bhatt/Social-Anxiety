@@ -34,7 +34,7 @@ public class EyeSpawner : MonoBehaviour
             }
         }*/
 
-    private async Task Spawner()
+    private async void Spawner()
     {
         while (true && Application.IsPlaying(this))
         {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 420881188}
   - component: {fileID: 420881190}
   - component: {fileID: 420881189}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eye_Outer (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 1333419428}
   - component: {fileID: 1333419427}
   - component: {fileID: 1333419426}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EyeInner (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,9 +296,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7417754103844710239}
   - component: {fileID: 1628625089}
+  - component: {fileID: 5729835603192418078}
   m_Layer: 0
   m_Name: Eyes
-  m_TagString: Untagged
+  m_TagString: Eyes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -335,6 +336,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   down_Speed: 1
+--- !u!61 &5729835603192418078
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417754103844710176}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.005415559, y: -0.005415559}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.1155984, y: 2.0506122}
+  m_EdgeRadius: 0
 --- !u!1 &8362057217706064051
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +373,7 @@ GameObject:
   - component: {fileID: 2956720452804178841}
   - component: {fileID: 780133234727812866}
   - component: {fileID: 988162439456504163}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eye_Outer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,7 +525,7 @@ GameObject:
   - component: {fileID: 7778670633989308573}
   - component: {fileID: 5931244350417502}
   - component: {fileID: 7016230213253891325}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EyeInner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
