@@ -11,17 +11,17 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]
     private GameObject ItemInSlot;
 
-    private InventorySlot InventorySlot;
+    private InventorySlot inventorySlot;
 
     public void CheckList(int itemIndex)
     {
         for (int i = 0; i < containers.Length; i++)
         {
-            InventorySlot = containers[i].GetComponent<InventorySlot>();
-            if(InventorySlot.item == null)
+            inventorySlot = containers[i].GetComponent<InventorySlot>();
+            if(inventorySlot.item == null)
             {
                 GameObject newItem = Instantiate(ItemInSlot, containers[i].transform.position, Quaternion.identity);
-                InventorySlot.AddItem(newItem, items[itemIndex]);
+                containers[i].GetComponent<InventorySlot>().AddItem(newItem, items[itemIndex]);
                 itemslot inventoryItem = newItem.GetComponent<itemslot>();
                 inventoryItem.InitializeItem(items[itemIndex]);
                 return;
