@@ -1411,7 +1411,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699989176}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 8e32fd47b2bbb7e469df0ce9ce7bc3af, type: 2}
   m_CullingMode: 0
@@ -1667,6 +1667,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 354828621, guid: 6b67157f764e28543881da0ffb8fb9da, type: 3}
+    - target: {fileID: 3019389773711899884, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019389773711899884, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019389773711899884, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1290826733
+      objectReference: {fileID: 0}
     - target: {fileID: 3019389773711899886, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
       propertyPath: m_Name
       value: Player
