@@ -13,6 +13,7 @@ public class MovementSystem : MonoBehaviour
 
     private Vector2 moveInput = Vector2.zero;
     private bool canInteract = false;
+    private bool canTravel = false;
 
     [SerializeField]
     private float moveSpeed = 10f;
@@ -83,18 +84,29 @@ public class MovementSystem : MonoBehaviour
         Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, 2f);
         foreach(Collider2D collider in colliderArray)
         {
-            if(collider.GetComponent<Object>() != null)
+            if (collider.GetComponent<Object>() != null)
             {
                 ObjectToPickUp = collider.gameObject;
                 panel.SetActive(true);//debug code
                 canInteract = true;
             }
-            else
+            else if (collider.CompareTag("Door"))
+            {
+                Debug.Log("Aaya");
+                canTravel = true;
+                panel.SetActive(true);//debug code
+            }
+            else if (collider.gameObject.tag != "Player")
             {
                 ObjectToPickUp = null;
                 panel.SetActive(false);//debug code
                 canInteract = false;
+                canTravel = false;
             }
+
+
+
+            Debug.Log(collider.gameObject.tag);
         }
     }
 
@@ -111,6 +123,10 @@ public class MovementSystem : MonoBehaviour
             inventoryManager.CheckList(newObject.itemID);
             Destroy(ObjectToPickUp);
             ObjectToPickUp = null;
+        }
+        else if (canTravel)
+        {
+            Debug.Log("Door");
         }
     }
 }
