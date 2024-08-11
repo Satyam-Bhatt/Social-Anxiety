@@ -21,6 +21,11 @@ public class MovementSystem : MonoBehaviour
     private InventoryManager inventoryManager;
 
     [SerializeField]
+    private GameObject kitchen;
+
+    private string doorName;
+
+    [SerializeField]
     private GameObject panel;//debug code
 
     private Animator animator;
@@ -51,6 +56,7 @@ public class MovementSystem : MonoBehaviour
     void Start()
     {
         panel.SetActive(false);//debug code
+        kitchen.SetActive(false);
     }
 
     void Update()
@@ -84,29 +90,29 @@ public class MovementSystem : MonoBehaviour
         Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, 2f);
         foreach(Collider2D collider in colliderArray)
         {
-            if (collider.GetComponent<Object>() != null)
-            {
-                ObjectToPickUp = collider.gameObject;
-                panel.SetActive(true);//debug code
-                canInteract = true;
+            if (collider.gameObject.tag != "Player") {
+                if (collider.GetComponent<Object>() != null)
+                {
+                    ObjectToPickUp = collider.gameObject;
+                    panel.SetActive(true);//debug code
+                    canInteract = true;
+                }
+                else if (collider.gameObject.layer == 7)
+                {
+                    canTravel = true;
+                    doorName = collider.gameObject.tag;
+                    panel.SetActive(true);//debug code
+                }
+                Debug.Log(collider.gameObject.tag);
             }
-            else if (collider.CompareTag("Door"))
-            {
-                Debug.Log("Aaya");
-                canTravel = true;
-                panel.SetActive(true);//debug code
-            }
-            else if (collider.gameObject.tag != "Player")
-            {
-                ObjectToPickUp = null;
-                panel.SetActive(false);//debug code
-                canInteract = false;
-                canTravel = false;
-            }
-
-
-
-            Debug.Log(collider.gameObject.tag);
+        }
+        if (colliderArray.Length == 1)
+        {
+            ObjectToPickUp = null;
+            doorName = null;
+            panel.SetActive(false);//debug code
+            canInteract = false;
+            canTravel = false;
         }
     }
 
@@ -127,6 +133,10 @@ public class MovementSystem : MonoBehaviour
         else if (canTravel)
         {
             Debug.Log("Door");
+            if (doorName == "RoomDoor") {
+                kitchen.SetActive(true);
+            }
+
         }
     }
 }
