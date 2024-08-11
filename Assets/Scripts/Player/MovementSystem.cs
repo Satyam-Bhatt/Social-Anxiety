@@ -22,10 +22,13 @@ public class MovementSystem : MonoBehaviour
     [SerializeField]
     private GameObject panel;//debug code
 
+    private Animator animator;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
     private void OnEnable()
     {
@@ -49,10 +52,32 @@ public class MovementSystem : MonoBehaviour
         panel.SetActive(false);//debug code
     }
 
+    void Update()
+    {
+        moveInput = playerControls.Movement.Move.ReadValue<Vector2>();
+
+        //-----ANIMATION-----//
+        if (moveInput.x > 0)
+        {
+            animator.SetInteger("MovementSwitch", 2);
+        }
+        else if (moveInput.x < 0)
+        {
+            animator.SetInteger("MovementSwitch", 3);
+        }
+        else if (moveInput.y > 0)
+        {
+            animator.SetInteger("MovementSwitch", 1);
+        }
+        else if (moveInput.y < 0)
+        {
+            animator.SetInteger("MovementSwitch", 0);
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        moveInput = playerControls.Movement.Move.ReadValue<Vector2>();
         rb.velocity = moveInput * moveSpeed;
 
         Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, 2f);
