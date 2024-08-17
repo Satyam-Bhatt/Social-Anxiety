@@ -24,6 +24,8 @@ public class MovementSystem : MonoBehaviour
     private GameObject kitchen;
     [SerializeField]
     private GameObject room;
+    [SerializeField]
+    private GameObject outside;
 
     private string doorName;
 
@@ -105,7 +107,6 @@ public class MovementSystem : MonoBehaviour
                     doorName = collider.gameObject.tag;
                     panel.SetActive(true);//debug code
                 }
-                Debug.Log(collider.gameObject.tag);
             }
         }
         if (colliderArray.Length == 1)
@@ -134,7 +135,8 @@ public class MovementSystem : MonoBehaviour
         }
         else if (canTravel)
         {
-            if (doorName == "RoomDoor") {
+            if (doorName == "RoomDoor")
+            {
                 kitchen.SetActive(true);
                 room.SetActive(false);
                 transform.position = new Vector3(2.49f, -9.58f, 0f);
@@ -144,6 +146,19 @@ public class MovementSystem : MonoBehaviour
                 room.SetActive(true);
                 kitchen.SetActive(false);
                 transform.position = new Vector3(-6.47f, -6.29f, 0f);
+            }
+            else if (doorName == "KitchenOutsideDoor")
+            { 
+                outside.SetActive(true);
+                kitchen.SetActive(false);
+                animator.SetInteger("MovementSwitch", 0);
+                transform.position = new Vector3(0.36f, -2.4f, 0f);
+            }
+            else if(doorName == "OutsideDoor")
+            {
+                kitchen.SetActive(true);
+                outside.SetActive(false);
+                transform.position = new Vector3(-2.52f, 9.71f, 0f);
             }
 
         }

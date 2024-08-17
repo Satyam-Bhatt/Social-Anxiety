@@ -25,7 +25,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Main_Texture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c2e9494c7871f6147b3d0aa2890108be, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_c46e3a84898c4199b8bd702e01083252_Texture_1:
@@ -46,7 +46,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Speed: 4
-    - _Strenght: 0.01
+    - _Speed: 3
+    - _Strenght: 0.0025
     m_Colors: []
   m_BuildTextureStacks: []
