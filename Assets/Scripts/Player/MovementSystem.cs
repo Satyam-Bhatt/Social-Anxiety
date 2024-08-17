@@ -22,6 +22,8 @@ public class MovementSystem : MonoBehaviour
 
     [SerializeField]
     private GameObject kitchen;
+    [SerializeField]
+    private GameObject room;
 
     private string doorName;
 
@@ -132,9 +134,16 @@ public class MovementSystem : MonoBehaviour
         }
         else if (canTravel)
         {
-            Debug.Log("Door");
             if (doorName == "RoomDoor") {
                 kitchen.SetActive(true);
+                room.SetActive(false);
+                transform.position = new Vector3(2.49f, -9.58f, 0f);
+            }
+            else if (doorName == "KitchenRoomDoor")
+            {
+                room.SetActive(true);
+                kitchen.SetActive(false);
+                transform.position = new Vector3(-6.47f, -6.29f, 0f);
             }
 
         }
