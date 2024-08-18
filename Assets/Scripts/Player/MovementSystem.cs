@@ -26,6 +26,8 @@ public class MovementSystem : MonoBehaviour
     private GameObject room;
     [SerializeField]
     private GameObject outside;
+    [SerializeField]
+    private GameObject park;
 
     private string doorName;
 
@@ -60,7 +62,10 @@ public class MovementSystem : MonoBehaviour
     void Start()
     {
         panel.SetActive(false);//debug code
+        room.SetActive(true);
         kitchen.SetActive(false);
+        outside.SetActive(false);
+        park.SetActive(false);
     }
 
     void Update()
@@ -119,6 +124,22 @@ public class MovementSystem : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("ParkCollider"))
+        {
+            park.SetActive(true);
+            outside.SetActive(false);
+            transform.position = Vector3.zero;
+        }
+        else if(collision.CompareTag("Park_OutsideCollider"))
+        {
+            outside.SetActive(true);
+            park.SetActive(false);
+            transform.position = new Vector3(0.3f, -6.68f, 0f);
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Handles.DrawWireDisc(transform.position, new Vector3(0, 0, 1), 2f);
@@ -148,17 +169,21 @@ public class MovementSystem : MonoBehaviour
                 transform.position = new Vector3(-6.47f, -6.29f, 0f);
             }
             else if (doorName == "KitchenOutsideDoor")
-            { 
+            {
                 outside.SetActive(true);
                 kitchen.SetActive(false);
                 animator.SetInteger("MovementSwitch", 0);
                 transform.position = new Vector3(0.36f, -2.4f, 0f);
             }
-            else if(doorName == "OutsideDoor")
+            else if (doorName == "OutsideDoor")
             {
                 kitchen.SetActive(true);
                 outside.SetActive(false);
                 transform.position = new Vector3(-2.52f, 9.71f, 0f);
+            }
+            else if (doorName == "Park_OutsideDoor")
+            { 
+                
             }
 
         }

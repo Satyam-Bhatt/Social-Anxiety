@@ -9,6 +9,8 @@ TagManager:
   - KitchenRoomDoor
   - KitchenOutsideDoor
   - OutsideDoor
+  - ParkCollider
+  - Park_OutsideCollider
   layers:
   - Default
   - TransparentFX
