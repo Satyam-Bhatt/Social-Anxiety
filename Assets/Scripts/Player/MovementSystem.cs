@@ -66,6 +66,7 @@ public class MovementSystem : MonoBehaviour
         kitchen.SetActive(false);
         outside.SetActive(false);
         park.SetActive(false);
+        transform.position = Vector3.zero;
     }
 
     void Update()
@@ -130,13 +131,13 @@ public class MovementSystem : MonoBehaviour
         {
             park.SetActive(true);
             outside.SetActive(false);
-            transform.position = Vector3.zero;
+            transform.position = new Vector3(10.69f, -49.5f, 0f);
         }
         else if(collision.CompareTag("Park_OutsideCollider"))
         {
             outside.SetActive(true);
             park.SetActive(false);
-            transform.position = new Vector3(0.3f, -6.68f, 0f);
+            transform.position = new Vector3(10.69f, -42.32f, 0f);
         }
     }
 
@@ -160,30 +161,26 @@ public class MovementSystem : MonoBehaviour
             {
                 kitchen.SetActive(true);
                 room.SetActive(false);
-                transform.position = new Vector3(2.49f, -9.58f, 0f);
+                transform.position = new Vector3(5.14f, -12.33f, 0f);
             }
             else if (doorName == "KitchenRoomDoor")
             {
                 room.SetActive(true);
                 kitchen.SetActive(false);
-                transform.position = new Vector3(-6.47f, -6.29f, 0f);
+                transform.position = new Vector3(5.14f, -7.55f, 0f);
             }
             else if (doorName == "KitchenOutsideDoor")
             {
                 outside.SetActive(true);
                 kitchen.SetActive(false);
                 animator.SetInteger("MovementSwitch", 0);
-                transform.position = new Vector3(0.36f, -2.4f, 0f);
+                transform.position = new Vector3(10.46f, -37.16f, 0f);
             }
             else if (doorName == "OutsideDoor")
             {
                 kitchen.SetActive(true);
                 outside.SetActive(false);
-                transform.position = new Vector3(-2.52f, 9.71f, 0f);
-            }
-            else if (doorName == "Park_OutsideDoor")
-            { 
-                
+                transform.position = new Vector3(10.46f, -32.1f, 0f);
             }
 
         }
