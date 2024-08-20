@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEditor;
 using UnityEngine.UI;
+using TMPro;
 
 public class MovementSystem : MonoBehaviour
 {
@@ -28,6 +29,15 @@ public class MovementSystem : MonoBehaviour
     private GameObject outside;
     [SerializeField]
     private GameObject park;
+
+    [Header("Canvas")]
+    [Space(10)]
+
+    [SerializeField]
+    private GameObject interactPanel;
+
+    private TMP_Text interactText;
+    private int layerNumber;
 
     private string doorName;
 
@@ -67,6 +77,9 @@ public class MovementSystem : MonoBehaviour
         outside.SetActive(false);
         park.SetActive(false);
         transform.position = Vector3.zero;
+
+        interactPanel.SetActive(false);
+        interactText = interactPanel.GetComponentInChildren<TMP_Text>();
     }
 
     void Update()
@@ -89,6 +102,11 @@ public class MovementSystem : MonoBehaviour
         else if (moveInput.y < 0)
         {
             animator.SetInteger("MovementSwitch", 0);
+        }
+
+        if (canInteract) {
+            interactPanel.SetActive(true);
+            interactText.text = "Press E to pickup item";
         }
     }
 
@@ -122,6 +140,7 @@ public class MovementSystem : MonoBehaviour
             panel.SetActive(false);//debug code
             canInteract = false;
             canTravel = false;
+            interactPanel.SetActive(false);
         }
     }
 
@@ -139,6 +158,17 @@ public class MovementSystem : MonoBehaviour
             park.SetActive(false);
             transform.position = new Vector3(10.69f, -42.32f, 0f);
         }
+
+        if (collision.gameObject.layer == 7)
+        {
+            interactPanel.SetActive(true);
+            interactText.text = "Press E to open door";
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        interactPanel.SetActive(false);
     }
 
     private void OnDrawGizmos()
@@ -161,26 +191,26 @@ public class MovementSystem : MonoBehaviour
             {
                 kitchen.SetActive(true);
                 room.SetActive(false);
-                transform.position = new Vector3(5.14f, -12.33f, 0f);
+                transform.position = new Vector3(5.14f, -13.03f, 0f);
             }
             else if (doorName == "KitchenRoomDoor")
             {
                 room.SetActive(true);
                 kitchen.SetActive(false);
-                transform.position = new Vector3(5.14f, -7.55f, 0f);
+                transform.position = new Vector3(5.14f, -6.89f, 0f);
             }
             else if (doorName == "KitchenOutsideDoor")
             {
                 outside.SetActive(true);
                 kitchen.SetActive(false);
                 animator.SetInteger("MovementSwitch", 0);
-                transform.position = new Vector3(10.46f, -37.16f, 0f);
+                transform.position = new Vector3(10.46f, -37.46f, 0f);
             }
             else if (doorName == "OutsideDoor")
             {
                 kitchen.SetActive(true);
                 outside.SetActive(false);
-                transform.position = new Vector3(10.46f, -32.1f, 0f);
+                transform.position = new Vector3(10.46f, -31.0f, 0f);
             }
 
         }
