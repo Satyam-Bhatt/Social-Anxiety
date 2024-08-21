@@ -35,9 +35,16 @@ public class MovementSystem : MonoBehaviour
 
     [SerializeField]
     private GameObject interactPanel;
+    [SerializeField]
+    private GameObject notePanel;
+
+    [TextArea(4, 2)]
+    [SerializeField]
+    private string[] notes;
 
     private TMP_Text interactText;
-    private int layerNumber;
+    private TMP_Text noteText;
+    private int noteIndex;
 
     private string doorName;
 
@@ -80,6 +87,9 @@ public class MovementSystem : MonoBehaviour
 
         interactPanel.SetActive(false);
         interactText = interactPanel.GetComponentInChildren<TMP_Text>();
+
+        notePanel.SetActive(false);
+        noteText = notePanel.GetComponentInChildren<TMP_Text>();
     }
 
     void Update()
@@ -104,9 +114,15 @@ public class MovementSystem : MonoBehaviour
             animator.SetInteger("MovementSwitch", 0);
         }
 
-        if (canInteract) {
+        if (canInteract)
+        {
             interactPanel.SetActive(true);
             interactText.text = "Press E to pickup item";
+        }
+        else if (noteIndex != 0)
+        {
+            interactPanel.SetActive(true);
+            interactText.text = "Press E to read the note";
         }
     }
 
@@ -131,6 +147,10 @@ public class MovementSystem : MonoBehaviour
                     doorName = collider.gameObject.tag;
                     panel.SetActive(true);//debug code
                 }
+                else if (collider.gameObject.layer == 9)
+                { 
+                    noteIndex = collider.GetComponent<Notes>().noteNumber;
+                }
             }
         }
         if (colliderArray.Length == 1)
@@ -141,6 +161,8 @@ public class MovementSystem : MonoBehaviour
             canInteract = false;
             canTravel = false;
             interactPanel.SetActive(false);
+            notePanel.SetActive(false);
+            noteIndex = 0;
         }
     }
 
@@ -213,6 +235,18 @@ public class MovementSystem : MonoBehaviour
                 transform.position = new Vector3(10.46f, -31.0f, 0f);
             }
 
+        }
+        else if(noteIndex != 0)
+        {
+            notePanel.SetActive(true);
+            if (noteIndex == 1)
+            {
+                noteText.text = notes[noteIndex - 1];
+            }
+            else if(noteIndex == 2)
+            {
+                noteText.text = notes[noteIndex - 2];
+            }
         }
     }
 }
