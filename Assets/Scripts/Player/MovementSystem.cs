@@ -15,6 +15,7 @@ public class MovementSystem : MonoBehaviour
     private Vector2 moveInput = Vector2.zero;
     private bool canInteract = false;
     private bool canTravel = false;
+    private bool messageShown = false;
 
     [SerializeField]
     private float moveSpeed = 10f;
@@ -121,7 +122,7 @@ public class MovementSystem : MonoBehaviour
         }
         else if (noteIndex != 0)
         {
-            interactPanel.SetActive(true);
+            interactPanel.SetActive(!messageShown);
             interactText.text = "Press E to read the note";
         }
     }
@@ -162,6 +163,7 @@ public class MovementSystem : MonoBehaviour
             canTravel = false;
             interactPanel.SetActive(false);
             notePanel.SetActive(false);
+            messageShown = false;
             noteIndex = 0;
         }
     }
@@ -239,6 +241,7 @@ public class MovementSystem : MonoBehaviour
         else if(noteIndex != 0)
         {
             notePanel.SetActive(true);
+            messageShown = true;
             if (noteIndex == 1)
             {
                 noteText.text = notes[noteIndex - 1];
