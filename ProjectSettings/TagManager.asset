@@ -11,6 +11,7 @@ TagManager:
   - OutsideDoor
   - ParkCollider
   - Park_OutsideCollider
+  - Trigger
   layers:
   - Default
   - TransparentFX
@@ -47,6 +48,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BW
+    uniqueID: 585796665
     locked: 0
   - name: Interactable
     uniqueID: 2619551743

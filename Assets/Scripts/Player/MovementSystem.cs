@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 using UnityEditor;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Playables;
+using Unity.VisualScripting;
 
 public class MovementSystem : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class MovementSystem : MonoBehaviour
     private bool canInteract = false;
     private bool canTravel = false;
     private bool messageShown = false;
+    private bool cutscenePlaying = false;
 
     [SerializeField]
     private float moveSpeed = 10f;
@@ -30,6 +33,9 @@ public class MovementSystem : MonoBehaviour
     private GameObject outside;
     [SerializeField]
     private GameObject park;
+
+    [SerializeField]
+    private PlayableDirector timeline;
 
     [Header("Canvas")]
     [Space(10)]
@@ -66,6 +72,8 @@ public class MovementSystem : MonoBehaviour
 
         playerControls.Movement.Interact.Enable();
         playerControls.Movement.Interact.performed += Interact;
+
+        timeline.stopped += OnPlayableDirectorStopped;
     }
 
     private void OnDisable()
@@ -74,6 +82,8 @@ public class MovementSystem : MonoBehaviour
 
         playerControls.Movement.Interact.Disable();
         playerControls.Movement.Interact.performed -= Interact;
+
+        timeline.stopped -= OnPlayableDirectorStopped;
     }
 
     // Start is called before the first frame update
@@ -95,6 +105,8 @@ public class MovementSystem : MonoBehaviour
 
     void Update()
     {
+        if(cutscenePlaying) return;
+        
         moveInput = playerControls.Movement.Move.ReadValue<Vector2>();
 
         //-----ANIMATION-----//
@@ -130,6 +142,8 @@ public class MovementSystem : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (cutscenePlaying) return;
+
         rb.velocity = moveInput * moveSpeed;
 
         Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, 2f);
@@ -187,6 +201,13 @@ public class MovementSystem : MonoBehaviour
         {
             interactPanel.SetActive(true);
             interactText.text = "Press E to open door";
+        }
+
+        if (collision.CompareTag("Trigger"))
+        { 
+            timeline.Play();
+            cutscenePlaying = true;
+            Destroy(collision.gameObject);
         }
     }
 
@@ -251,5 +272,10 @@ public class MovementSystem : MonoBehaviour
                 noteText.text = notes[noteIndex - 2];
             }
         }
+    }
+
+    void OnPlayableDirectorStopped(PlayableDirector director)
+    {
+        cutscenePlaying = false;
     }
 }
