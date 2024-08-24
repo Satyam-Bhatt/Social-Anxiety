@@ -290,7 +290,7 @@ public class MovementSystem : MonoBehaviour
         }
     }
 
-    void OnPlayableDirectorStopped(PlayableDirector director)
+    void OnPlayableDirectorStopped()
     {
         cutscenePlaying = false;
         StopCoroutine(coroutine);
