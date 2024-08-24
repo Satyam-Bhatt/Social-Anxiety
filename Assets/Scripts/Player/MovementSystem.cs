@@ -20,6 +20,8 @@ public class MovementSystem : MonoBehaviour
     private bool messageShown = false;
     private bool cutscenePlaying = false;
 
+    private IEnumerator coroutine;
+
     [SerializeField]
     private float moveSpeed = 10f;
     [SerializeField]
@@ -101,6 +103,8 @@ public class MovementSystem : MonoBehaviour
 
         notePanel.SetActive(false);
         noteText = notePanel.GetComponentInChildren<TMP_Text>();
+
+        coroutine = MovePlayer();
     }
 
     void Update()
@@ -207,6 +211,9 @@ public class MovementSystem : MonoBehaviour
         { 
             timeline.Play();
             cutscenePlaying = true;
+            rb.velocity = Vector3.zero;
+            animator.SetInteger("MovementSwitch", 3);
+            StartCoroutine(coroutine);
             Destroy(collision.gameObject);
         }
     }
@@ -274,8 +281,18 @@ public class MovementSystem : MonoBehaviour
         }
     }
 
+    private IEnumerator MovePlayer()
+    {
+        while (transform.position != new Vector3(-5.4f, -49.9f, 0f)) 
+        { 
+            transform.position = Vector3.Lerp(transform.position, new Vector3(-5.4f, -49.9f, 0f), 1f * Time.deltaTime);
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+    }
+
     void OnPlayableDirectorStopped(PlayableDirector director)
     {
         cutscenePlaying = false;
+        StopCoroutine(coroutine);
     }
 }
