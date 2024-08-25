@@ -13,16 +13,4 @@ public class Item : ScriptableObject
 
     public Sprite icon = null;
     public ItemType type;
-
-    public void Use()
-    {
-        if(type == ItemType.Consumable)
-        {
-            Debug.Log("Using Food");
-        }
-        else
-        {
-            Debug.Log("Killing Knife");
-        }
-    }
 }

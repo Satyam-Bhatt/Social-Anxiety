@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class InventoryManager : MonoBehaviour
     private Item[] items;
     [SerializeField]
     private GameObject ItemInSlot;
+
+    [SerializeField]
+    private Slider happySlider;
 
     private InventorySlot inventorySlot;
 
@@ -26,6 +30,32 @@ public class InventoryManager : MonoBehaviour
                 inventoryItem.InitializeItem(items[itemIndex]);
                 return;
             }
+        }
+    }
+
+    private void OnEnable()
+    {
+        for (int i = 0; i < containers.Length; i++)
+        {
+            inventorySlot = containers[i].GetComponent<InventorySlot>();
+            inventorySlot.onUse += ItemUsed;
+        }
+    }
+    private void OnDisable()
+    {
+        for (int i = 0; i < containers.Length; i++)
+        {
+            inventorySlot = containers[i].GetComponent<InventorySlot>();
+            inventorySlot.onUse -= ItemUsed;
+        }
+    }
+
+    public void ItemUsed(Item item)
+    {
+        Debug.Log("check" + item.type);
+        if (item.type == Item.ItemType.Consumable)
+        {
+            happySlider.value += 1;
         }
     }
     

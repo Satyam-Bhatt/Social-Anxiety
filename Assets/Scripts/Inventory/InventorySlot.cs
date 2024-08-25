@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
-using static Item;
 
 public class InventorySlot : MonoBehaviour
 {
+    public delegate void OnUse(Item item);
+    public event OnUse onUse;
+
     public Item item;
     
     private GameObject item_PrefabScript;
@@ -22,7 +24,9 @@ public class InventorySlot : MonoBehaviour
     {
         if(item != null)
         {
-            item.Use();
+            //item.Use();
+            onUse?.Invoke(item);
+
             Destroy(item_PrefabScript);
             item = null;
         }
