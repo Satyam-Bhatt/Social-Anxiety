@@ -62,6 +62,9 @@ public class MovementSystem : MonoBehaviour
 
     private Animator animator;
 
+    public delegate void Timeline_Start();
+    public event Timeline_Start onTimelineStart;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -210,6 +213,7 @@ public class MovementSystem : MonoBehaviour
         if (collision.CompareTag("Trigger"))
         { 
             timeline.Play();
+            onTimelineStart.Invoke();
             cutscenePlaying = true;
             rb.velocity = Vector3.zero;
             animator.SetInteger("MovementSwitch", 3);
@@ -290,7 +294,7 @@ public class MovementSystem : MonoBehaviour
         }
     }
 
-    void OnPlayableDirectorStopped()
+    void OnPlayableDirectorStopped(PlayableDirector timeline)
     {
         cutscenePlaying = false;
         StopCoroutine(coroutine);

@@ -10,24 +10,39 @@ public class TransitionManager : MonoBehaviour
 
     [Space(10)]
     [Header("Areas")]
-    [SerializeField] private GameObject[] areas;
-    [SerializeField] private Sprite[] areaSprites;
+    [SerializeField] private GameObject bw_Area;
+    [SerializeField] private SpriteRenderer[] colored_Area; 
+
+    [SerializeField] private MovementSystem movementSystem;
 
     private void OnEnable()
     {
-        timeline.stopped += TransitionSprites;
+        movementSystem.onTimelineStart += TransitionSprites_OnStart;
+        timeline.stopped += TransitionSprites_OnEnd;
     }
 
     private void OnDisable()
     {
-        timeline.stopped -= TransitionSprites;
+        movementSystem.onTimelineStart -= TransitionSprites_OnStart;
+        timeline.stopped -= TransitionSprites_OnEnd;
     }
 
-    void TransitionSprites(PlayableDirector timeline)
+    private void Start()
+    {
+        bw_Area.SetActive(false);
+    }
+
+    void TransitionSprites_OnStart()
     { 
-        for(int i = 0; i < areas.Length; i++)
+        bw_Area.SetActive(true);
+    }
+
+    void TransitionSprites_OnEnd(PlayableDirector obj)
+    {
+        foreach (SpriteRenderer area in colored_Area)
         {
-            areas[i].GetComponent<SpriteRenderer>().sprite = areaSprites[i];
+            area.sprite = null;
+            area.material = null;
         }
     }
 }
