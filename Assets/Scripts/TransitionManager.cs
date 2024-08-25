@@ -10,8 +10,14 @@ public class TransitionManager : MonoBehaviour
 
     [Space(10)]
     [Header("Areas")]
-    [SerializeField] private GameObject bw_Area;
-    [SerializeField] private SpriteRenderer[] colored_Area; 
+    [SerializeField] private Sprite[] bw_Area;
+    [SerializeField] private Material[] bw_material;
+    [SerializeField] private SpriteRenderer[] colored_Area;
+    [SerializeField] private GameObject park_BW;
+
+    [Space(10)]
+    [Header("Trees")]
+    [SerializeField] private GameObject trees;
 
     [SerializeField] private MovementSystem movementSystem;
 
@@ -29,20 +35,22 @@ public class TransitionManager : MonoBehaviour
 
     private void Start()
     {
-        bw_Area.SetActive(false);
+        
     }
 
     void TransitionSprites_OnStart()
     { 
-        bw_Area.SetActive(true);
+
     }
 
     void TransitionSprites_OnEnd(PlayableDirector obj)
     {
-        foreach (SpriteRenderer area in colored_Area)
+        for(int i = 0; i < colored_Area.Length; i++)
         {
-            area.sprite = null;
-            area.material = null;
+            colored_Area[i].sprite = bw_Area[i];
+            colored_Area[i].material = bw_material[i];
         }
+        trees.SetActive(false);
+        park_BW.SetActive(false);
     }
 }
