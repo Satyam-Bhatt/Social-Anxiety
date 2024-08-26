@@ -10,8 +10,7 @@ public class DialogueManager : MonoBehaviour
     [TextArea(3, 10)]
     [SerializeField] private string[] dialogues;
 
-    private IEnumerator charDialogue;
-
+    [HideInInspector]
     int dialogueIndex = 0;
     private void Start()
     {
@@ -27,6 +26,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
+            StopAllCoroutines();
             if(dialogueIndex < dialogues.Length)
             {
                 DialogueCharacter(dialogues, textBox);
@@ -40,6 +40,11 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void ConversationStar()
+    {
+        Debug.Log("Conversation Start");
+    }
+
     IEnumerator CharacterDialogue(string dialogue)
     {
         textBox.text = "";
@@ -47,6 +52,13 @@ public class DialogueManager : MonoBehaviour
         { 
             textBox.text += letter;
             yield return new WaitForSeconds(0.1f);
+        }
+
+        if (dialogueIndex < dialogues.Length)
+        { 
+            yield return new WaitForSeconds(1f);
+            DialogueCharacter(dialogues, textBox);
+            dialogueIndex++;        
         }
     }
 }
