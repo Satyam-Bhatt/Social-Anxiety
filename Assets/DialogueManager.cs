@@ -5,39 +5,47 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text textBox;
+    [SerializeField] private TMP_Text textBox_Sentence;
+    [SerializeField] private TMP_Text textBox_Name;
 
-    [TextArea(3, 10)]
-    [SerializeField] private string[] dialogues;
+    //[TextArea(3, 10)]
+    //[SerializeField] private string[] dialogues;
 
-    [HideInInspector]
     int dialogueIndex = 0;
+    int dialogueLength = 0;
+
+    public bool bro = false;
+
+    private static DialogueManager _instance;
+
+    public static DialogueManager Instance 
+    {
+        get
+        {
+            _instance = FindObjectOfType<DialogueManager>();
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<DialogueManager>();
+            }
+
+            return _instance;
+        }
+    }
     private void Start()
     {
         //charDialogue = CharacterDialogue(dialogues[dialogueIndex]);
     }
 
-    public void DialogueCharacter(string[] dialogues, TMP_Text textBox)
+    public void DialogueCharacter(string[] dialogues)
     {
-        StartCoroutine(CharacterDialogue(dialogues[dialogueIndex]));
+        dialogueLength = dialogues.Length;
+        StopAllCoroutines();
+        StartCoroutine(CharacterDialogue(dialogues[dialogueIndex], dialogues));
     }
 
     private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Mouse1))
-        {
-            StopAllCoroutines();
-            if(dialogueIndex < dialogues.Length)
-            {
-                DialogueCharacter(dialogues, textBox);
-                dialogueIndex++;
-            }
-            else
-            {
-                StopAllCoroutines();
-            }
-
-        }
+    { 
+    
     }
 
     public void ConversationStar()
@@ -45,19 +53,19 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Conversation Start");
     }
 
-    IEnumerator CharacterDialogue(string dialogue)
+    IEnumerator CharacterDialogue(string dialogue, string[] dialogues)
     {
-        textBox.text = "";
+        textBox_Sentence.text = "";
         foreach (char letter in dialogue.ToCharArray())
         { 
-            textBox.text += letter;
+            textBox_Sentence.text += letter;
             yield return new WaitForSeconds(0.1f);
         }
 
-        if (dialogueIndex < dialogues.Length)
+        if (dialogueIndex < dialogueLength)
         { 
             yield return new WaitForSeconds(1f);
-            DialogueCharacter(dialogues, textBox);
+            DialogueCharacter(dialogues);
             dialogueIndex++;        
         }
     }
