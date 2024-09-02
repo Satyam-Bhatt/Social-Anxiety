@@ -3,6 +3,8 @@ Shader "Unlit/NewUnlitShader"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Noise ("Noise Texture", 2D) = "white" {}
+        _Strength("Strength", Float) = 0.01
     }
     SubShader
     {
@@ -34,6 +36,16 @@ Shader "Unlit/NewUnlitShader"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            sampler2D _Noise;
+            float _Strength;
+
+            float StepTypeFunction()
+            {
+                float a = _Time.y * 4;
+                float b = fmod(a,4);
+                float c = floor(b)/4;
+                return c;
+            }
 
             v2f vert (appdata v)
             {
@@ -45,14 +57,20 @@ Shader "Unlit/NewUnlitShader"
 
             float4 frag (v2f i) : SV_Target
             {
-                // sample the texture
-                float4 col = tex2D(_MainTex, i.uv);
+                float2 uvWithOffset = i.uv + StepTypeFunction();
+
+                float4 n = tex2D(_Noise, uvWithOffset);
+                n = n * _Strength;
+                float2 newUV = i.uv + n.rgb;
+
+                float4 col = tex2D(_MainTex, newUV);
+                
                 float2 output = (i.uv * 2) - 1;
-                float len = length(output);
-                len = saturate(saturate(len) - 0.7);
-                //len = len
-                float3 len3 = float3(0,1,0) * len + sin(_Time.y * 5) * 0.2 + 0.2 ;
-                return float4(col + len3,1);
+                float len = length(output) - 0.8;
+                len = saturate(len);               
+                len = len;
+                float3 len3 = float3(1,1,0) * len + sin(_Time.y * 5) * 0.1 + 0.1 ;
+                return float4(col.rgb + len3,col.a);
             }
             ENDCG
         }
