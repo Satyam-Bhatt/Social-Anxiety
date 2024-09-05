@@ -108,6 +108,13 @@ public class MovementSystem : MonoBehaviour
         noteText = notePanel.GetComponentInChildren<TMP_Text>();
 
         coroutine = MovePlayer();
+
+        GetComponent<BezierCurve>().enabled = false;
+        foreach (SpriteRenderer sprite in gameObject.transform.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sprite.enabled = false;
+        }
+        GetComponent<SpriteRenderer>().enabled = true;
     }
 
     void Update()
@@ -298,5 +305,11 @@ public class MovementSystem : MonoBehaviour
     {
         cutscenePlaying = false;
         StopCoroutine(coroutine);
+
+        GetComponent<BezierCurve>().enabled = true;
+        foreach (SpriteRenderer sprite in gameObject.transform.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sprite.enabled = true;
+        }
     }
 }

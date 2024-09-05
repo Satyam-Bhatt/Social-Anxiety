@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
+    private MovementSystem movementSystem;
 
     public static GameManager Instance
     { get
@@ -21,12 +22,13 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        FindObjectOfType<MovementSystem>().onTimelineStart += BW_Transition;
+        movementSystem  = FindObjectOfType<MovementSystem>();
+        movementSystem.onTimelineStart += BW_Transition;
     }
 
     private void OnDisable()
     {
-        FindObjectOfType<MovementSystem>().onTimelineStart -= BW_Transition;
+        movementSystem.onTimelineStart -= BW_Transition;
     }
 
 
