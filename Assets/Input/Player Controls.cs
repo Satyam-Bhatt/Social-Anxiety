@@ -156,6 +156,54 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""CoffeGame"",
+            ""id"": ""13890fbf-db86-409f-83d4-9919c16fa9c0"",
+            ""actions"": [
+                {
+                    ""name"": ""FirstPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""633891cd-e315-4881-b41e-21daac4bc66a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""3916800e-f6ab-4e2f-b991-3f0162218424"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""13db46ca-f060-43b7-84ad-a4586f32d389"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player"",
+                    ""action"": ""FirstPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba7df9ac-8a90-44be-ab9b-c0472eeaabdb"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player"",
+                    ""action"": ""SecondPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -171,6 +219,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         m_Movement_Interact = m_Movement.FindAction("Interact", throwIfNotFound: true);
         m_Movement_MouseClick = m_Movement.FindAction("MouseClick", throwIfNotFound: true);
+        // CoffeGame
+        m_CoffeGame = asset.FindActionMap("CoffeGame", throwIfNotFound: true);
+        m_CoffeGame_FirstPress = m_CoffeGame.FindAction("FirstPress", throwIfNotFound: true);
+        m_CoffeGame_SecondPress = m_CoffeGame.FindAction("SecondPress", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -290,6 +342,60 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public MovementActions @Movement => new MovementActions(this);
+
+    // CoffeGame
+    private readonly InputActionMap m_CoffeGame;
+    private List<ICoffeGameActions> m_CoffeGameActionsCallbackInterfaces = new List<ICoffeGameActions>();
+    private readonly InputAction m_CoffeGame_FirstPress;
+    private readonly InputAction m_CoffeGame_SecondPress;
+    public struct CoffeGameActions
+    {
+        private @PlayerControls m_Wrapper;
+        public CoffeGameActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @FirstPress => m_Wrapper.m_CoffeGame_FirstPress;
+        public InputAction @SecondPress => m_Wrapper.m_CoffeGame_SecondPress;
+        public InputActionMap Get() { return m_Wrapper.m_CoffeGame; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CoffeGameActions set) { return set.Get(); }
+        public void AddCallbacks(ICoffeGameActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CoffeGameActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CoffeGameActionsCallbackInterfaces.Add(instance);
+            @FirstPress.started += instance.OnFirstPress;
+            @FirstPress.performed += instance.OnFirstPress;
+            @FirstPress.canceled += instance.OnFirstPress;
+            @SecondPress.started += instance.OnSecondPress;
+            @SecondPress.performed += instance.OnSecondPress;
+            @SecondPress.canceled += instance.OnSecondPress;
+        }
+
+        private void UnregisterCallbacks(ICoffeGameActions instance)
+        {
+            @FirstPress.started -= instance.OnFirstPress;
+            @FirstPress.performed -= instance.OnFirstPress;
+            @FirstPress.canceled -= instance.OnFirstPress;
+            @SecondPress.started -= instance.OnSecondPress;
+            @SecondPress.performed -= instance.OnSecondPress;
+            @SecondPress.canceled -= instance.OnSecondPress;
+        }
+
+        public void RemoveCallbacks(ICoffeGameActions instance)
+        {
+            if (m_Wrapper.m_CoffeGameActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICoffeGameActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CoffeGameActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CoffeGameActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CoffeGameActions @CoffeGame => new CoffeGameActions(this);
     private int m_PlayerSchemeIndex = -1;
     public InputControlScheme PlayerScheme
     {
@@ -304,5 +410,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnMouseClick(InputAction.CallbackContext context);
+    }
+    public interface ICoffeGameActions
+    {
+        void OnFirstPress(InputAction.CallbackContext context);
+        void OnSecondPress(InputAction.CallbackContext context);
     }
 }

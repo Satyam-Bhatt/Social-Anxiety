@@ -134,6 +134,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "CoffeGame",
+            "id": "13890fbf-db86-409f-83d4-9919c16fa9c0",
+            "actions": [
+                {
+                    "name": "FirstPress",
+                    "type": "Button",
+                    "id": "633891cd-e315-4881-b41e-21daac4bc66a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SecondPress",
+                    "type": "Button",
+                    "id": "3916800e-f6ab-4e2f-b991-3f0162218424",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "13db46ca-f060-43b7-84ad-a4586f32d389",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player",
+                    "action": "FirstPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ba7df9ac-8a90-44be-ab9b-c0472eeaabdb",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player",
+                    "action": "SecondPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
