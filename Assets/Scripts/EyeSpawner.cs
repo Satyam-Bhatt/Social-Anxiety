@@ -12,7 +12,7 @@ public class EyeSpawner : MonoBehaviour
 
     private void Start()
     {
-        Spawner();
+       StartCoroutine(Spawner());
     }
 
     private int RandomPicker()
@@ -20,7 +20,21 @@ public class EyeSpawner : MonoBehaviour
         return Random.Range(0, eye_SpawnPoint.Length);
     }
 
-    /*    private IEnumerator Spawner()
+    private IEnumerator Spawner()
+    {
+        while (true)
+        {
+            int spawnPoint_1 = RandomPicker();
+            int spawnPoint_2 = RandomPicker();
+            while (spawnPoint_1 == spawnPoint_2) spawnPoint_2 = RandomPicker();
+            Instantiate(eye, eye_SpawnPoint[spawnPoint_1].position, Quaternion.identity);
+            Instantiate(eye, eye_SpawnPoint[spawnPoint_2].position, Quaternion.identity);
+
+            yield return new WaitForSeconds(spawnTime);
+        }
+    }
+
+    /*    private async void Spawner()
         {
             while (true)
             {
@@ -30,21 +44,7 @@ public class EyeSpawner : MonoBehaviour
                 Instantiate(eye, eye_SpawnPoint[spawnPoint_1].position, Quaternion.identity);
                 Instantiate(eye, eye_SpawnPoint[spawnPoint_2].position, Quaternion.identity);
 
-                yield return new WaitForSeconds(spawnTime);
+                await Task.Delay((int)(spawnTime * 1000f));
             }
         }*/
-
-    private async void Spawner()
-    {
-        while (true && Application.IsPlaying(this))
-        {
-            int spawnPoint_1 = RandomPicker();
-            int spawnPoint_2 = RandomPicker();
-            while(spawnPoint_1 == spawnPoint_2) spawnPoint_2 = RandomPicker();
-            Instantiate(eye, eye_SpawnPoint[spawnPoint_1].position, Quaternion.identity);
-            Instantiate(eye, eye_SpawnPoint[spawnPoint_2].position, Quaternion.identity);
-
-            await Task.Delay((int)(spawnTime * 1000f));
-        }
-    }
 }
