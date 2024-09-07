@@ -178,6 +178,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThirdPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb70e64e-7b9d-4ff4-82f5-e8d1e717e6ae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FourthPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""58ec7f09-a49c-49a1-b356-cbc2c67144c1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -202,6 +220,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""SecondPress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""959a3290-3608-4ee5-aef1-68f6919097c9"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player"",
+                    ""action"": ""ThirdPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d213fe5-0cbd-4f03-be23-808f8104b230"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player"",
+                    ""action"": ""FourthPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -223,6 +263,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_CoffeGame = asset.FindActionMap("CoffeGame", throwIfNotFound: true);
         m_CoffeGame_FirstPress = m_CoffeGame.FindAction("FirstPress", throwIfNotFound: true);
         m_CoffeGame_SecondPress = m_CoffeGame.FindAction("SecondPress", throwIfNotFound: true);
+        m_CoffeGame_ThirdPress = m_CoffeGame.FindAction("ThirdPress", throwIfNotFound: true);
+        m_CoffeGame_FourthPress = m_CoffeGame.FindAction("FourthPress", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -348,12 +390,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<ICoffeGameActions> m_CoffeGameActionsCallbackInterfaces = new List<ICoffeGameActions>();
     private readonly InputAction m_CoffeGame_FirstPress;
     private readonly InputAction m_CoffeGame_SecondPress;
+    private readonly InputAction m_CoffeGame_ThirdPress;
+    private readonly InputAction m_CoffeGame_FourthPress;
     public struct CoffeGameActions
     {
         private @PlayerControls m_Wrapper;
         public CoffeGameActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @FirstPress => m_Wrapper.m_CoffeGame_FirstPress;
         public InputAction @SecondPress => m_Wrapper.m_CoffeGame_SecondPress;
+        public InputAction @ThirdPress => m_Wrapper.m_CoffeGame_ThirdPress;
+        public InputAction @FourthPress => m_Wrapper.m_CoffeGame_FourthPress;
         public InputActionMap Get() { return m_Wrapper.m_CoffeGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -369,6 +415,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SecondPress.started += instance.OnSecondPress;
             @SecondPress.performed += instance.OnSecondPress;
             @SecondPress.canceled += instance.OnSecondPress;
+            @ThirdPress.started += instance.OnThirdPress;
+            @ThirdPress.performed += instance.OnThirdPress;
+            @ThirdPress.canceled += instance.OnThirdPress;
+            @FourthPress.started += instance.OnFourthPress;
+            @FourthPress.performed += instance.OnFourthPress;
+            @FourthPress.canceled += instance.OnFourthPress;
         }
 
         private void UnregisterCallbacks(ICoffeGameActions instance)
@@ -379,6 +431,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SecondPress.started -= instance.OnSecondPress;
             @SecondPress.performed -= instance.OnSecondPress;
             @SecondPress.canceled -= instance.OnSecondPress;
+            @ThirdPress.started -= instance.OnThirdPress;
+            @ThirdPress.performed -= instance.OnThirdPress;
+            @ThirdPress.canceled -= instance.OnThirdPress;
+            @FourthPress.started -= instance.OnFourthPress;
+            @FourthPress.performed -= instance.OnFourthPress;
+            @FourthPress.canceled -= instance.OnFourthPress;
         }
 
         public void RemoveCallbacks(ICoffeGameActions instance)
@@ -415,5 +473,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnFirstPress(InputAction.CallbackContext context);
         void OnSecondPress(InputAction.CallbackContext context);
+        void OnThirdPress(InputAction.CallbackContext context);
+        void OnFourthPress(InputAction.CallbackContext context);
     }
 }

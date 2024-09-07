@@ -156,6 +156,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ThirdPress",
+                    "type": "Button",
+                    "id": "bb70e64e-7b9d-4ff4-82f5-e8d1e717e6ae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FourthPress",
+                    "type": "Button",
+                    "id": "58ec7f09-a49c-49a1-b356-cbc2c67144c1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -178,6 +196,28 @@
                     "processors": "",
                     "groups": "Player",
                     "action": "SecondPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "959a3290-3608-4ee5-aef1-68f6919097c9",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player",
+                    "action": "ThirdPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d213fe5-0cbd-4f03-be23-808f8104b230",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player",
+                    "action": "FourthPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
