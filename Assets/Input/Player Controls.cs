@@ -196,6 +196,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EyesClose"",
+                    ""type"": ""Button"",
+                    ""id"": ""bfde3484-7b88-43ac-9ce8-9aa9be329d34"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -242,6 +251,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""FourthPress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db37f811-f991-45fd-a0ba-f454002404f2"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player"",
+                    ""action"": ""EyesClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -265,6 +285,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_CoffeGame_SecondPress = m_CoffeGame.FindAction("SecondPress", throwIfNotFound: true);
         m_CoffeGame_ThirdPress = m_CoffeGame.FindAction("ThirdPress", throwIfNotFound: true);
         m_CoffeGame_FourthPress = m_CoffeGame.FindAction("FourthPress", throwIfNotFound: true);
+        m_CoffeGame_EyesClose = m_CoffeGame.FindAction("EyesClose", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -392,6 +413,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_CoffeGame_SecondPress;
     private readonly InputAction m_CoffeGame_ThirdPress;
     private readonly InputAction m_CoffeGame_FourthPress;
+    private readonly InputAction m_CoffeGame_EyesClose;
     public struct CoffeGameActions
     {
         private @PlayerControls m_Wrapper;
@@ -400,6 +422,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @SecondPress => m_Wrapper.m_CoffeGame_SecondPress;
         public InputAction @ThirdPress => m_Wrapper.m_CoffeGame_ThirdPress;
         public InputAction @FourthPress => m_Wrapper.m_CoffeGame_FourthPress;
+        public InputAction @EyesClose => m_Wrapper.m_CoffeGame_EyesClose;
         public InputActionMap Get() { return m_Wrapper.m_CoffeGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -421,6 +444,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @FourthPress.started += instance.OnFourthPress;
             @FourthPress.performed += instance.OnFourthPress;
             @FourthPress.canceled += instance.OnFourthPress;
+            @EyesClose.started += instance.OnEyesClose;
+            @EyesClose.performed += instance.OnEyesClose;
+            @EyesClose.canceled += instance.OnEyesClose;
         }
 
         private void UnregisterCallbacks(ICoffeGameActions instance)
@@ -437,6 +463,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @FourthPress.started -= instance.OnFourthPress;
             @FourthPress.performed -= instance.OnFourthPress;
             @FourthPress.canceled -= instance.OnFourthPress;
+            @EyesClose.started -= instance.OnEyesClose;
+            @EyesClose.performed -= instance.OnEyesClose;
+            @EyesClose.canceled -= instance.OnEyesClose;
         }
 
         public void RemoveCallbacks(ICoffeGameActions instance)
@@ -475,5 +504,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSecondPress(InputAction.CallbackContext context);
         void OnThirdPress(InputAction.CallbackContext context);
         void OnFourthPress(InputAction.CallbackContext context);
+        void OnEyesClose(InputAction.CallbackContext context);
     }
 }

@@ -10,9 +10,16 @@ public class EyeSpawner : MonoBehaviour
     [SerializeField] private GameObject eye;
     [SerializeField] private float spawnTime = 2f;
 
+    private GameObject obj;
+
     private void Start()
     {
-       StartCoroutine(Spawner());
+        obj = new GameObject("Eye Keepes");
+        obj.transform.position = new Vector3(0, 0, 0);
+
+        StartCoroutine(Spawner());
+        StartCoroutine(SpawnSpeed());
+        StartCoroutine(DeleteGameObject());
     }
 
     private int RandomPicker()
@@ -20,31 +27,91 @@ public class EyeSpawner : MonoBehaviour
         return Random.Range(0, eye_SpawnPoint.Length);
     }
 
+    private int numberToSpawn()
+    { 
+        int percentNum = Random.Range(0, 101);
+
+        if (percentNum <= 20)
+        {
+            return 3;
+        }
+        else 
+        {
+            return 2;
+        }
+
+    }
+
     private IEnumerator Spawner()
     {
         while (true)
         {
-            int spawnPoint_1 = RandomPicker();
-            int spawnPoint_2 = RandomPicker();
-            while (spawnPoint_1 == spawnPoint_2) spawnPoint_2 = RandomPicker();
-            Instantiate(eye, eye_SpawnPoint[spawnPoint_1].position, Quaternion.identity);
-            Instantiate(eye, eye_SpawnPoint[spawnPoint_2].position, Quaternion.identity);
+            if (numberToSpawn() == 3)
+            {
+                int spawnPoint_1 = RandomPicker();
+                int spawnPoint_2 = RandomPicker();
+                int spawnPoint_3 = RandomPicker();
+
+                while (spawnPoint_1 == spawnPoint_2 || spawnPoint_2 == spawnPoint_3 || spawnPoint_1 == spawnPoint_3)
+                { 
+                    spawnPoint_2 = RandomPicker();
+                    spawnPoint_3 = RandomPicker();
+                }
+
+                GameObject g1 = Instantiate(eye, eye_SpawnPoint[spawnPoint_1].position, Quaternion.identity);
+                GameObject g2 = Instantiate(eye, eye_SpawnPoint[spawnPoint_2].position, Quaternion.identity);
+                GameObject g3 = Instantiate(eye, eye_SpawnPoint[spawnPoint_3].position, Quaternion.identity);
+
+                g1.transform.SetParent(obj.transform);
+                g2.transform.SetParent(obj.transform);
+                g3.transform.SetParent(obj.transform);
+            }
+            else 
+            { 
+                int spawnPoint_1 = RandomPicker();
+                int spawnPoint_2 = RandomPicker();
+                while (spawnPoint_1 == spawnPoint_2)
+                {
+                    spawnPoint_2 = RandomPicker();
+                }
+            
+                GameObject g1 = Instantiate(eye, eye_SpawnPoint[spawnPoint_1].position, Quaternion.identity);
+                GameObject g2 = Instantiate(eye, eye_SpawnPoint[spawnPoint_2].position, Quaternion.identity);
+
+                g1.transform.SetParent(obj.transform);
+                g2.transform.SetParent(obj.transform);
+            }
 
             yield return new WaitForSeconds(spawnTime);
         }
     }
 
-    /*    private async void Spawner()
+    private IEnumerator SpawnSpeed()
+    { 
+        while (true)
         {
-            while (true)
-            {
-                int spawnPoint_1 = RandomPicker();
-                int spawnPoint_2 = RandomPicker();
-                while(spawnPoint_1 == spawnPoint_2) spawnPoint_2 = RandomPicker();
-                Instantiate(eye, eye_SpawnPoint[spawnPoint_1].position, Quaternion.identity);
-                Instantiate(eye, eye_SpawnPoint[spawnPoint_2].position, Quaternion.identity);
+            yield return new WaitForSeconds(10f);
 
-                await Task.Delay((int)(spawnTime * 1000f));
+            if(spawnTime > 0.6f)
+            {
+                spawnTime -= 0.2f;
             }
-        }*/
+        }
+    }
+
+    private IEnumerator DeleteGameObject()
+    {
+        while (true)
+        { 
+            yield return new WaitForEndOfFrame();
+
+            if (obj.transform.childCount > 40) {
+                for (int i = 0; i <= 10; i++)
+                {
+                    Destroy(obj.transform.GetChild(i).gameObject);
+                }
+            }
+     
+        }
+    }
 }

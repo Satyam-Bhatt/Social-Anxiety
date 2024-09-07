@@ -18,12 +18,4 @@ public class DialoguePersonal : MonoBehaviour
         Debug.Log("dialogue start");
         DialogueManager.Instance.DialogueCharacter(sentences, names, dialoguePosition);
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            DialogueStart();
-        }
-    }
 }

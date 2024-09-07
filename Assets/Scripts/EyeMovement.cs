@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EyeMovement : MonoBehaviour
 {
-    [SerializeField] private float down_Speed = 1f;
+    public float down_Speed = 1f;
 
     // Update is called once per frame
     void Update()
