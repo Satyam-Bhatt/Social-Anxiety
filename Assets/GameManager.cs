@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     private MovementSystem movementSystem;
 
+    public bool isBW { get; private set; } = false;
+
     public static GameManager Instance
     { get
         {
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
         //Code related to all the changes after world turn BW
         //Food doesn't make happy
         Debug.Log("BW Transition");
+        isBW = true;
     }
 
 }

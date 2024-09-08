@@ -12,6 +12,8 @@ public class CoffeeGame : MonoBehaviour
 
     [SerializeField] private Image image;
 
+    [SerializeField] private GameObject[] coffeeActivator = new GameObject[4];
+
     private TMP_Text letterToPress;
 
     private float value = 0;
@@ -27,10 +29,17 @@ public class CoffeeGame : MonoBehaviour
     {
         image.fillAmount = 0;
         letterToPress.text = "K";
+
+        coffeeActivator[0].SetActive(true);
+        coffeeActivator[1].SetActive(false);
+        coffeeActivator[2].SetActive(false);
+        coffeeActivator[3].SetActive(false);
     }
 
     private void OnEnable()
     {
+        image.gameObject.SetActive(true);
+
         playerControls.CoffeGame.FirstPress.Enable();
         playerControls.CoffeGame.FirstPress.started += FirstPressed;
         playerControls.CoffeGame.FirstPress.canceled += FirstPressed;
@@ -47,6 +56,8 @@ public class CoffeeGame : MonoBehaviour
 
     private void OnDisable()
     {
+        image.gameObject.SetActive(false);
+
         playerControls.CoffeGame.FirstPress.Disable();
         playerControls.CoffeGame.FirstPress.started -= FirstPressed;
         playerControls.CoffeGame.FirstPress.canceled -= FirstPressed;
@@ -96,6 +107,9 @@ public class CoffeeGame : MonoBehaviour
                     playerControls.CoffeGame.SecondPress.Enable();
                     keyIndex++;
                     letterToPress.text = "L";
+
+                    coffeeActivator[0].SetActive(false);
+                    coffeeActivator[1].SetActive(true);
                 }
                 else if (keyIndex == 2)
                 {
@@ -103,6 +117,9 @@ public class CoffeeGame : MonoBehaviour
                     playerControls.CoffeGame.ThirdPress.Enable();
                     keyIndex++;
                     letterToPress.text = "Y";
+
+                    coffeeActivator[1].SetActive(false);
+                    coffeeActivator[2].SetActive(true);
                 }
                 else if (keyIndex == 3)
                 { 
@@ -110,11 +127,16 @@ public class CoffeeGame : MonoBehaviour
                     playerControls.CoffeGame.FourthPress.Enable();
                     keyIndex++;
                     letterToPress.text = "V";
+
+                    coffeeActivator[2].SetActive(false);
+                    coffeeActivator[3].SetActive(true);
                 }
                 else if(keyIndex == 4)
                 {
                     playerControls.CoffeGame.FourthPress.Disable();
                     keyIndex++;
+
+                    coffeeActivator[3].SetActive(false);
                 }
                 break;
             }

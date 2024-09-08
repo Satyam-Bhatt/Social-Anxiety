@@ -53,7 +53,7 @@ public class MovementSystem : MonoBehaviour
 
     private TMP_Text interactText;
     private TMP_Text noteText;
-    private int noteIndex;
+    private Notes noteScript;
 
     private string doorName;
 
@@ -65,11 +65,14 @@ public class MovementSystem : MonoBehaviour
     public delegate void Timeline_Start();
     public event Timeline_Start onTimelineStart;
 
+    private CoffeeGame coffeeGame;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        coffeeGame = GetComponent<CoffeeGame>();
     }
     private void OnEnable()
     {
@@ -115,13 +118,14 @@ public class MovementSystem : MonoBehaviour
             sprite.enabled = false;
         }
         GetComponent<SpriteRenderer>().enabled = true;
+        coffeeGame.enabled = false;
     }
 
     void Update()
     {
         if(cutscenePlaying) return;
         
-        moveInput = playerControls.Movement.Move.ReadValue<Vector2>();
+        moveInput = playerControls.Movement.Move.ReadValue<Vector2>().normalized;
 
         //-----ANIMATION-----//
         if (moveInput.x > 0)
@@ -146,10 +150,16 @@ public class MovementSystem : MonoBehaviour
             interactPanel.SetActive(true);
             interactText.text = "Press E to pickup item";
         }
-        else if (noteIndex != 0)
+        else if (noteScript != null && noteScript.noteNumber != 0)
         {
             interactPanel.SetActive(!messageShown);
             interactText.text = "Press E to read the note";
+        }
+
+        //-------Debug Timeline-------//
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            timeline.Play();
         }
     }
 
@@ -177,12 +187,16 @@ public class MovementSystem : MonoBehaviour
                     panel.SetActive(true);//debug code
                 }
                 else if (collider.gameObject.layer == 9)
-                { 
-                    noteIndex = collider.GetComponent<Notes>().noteNumber;
+                {
+                    noteScript = collider.GetComponent<Notes>();
+                }
+                else if (collider.gameObject.layer == 10)
+                {
+                    this.gameObject.GetComponent<CoffeeGame>().enabled = true;
                 }
             }
         }
-        if (colliderArray.Length == 1)
+        if (ArrayChecker(colliderArray) == 0)
         {
             ObjectToPickUp = null;
             doorName = null;
@@ -192,8 +206,29 @@ public class MovementSystem : MonoBehaviour
             interactPanel.SetActive(false);
             notePanel.SetActive(false);
             messageShown = false;
-            noteIndex = 0;
+            noteScript = null;
+            this.gameObject.GetComponent<CoffeeGame>().enabled = false;
         }
+    }
+
+    private int ArrayChecker(Collider2D[] collider2Ds)
+    {
+        int i = 1;
+
+        foreach (Collider2D c in collider2Ds)
+        {
+            if (c.gameObject.layer == 3 || c.gameObject.layer == 0)
+            {
+                i = 0;
+            }
+            else
+            {
+                i = 1;
+                break;
+            }
+        }
+
+        return i;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -277,17 +312,28 @@ public class MovementSystem : MonoBehaviour
             }
 
         }
-        else if(noteIndex != 0)
+        else if(noteScript.noteNumber != 0)
         {
             notePanel.SetActive(true);
             messageShown = true;
-            if (noteIndex == 1)
+            
+            if (noteScript.noteNumber == 1)
             {
-                noteText.text = notes[noteIndex - 1];
+                noteText.text = notes[noteScript.noteNumber - 1];
+                if (!noteScript.confidneceIncreased)
+                {
+                    InventoryManager.Instance.ConfidenceIncrease();
+                    noteScript.confidneceIncreased = true;
+                }
             }
-            else if(noteIndex == 2)
+            else if(noteScript.noteNumber == 2)
             {
-                noteText.text = notes[noteIndex - 2];
+                noteText.text = notes[noteScript.noteNumber - 1];
+                if (!noteScript.confidneceIncreased)
+                {
+                    InventoryManager.Instance.ConfidenceIncrease();
+                    noteScript.confidneceIncreased = true;
+                }
             }
         }
     }
@@ -312,4 +358,6 @@ public class MovementSystem : MonoBehaviour
             sprite.enabled = true;
         }
     }
+
+    
 }

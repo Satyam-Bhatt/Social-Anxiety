@@ -14,8 +14,11 @@ public class EyeSpawner : MonoBehaviour
 
     private void Start()
     {
+
         obj = new GameObject("Eye Keepes");
         obj.transform.position = new Vector3(0, 0, 0);
+
+        obj.transform.SetParent(this.transform.parent);
 
         StartCoroutine(Spawner());
         StartCoroutine(SpawnSpeed());

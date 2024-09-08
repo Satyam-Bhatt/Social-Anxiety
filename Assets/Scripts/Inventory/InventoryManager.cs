@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
@@ -13,9 +14,28 @@ public class InventoryManager : MonoBehaviour
     private GameObject ItemInSlot;
 
     [SerializeField]
-    private Slider happySlider;
+    private PlayableDirector timeline;
 
     private InventorySlot inventorySlot;
+
+    [SerializeField]
+    private Material healthBar;
+    private float healthValue = 0.5f;
+
+    private static InventoryManager _instance;
+    public static InventoryManager Instance
+    {
+        get
+        {
+            _instance = FindObjectOfType<InventoryManager>();
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<InventoryManager>();
+            }
+
+            return _instance;
+        }
+    }
 
     public void CheckList(int itemIndex)
     {
@@ -40,6 +60,8 @@ public class InventoryManager : MonoBehaviour
             inventorySlot = containers[i].GetComponent<InventorySlot>();
             inventorySlot.onUse += ItemUsed;
         }
+
+        timeline.stopped += BWTransition;
     }
     private void OnDisable()
     {
@@ -48,16 +70,43 @@ public class InventoryManager : MonoBehaviour
             inventorySlot = containers[i].GetComponent<InventorySlot>();
             inventorySlot.onUse -= ItemUsed;
         }
+
+        timeline.stopped -= BWTransition;
+    }
+
+    private void Start()
+    {
+        healthBar.SetFloat("_Health", healthValue);
     }
 
     public void ItemUsed(Item item)
     {
         Debug.Log("check" + item.type);
-        if (item.type == Item.ItemType.Consumable)
+        if (item.type == Item.ItemType.Consumable && GameManager.Instance.isBW == false)
         {
-            happySlider.value += 1;
+            healthBar.SetFloat("_Health", healthValue += 0.1f);
         }
     }
-    
+
+    public void BWTransition(PlayableDirector timeline)
+    { 
+        StartCoroutine(ConfidenceFall());
+    }
+
+    IEnumerator ConfidenceFall()
+    { 
+        while(healthValue > 0f)
+        { 
+            yield return new WaitForSeconds(0.5f);
+            healthBar.SetFloat("_Health", healthValue -= 0.005f);
+        }
+    }
+
+    public void ConfidenceIncrease()
+    {
+        if(GameManager.Instance.isBW == false)
+        healthBar.SetFloat("_Health", healthValue += 0.1f);
+    }
+
 
 }

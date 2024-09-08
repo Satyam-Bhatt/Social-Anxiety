@@ -23,6 +23,7 @@ public class BezierCurve : MonoBehaviour
     void Update()
     {
         t = Mathf.Cos(Time.time + Mathf.PI) * 0.5f + 0.5f;
+        
         t = (a+b-2)*t*t*t + (-a-2*b+3)*t*t + b*t;
 
         Vector2 AB = Vector2.Lerp(points[0].position, points[1].position, t);
@@ -40,10 +41,10 @@ public class BezierCurve : MonoBehaviour
     {
         while (true)
         { 
-            yield return new WaitForSeconds(3.14f);
+            yield return new WaitForSeconds(Mathf.PI);
 
             float x = Random.Range(-15f, 15f);
-            float y = Random.Range(2f, 7f);
+            float y = Random.Range(4f, 12f);
 
             if(t < 0.95f)
                 points[1].localPosition = new Vector2(x, y);
@@ -59,8 +60,8 @@ public class BezierCurve : MonoBehaviour
             else
                 points[2].localPosition = new Vector2(x, -y);
 
-            a = Random.Range(0f, 11f);
-            b = Random.Range(0f, 11f);
+            a = Random.Range(0f, 5f);
+            b = Random.Range(0f, 5f);
 
             pointSpecial.GetComponent<SpriteRenderer>().sprite = people[Random.Range(0, people.Length)];
         }

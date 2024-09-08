@@ -19,6 +19,11 @@ public class TransitionManager : MonoBehaviour
     [Header("Trees")]
     [SerializeField] private GameObject trees;
 
+    [Space(10)]
+    [Header("Characters")]
+    [SerializeField] private GameObject characters;
+
+    [Space(10)]
     [SerializeField] private MovementSystem movementSystem;
 
     private void OnEnable()
@@ -40,7 +45,7 @@ public class TransitionManager : MonoBehaviour
 
     void TransitionSprites_OnStart()
     { 
-
+        StartCoroutine(CharacterSwitch());
     }
 
     void TransitionSprites_OnEnd(PlayableDirector obj)
@@ -52,5 +57,11 @@ public class TransitionManager : MonoBehaviour
         }
         trees.SetActive(false);
         park_BW.SetActive(false);
+    }
+
+    IEnumerator CharacterSwitch()
+    {
+        yield return new WaitForSeconds(3f);
+        characters.SetActive(false);
     }
 }
