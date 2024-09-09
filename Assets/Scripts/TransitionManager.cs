@@ -22,6 +22,7 @@ public class TransitionManager : MonoBehaviour
     [Space(10)]
     [Header("Characters")]
     [SerializeField] private GameObject characters;
+    [SerializeField] private GameObject characters_BW;
 
     [Space(10)]
     [SerializeField] private MovementSystem movementSystem;
@@ -40,7 +41,7 @@ public class TransitionManager : MonoBehaviour
 
     private void Start()
     {
-        
+        characters_BW.SetActive(false);
     }
 
     void TransitionSprites_OnStart()
@@ -62,6 +63,7 @@ public class TransitionManager : MonoBehaviour
     IEnumerator CharacterSwitch()
     {
         yield return new WaitForSeconds(3f);
+        characters_BW.SetActive(true);
         characters.SetActive(false);
     }
 }

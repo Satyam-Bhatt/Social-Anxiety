@@ -8,31 +8,34 @@ public class NPCMovement : MonoBehaviour
     [SerializeField]
     private Transform[] movePath;
 
-    private int movePathIndex = 0;
+    private int movePathIndex = 1;
+
+    [Range(0,1f)]
+    [SerializeField]private float t,a,b = 0.0f;
+
+    private float increaseValue = 0.0f;
+
+    private void OnEnable()
+    {
+        StartCoroutine(RandomPlacement());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        t= 0f; a = 0f; b = 0f; increaseValue = 0f;
+        transform.position = movePath[0].position;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = (movePath[movePathIndex].position - transform.position).normalized;
-        
-        transform.Translate(direction * 1 * Time.deltaTime, Space.World);
+        increaseValue += Time.deltaTime;
 
-        //For linear motion
-        //transform.position = Vector3.MoveTowards(transform.position, movePath[movePathIndex].position, 1 * Time.deltaTime);
+        t = Mathf.Cos(increaseValue + Mathf.PI) * 0.5f + 0.5f;
+        t = (a + b - 2) * t * t * t + (-a - 2 * b + 3) * t * t + b * t;
 
-        transform.rotation = Quaternion.AngleAxis(GetAngleFromVectorFloat(direction), Vector3.forward);
-
-        if (Vector3.Distance(movePath[movePathIndex].position, transform.position) < 0.1f)
-        {
-            if (movePathIndex < movePath.Length - 1)
-            {
-                movePathIndex++;
-            }
-            else 
-            {
-                movePathIndex = 0;
-            }
-        }
+        transform.position = Vector3.Lerp(movePath[0].position, movePath[1].position, t);
     }
 
     private float GetAngleFromVectorFloat(Vector3 dir)
@@ -44,5 +47,16 @@ public class NPCMovement : MonoBehaviour
             n += 360;
         }
         return n;
+    }
+
+    IEnumerator RandomPlacement()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Mathf.PI);
+            gameObject.GetComponent<SpriteRenderer>().flipX = !gameObject.GetComponent<SpriteRenderer>().flipX;
+            a = Random.Range(0f, 5f);
+            b = Random.Range(0f, 5f);
+        }
     }
 }

@@ -20,7 +20,7 @@ public class BezierCurve : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         t = Mathf.Cos(Time.time + Mathf.PI) * 0.5f + 0.5f;
         
