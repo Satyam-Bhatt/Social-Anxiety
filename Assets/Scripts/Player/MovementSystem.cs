@@ -312,7 +312,7 @@ public class MovementSystem : MonoBehaviour
             }
 
         }
-        else if(noteScript.noteNumber != 0)
+        else if(noteScript != null && noteScript.noteNumber != 0)
         {
             notePanel.SetActive(true);
             messageShown = true;
@@ -338,13 +338,31 @@ public class MovementSystem : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private Transform unknownGuy;
+
     private IEnumerator MovePlayer()
     {
         while (transform.position != new Vector3(-5.4f, -49.9f, 0f)) 
-        { 
-            transform.position = Vector3.Lerp(transform.position, new Vector3(-5.4f, -49.9f, 0f), 1f * Time.deltaTime);
-            yield return new WaitForSeconds(Time.deltaTime);
+        {
+            if (timeline.time > 3.7f && timeline.time < 3.8f)
+                timeline.Pause();
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(-5.4f, -49.9f, 0f), 1f * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
         }
+        
+
+        while (unknownGuy.transform.position != new Vector3(-7.0f, -49.9f, 0f))
+        {
+            if (timeline.time > 3.7f && timeline.time < 3.8f)
+                timeline.Pause();
+            unknownGuy.transform.position = Vector3.MoveTowards(unknownGuy.transform.position, new Vector3(-7.0f, -49.9f, 0f), 1.2f * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+
+        timeline.Play();
+        yield return null;
+
     }
 
     void OnPlayableDirectorStopped(PlayableDirector timeline)
