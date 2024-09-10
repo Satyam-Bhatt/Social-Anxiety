@@ -8,8 +8,6 @@ public class NPCMovement : MonoBehaviour
     [SerializeField]
     private Transform[] movePath;
 
-    private int movePathIndex = 1;
-
     [Range(0,1f)]
     [SerializeField]private float t,a,b = 0.0f;
 

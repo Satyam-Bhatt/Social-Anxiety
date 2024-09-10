@@ -112,12 +112,11 @@ public class MovementSystem : MonoBehaviour
 
         coroutine = MovePlayer();
 
-        GetComponent<BezierCurve>().enabled = false;
-        foreach (SpriteRenderer sprite in gameObject.transform.GetComponentsInChildren<SpriteRenderer>())
+        for(int i=0; i < transform.childCount; i++)
         {
-            sprite.enabled = false;
+            transform.GetChild(i).gameObject.SetActive(false);
         }
-        GetComponent<SpriteRenderer>().enabled = true;
+
         coffeeGame.enabled = false;
     }
 
@@ -160,6 +159,10 @@ public class MovementSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             timeline.Play();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            StartCoroutine(EnableChild(0));
         }
     }
 
@@ -370,13 +373,20 @@ public class MovementSystem : MonoBehaviour
         cutscenePlaying = false;
         StopCoroutine(coroutine);
 
-        GetComponent<BezierCurve>().enabled = true;
-        foreach (SpriteRenderer sprite in gameObject.transform.GetComponentsInChildren<SpriteRenderer>())
-        {
-            sprite.enabled = true;
-        }
+        StartCoroutine(EnableChild(0));
+
         unknownGuy.gameObject.GetComponent<SpriteRenderer>().flipX = true;
         unknownGuy.gameObject.GetComponent<NPCMovement>().enabled = true;
+    }
+
+    IEnumerator EnableChild(int index)
+    {
+        while (index < transform.childCount)
+        { 
+            transform.GetChild(index).gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            index++;
+        }
     }
 
     

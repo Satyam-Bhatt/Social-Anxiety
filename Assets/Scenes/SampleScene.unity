@@ -1566,7 +1566,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 22.44, y: 21.00463}
+    oldSize: {x: 21.054108, y: 20.17}
     newSize: {x: 21.054108, y: 20.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1592,7 +1592,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 22.44, y: 21.00463}
+    oldSize: {x: 21.054108, y: 20.17}
     newSize: {x: 21.054108, y: 20.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1618,7 +1618,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 22.44, y: 21.00463}
+    oldSize: {x: 21.054108, y: 20.17}
     newSize: {x: 21.054108, y: 20.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1644,7 +1644,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 22.44, y: 21.00463}
+    oldSize: {x: 21.054108, y: 20.17}
     newSize: {x: 21.054108, y: 20.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1670,7 +1670,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 22.44, y: 21.00463}
+    oldSize: {x: 21.054108, y: 20.17}
     newSize: {x: 21.054108, y: 20.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2144,7 +2144,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.4272304, y: -51.44, z: -54.896687}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9338,22 +9338,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2068600711, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3019389771881059093, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
       propertyPath: image
       value: 
       objectReference: {fileID: 1372487772}
-    - target: {fileID: 3019389771881059093, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019389771881059093, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
-      propertyPath: coffeeActivator.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3019389771881059093, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
       propertyPath: coffeeActivator.Array.data[0]
       value: 
@@ -9368,22 +9356,6 @@ PrefabInstance:
       objectReference: {fileID: 581232408}
     - target: {fileID: 3019389771881059093, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
       propertyPath: coffeeActivator.Array.data[3]
-      value: 
-      objectReference: {fileID: 1503856649}
-    - target: {fileID: 3019389771881059093, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
-      propertyPath: coffeeActivator.Array.data[4]
-      value: 
-      objectReference: {fileID: 711749370}
-    - target: {fileID: 3019389771881059093, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
-      propertyPath: coffeeActivator.Array.data[5]
-      value: 
-      objectReference: {fileID: 833916323}
-    - target: {fileID: 3019389771881059093, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
-      propertyPath: coffeeActivator.Array.data[6]
-      value: 
-      objectReference: {fileID: 581232408}
-    - target: {fileID: 3019389771881059093, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
-      propertyPath: coffeeActivator.Array.data[7]
       value: 
       objectReference: {fileID: 1503856649}
     - target: {fileID: 3019389773711893266, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
@@ -9426,14 +9398,6 @@ PrefabInstance:
       propertyPath: inventoryManager
       value: 
       objectReference: {fileID: 251840069}
-    - target: {fileID: 3019389773711893266, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
-      propertyPath: notes.Array.data[0]
-      value: Note1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019389773711893266, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
-      propertyPath: notes.Array.data[1]
-      value: Note2
-      objectReference: {fileID: 0}
     - target: {fileID: 3019389773711893267, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -9478,13 +9442,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3019389773711899884, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
-      propertyPath: m_SpriteSortPoint
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3019389773711899886, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417988978260411658, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
+      propertyPath: percent
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417988978777966761, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
+      propertyPath: percent
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417988979713387801, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
+      propertyPath: percent
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
