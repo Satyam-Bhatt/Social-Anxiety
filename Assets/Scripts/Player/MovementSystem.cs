@@ -375,6 +375,8 @@ public class MovementSystem : MonoBehaviour
         {
             sprite.enabled = true;
         }
+        unknownGuy.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        unknownGuy.gameObject.GetComponent<NPCMovement>().enabled = true;
     }
 
     
