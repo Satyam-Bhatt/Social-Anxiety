@@ -27,6 +27,26 @@ public class TransitionManager : MonoBehaviour
     [Space(10)]
     [SerializeField] private MovementSystem movementSystem;
 
+    [Space(10)]
+    [Header("Coffee Game")]
+    public GameObject coffeeGame;
+
+    private static TransitionManager _instance;
+
+    public static TransitionManager Instance
+    {
+        get
+        {
+            _instance = FindObjectOfType<TransitionManager>();
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<TransitionManager>();
+            }
+
+            return _instance;
+        }
+    }
+
     private void OnEnable()
     {
         movementSystem.onTimelineStart += TransitionSprites_OnStart;
@@ -42,6 +62,7 @@ public class TransitionManager : MonoBehaviour
     private void Start()
     {
         characters_BW.SetActive(false);
+        coffeeGame.SetActive(false);
     }
 
     void TransitionSprites_OnStart()
@@ -55,14 +76,15 @@ public class TransitionManager : MonoBehaviour
         {
             colored_Area[i].sprite = bw_Area[i];
             colored_Area[i].material = bw_material[i];
-        }
-        trees.SetActive(false);
+        }       
         park_BW.SetActive(false);
+        coffeeGame.SetActive(true);
     }
 
     IEnumerator CharacterSwitch()
     {
         yield return new WaitForSeconds(3f);
+        trees.SetActive(false);
         characters_BW.SetActive(true);
         characters.SetActive(false);
     }

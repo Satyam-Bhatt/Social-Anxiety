@@ -19,6 +19,7 @@ public class MovementSystem : MonoBehaviour
     private bool canTravel = false;
     private bool messageShown = false;
     private bool cutscenePlaying = false;
+    private bool coffeeGamePlaying = false;
 
     private IEnumerator coroutine;
 
@@ -46,6 +47,8 @@ public class MovementSystem : MonoBehaviour
     private GameObject interactPanel;
     [SerializeField]
     private GameObject notePanel;
+    [SerializeField]
+    private GameObject coffeeGamePanel;
 
     [TextArea(4, 2)]
     [SerializeField]
@@ -102,6 +105,7 @@ public class MovementSystem : MonoBehaviour
         kitchen.SetActive(false);
         outside.SetActive(false);
         park.SetActive(false);
+        coffeeGamePanel.SetActive(false);
         transform.position = Vector3.zero;
 
         interactPanel.SetActive(false);
@@ -194,8 +198,8 @@ public class MovementSystem : MonoBehaviour
                     noteScript = collider.GetComponent<Notes>();
                 }
                 else if (collider.gameObject.layer == 10)
-                {
-                    this.gameObject.GetComponent<CoffeeGame>().enabled = true;
+                { 
+                    gameObject.GetComponent<CoffeeGame>().enabled = true;
                 }
             }
         }
@@ -265,11 +269,23 @@ public class MovementSystem : MonoBehaviour
             StartCoroutine(coroutine);
             Destroy(collision.gameObject);
         }
+
+        if (collision.CompareTag("CoffeeGame"))
+        {
+            coffeeGamePanel.SetActive(true);
+            interactText.text = "Press E to start game";
+            coffeeGamePlaying = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         interactPanel.SetActive(false);
+
+        if (collision.CompareTag("CoffeeGame")) {
+            coffeeGamePanel.SetActive(false);
+            coffeeGamePlaying = false;
+        }
     }
 
     private void OnDrawGizmos()
@@ -312,6 +328,12 @@ public class MovementSystem : MonoBehaviour
                 kitchen.SetActive(true);
                 outside.SetActive(false);
                 transform.position = new Vector3(10.46f, -31.0f, 0f);
+
+                if (GameManager.Instance.isBW)
+                { 
+                    outside.transform.GetChild(0).gameObject.SetActive(false);
+                    kitchen.transform.GetChild(1).gameObject.SetActive(false);
+                }
             }
 
         }
@@ -338,6 +360,14 @@ public class MovementSystem : MonoBehaviour
                     noteScript.confidneceIncreased = true;
                 }
             }
+        }
+        else if(coffeeGamePlaying)
+        {
+            gameObject.GetComponent<CoffeeGame>().enabled = true;
+            interactPanel.SetActive(false);
+            TransitionManager.Instance.coffeeGame.transform.GetChild(0).gameObject.SetActive(false);
+            TransitionManager.Instance.coffeeGame.transform.GetChild(1).gameObject.SetActive(true);
+            TransitionManager.Instance.coffeeGame.transform.GetChild(2).gameObject.SetActive(true);
         }
     }
 

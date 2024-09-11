@@ -33,7 +33,7 @@ public class Eye_Player : MonoBehaviour
 
     private void Start()
     {
-        s.sprite = EyesClose_Open[1];
+        s.sprite = EyesClose_Open[0];
     }
 
     private void Update()
