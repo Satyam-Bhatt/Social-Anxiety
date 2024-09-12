@@ -10,7 +10,9 @@ public class CoffeeGame : MonoBehaviour
 {
     private PlayerControls playerControls;
 
-    [SerializeField] private Image image;
+    public Image image;
+
+    public bool canPlay = true;
 
     [SerializeField] private GameObject[] coffeeActivator = new GameObject[4];
 
@@ -27,6 +29,8 @@ public class CoffeeGame : MonoBehaviour
 
     private void Start()
     {
+        image.gameObject.SetActive(true);
+
         image.fillAmount = 0;
         letterToPress.text = "K";
 
@@ -38,8 +42,6 @@ public class CoffeeGame : MonoBehaviour
 
     private void OnEnable()
     {
-        image.gameObject.SetActive(true);
-
         playerControls.CoffeGame.FirstPress.Enable();
         playerControls.CoffeGame.FirstPress.started += FirstPressed;
         playerControls.CoffeGame.FirstPress.canceled += FirstPressed;
@@ -56,8 +58,6 @@ public class CoffeeGame : MonoBehaviour
 
     private void OnDisable()
     {
-        image.gameObject.SetActive(false);
-
         playerControls.CoffeGame.FirstPress.Disable();
         playerControls.CoffeGame.FirstPress.started -= FirstPressed;
         playerControls.CoffeGame.FirstPress.canceled -= FirstPressed;
@@ -75,26 +75,26 @@ public class CoffeeGame : MonoBehaviour
         playerControls.CoffeGame.FourthPress.canceled -= FirstPressed;
     }
 
-
-
-
     public void FirstPressed(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            StopAllCoroutines();
-            StartCoroutine(ValueChange(0.1f));
-        }
-        else 
-        {
-            StopAllCoroutines();
-            StartCoroutine(ValueChange(-0.5f));
+        if (canPlay)
+        { 
+            if (context.started)
+            {
+                StopAllCoroutines();
+                StartCoroutine(ValueChange(0.1f));
+            }
+            else 
+            {
+                StopAllCoroutines();
+                StartCoroutine(ValueChange(-0.5f));
+            }        
         }
     }
 
     IEnumerator ValueChange(float incrementDecrement)
     {
-        while (value >= 0 && value <= 1)
+        while (value >= 0 && value <= 1 && canPlay)
         {
             value += incrementDecrement * Time.deltaTime;
             image.fillAmount = value;

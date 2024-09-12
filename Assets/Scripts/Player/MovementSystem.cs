@@ -200,6 +200,8 @@ public class MovementSystem : MonoBehaviour
                 else if (collider.gameObject.layer == 10)
                 { 
                     gameObject.GetComponent<CoffeeGame>().enabled = true;
+                    gameObject.GetComponent<CoffeeGame>().canPlay = true;
+                    gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(true);
                 }
             }
         }
@@ -214,7 +216,10 @@ public class MovementSystem : MonoBehaviour
             notePanel.SetActive(false);
             messageShown = false;
             noteScript = null;
-            this.gameObject.GetComponent<CoffeeGame>().enabled = false;
+
+            //Turnig off Coffee Game
+            gameObject.GetComponent<CoffeeGame>().canPlay = false;
+            gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(false);
         }
     }
 

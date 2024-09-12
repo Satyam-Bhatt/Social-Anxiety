@@ -11,13 +11,12 @@ public class CheckInOut : MonoBehaviour
     private bool eyesFollow = false;
 
     private PlayerControls playerControls;
-    private Rigidbody2D rb;
 
     private void Awake()
     {
-        rb = GetComponentInChildren<Rigidbody2D>();
         playerControls = new PlayerControls();
     }
+
     private void OnEnable()
     {
         playerControls.CoffeGame.EyesClose.Enable();
@@ -34,7 +33,7 @@ public class CheckInOut : MonoBehaviour
 
     private void Update()
     {
-        if (eyesFollow)
+        if (GameManager.Instance.eyesShut)
         { 
             float scaleX = outerEye.localScale.x / 2 - (blackEye.localScale.x/2);
             float scaleY = outerEye.localScale.y / 2 - (blackEye.localScale.x / 2);
