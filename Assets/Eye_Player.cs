@@ -11,6 +11,9 @@ public class Eye_Player : MonoBehaviour
 
     private bool position = false;
 
+    private float value = 0f;
+    [SerializeField] private Material mat;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -19,6 +22,8 @@ public class Eye_Player : MonoBehaviour
 
     private void OnEnable()
     {
+        mat.SetFloat("_Anxiety", 0f);
+
         playerControls.CoffeGame.EyesClose.Enable();
         playerControls.CoffeGame.EyesClose.started += SpriteChange;
         playerControls.CoffeGame.EyesClose.canceled += SpriteChange;
@@ -34,6 +39,7 @@ public class Eye_Player : MonoBehaviour
     private void Start()
     {
         s.sprite = EyesClose_Open[0];
+        mat.SetFloat("_Anxiety", 0f);
     }
 
     private void Update()
@@ -61,6 +67,9 @@ public class Eye_Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.CompareTag("Eyes"))
+        { 
+            mat.SetFloat("_Anxiety", value += 0.1f);
+        }
     }
 }

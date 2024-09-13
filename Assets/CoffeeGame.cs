@@ -14,6 +14,9 @@ public class CoffeeGame : MonoBehaviour
 
     public bool canPlay = true;
 
+    private Vector3 imagePosition;
+    public float offset = 0f;
+
     [SerializeField] private GameObject[] coffeeActivator = new GameObject[4];
 
     private TMP_Text letterToPress;
@@ -30,6 +33,8 @@ public class CoffeeGame : MonoBehaviour
     private void Start()
     {
         image.gameObject.SetActive(true);
+
+        image.transform.position = new Vector3(coffeeActivator[0].transform.position.x - offset, coffeeActivator[0].transform.position.y, coffeeActivator[0].transform.position.z);
 
         image.fillAmount = 0;
         letterToPress.text = "K";
@@ -82,11 +87,17 @@ public class CoffeeGame : MonoBehaviour
             if (context.started)
             {
                 StopAllCoroutines();
+
+                //image.transform.position = imagePosition;
+                
                 StartCoroutine(ValueChange(0.1f));
             }
             else 
             {
                 StopAllCoroutines();
+
+                //image.transform.position = imagePosition;
+
                 StartCoroutine(ValueChange(-0.5f));
             }        
         }
@@ -110,6 +121,7 @@ public class CoffeeGame : MonoBehaviour
 
                     coffeeActivator[0].SetActive(false);
                     coffeeActivator[1].SetActive(true);
+                    image.transform.position = new Vector3(coffeeActivator[1].transform.position.x - offset, coffeeActivator[1].transform.position.y, coffeeActivator[1].transform.position.z);
                 }
                 else if (keyIndex == 2)
                 {
@@ -120,6 +132,7 @@ public class CoffeeGame : MonoBehaviour
 
                     coffeeActivator[1].SetActive(false);
                     coffeeActivator[2].SetActive(true);
+                    image.transform.position = new Vector3(coffeeActivator[2].transform.position.x - offset, coffeeActivator[2].transform.position.y, coffeeActivator[2].transform.position.z);
                 }
                 else if (keyIndex == 3)
                 { 
@@ -130,6 +143,7 @@ public class CoffeeGame : MonoBehaviour
 
                     coffeeActivator[2].SetActive(false);
                     coffeeActivator[3].SetActive(true);
+                    image.transform.position = new Vector3(coffeeActivator[3].transform.position.x - offset, coffeeActivator[3].transform.position.y, coffeeActivator[3].transform.position.z);
                 }
                 else if(keyIndex == 4)
                 {
