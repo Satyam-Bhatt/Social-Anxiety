@@ -18,8 +18,9 @@ public class MovementSystem : MonoBehaviour
     private bool canInteract = false;
     private bool canTravel = false;
     private bool messageShown = false;
-    private bool cutscenePlaying = false;
+    public bool cutscenePlaying = false;
     private bool coffeeGamePlaying = false;
+    private bool canSleep = false;
 
     private IEnumerator coroutine;
 
@@ -36,9 +37,14 @@ public class MovementSystem : MonoBehaviour
     private GameObject outside;
     [SerializeField]
     private GameObject park;
+    [SerializeField]
+    private GameObject sleepPanel;
 
     [SerializeField]
     private PlayableDirector timeline;
+
+    [SerializeField]
+    private PlayableDirector sleepTimeline;
 
     [Header("Canvas")]
     [Space(10)]
@@ -85,6 +91,7 @@ public class MovementSystem : MonoBehaviour
         playerControls.Movement.Interact.performed += Interact;
 
         timeline.stopped += OnPlayableDirectorStopped;
+        sleepTimeline.stopped += OnSleepTimelineStateChanged;
     }
 
     private void OnDisable()
@@ -95,6 +102,7 @@ public class MovementSystem : MonoBehaviour
         playerControls.Movement.Interact.performed -= Interact;
 
         timeline.stopped -= OnPlayableDirectorStopped;
+        sleepTimeline.stopped -= OnSleepTimelineStateChanged;
     }
 
     // Start is called before the first frame update
@@ -120,7 +128,7 @@ public class MovementSystem : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
-
+        room.transform.GetChild(2).gameObject.SetActive(false);
         coffeeGame.enabled = false;
     }
 
@@ -158,6 +166,11 @@ public class MovementSystem : MonoBehaviour
             interactPanel.SetActive(!messageShown);
             interactText.text = "Press E to read the note";
         }
+        else if(canSleep)
+        {
+            interactPanel.SetActive(true);
+            interactText.text = "Press E to sleep";
+        }
 
         //-------Debug Timeline-------//
         if (Input.GetKeyDown(KeyCode.T))
@@ -177,7 +190,7 @@ public class MovementSystem : MonoBehaviour
 
         rb.velocity = moveInput * moveSpeed;
 
-        Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, 2f);
+        Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, 1f);
         foreach(Collider2D collider in colliderArray)
         {
             if (collider.gameObject.tag != "Player") {
@@ -198,10 +211,14 @@ public class MovementSystem : MonoBehaviour
                     noteScript = collider.GetComponent<Notes>();
                 }
                 else if (collider.gameObject.layer == 10)
-                { 
+                {
                     gameObject.GetComponent<CoffeeGame>().enabled = true;
                     gameObject.GetComponent<CoffeeGame>().canPlay = true;
                     gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(true);
+                }
+                else if (collider.gameObject.layer == 11)
+                { 
+                    canSleep = true;
                 }
             }
         }
@@ -216,6 +233,7 @@ public class MovementSystem : MonoBehaviour
             notePanel.SetActive(false);
             messageShown = false;
             noteScript = null;
+            canSleep = false;
 
             //Turnig off Coffee Game
             gameObject.GetComponent<CoffeeGame>().canPlay = false;
@@ -267,6 +285,7 @@ public class MovementSystem : MonoBehaviour
         if (collision.CompareTag("Trigger"))
         { 
             timeline.Play();
+            GameManager.Instance.tasks.transform.parent.gameObject.SetActive(false);
             onTimelineStart.Invoke();
             cutscenePlaying = true;
             rb.velocity = Vector3.zero;
@@ -295,7 +314,7 @@ public class MovementSystem : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Handles.DrawWireDisc(transform.position, new Vector3(0, 0, 1), 2f);
+        Handles.DrawWireDisc(transform.position, new Vector3(0, 0, 1), 1f);
     }
 
     public void Interact(InputAction.CallbackContext context)
@@ -320,6 +339,11 @@ public class MovementSystem : MonoBehaviour
                 room.SetActive(true);
                 kitchen.SetActive(false);
                 transform.position = new Vector3(5.14f, -6.89f, 0f);
+                if (GameManager.Instance.isBW && GameManager.Instance.coffeeGameDone)
+                {
+                    room.transform.GetChild(0).gameObject.SetActive(false);
+                    room.transform.GetChild(2).gameObject.SetActive(true);
+                }
             }
             else if (doorName == "KitchenOutsideDoor")
             {
@@ -335,18 +359,18 @@ public class MovementSystem : MonoBehaviour
                 transform.position = new Vector3(10.46f, -31.0f, 0f);
 
                 if (GameManager.Instance.isBW)
-                { 
+                {
                     outside.transform.GetChild(0).gameObject.SetActive(false);
                     kitchen.transform.GetChild(1).gameObject.SetActive(false);
                 }
             }
 
         }
-        else if(noteScript != null && noteScript.noteNumber != 0)
+        else if (noteScript != null && noteScript.noteNumber != 0)
         {
             notePanel.SetActive(true);
             messageShown = true;
-            
+
             if (noteScript.noteNumber == 1)
             {
                 noteText.text = notes[noteScript.noteNumber - 1];
@@ -356,7 +380,7 @@ public class MovementSystem : MonoBehaviour
                     noteScript.confidneceIncreased = true;
                 }
             }
-            else if(noteScript.noteNumber == 2)
+            else if (noteScript.noteNumber == 2)
             {
                 noteText.text = notes[noteScript.noteNumber - 1];
                 if (!noteScript.confidneceIncreased)
@@ -366,13 +390,20 @@ public class MovementSystem : MonoBehaviour
                 }
             }
         }
-        else if(coffeeGamePlaying)
+        else if (coffeeGamePlaying)
         {
-            gameObject.GetComponent<CoffeeGame>().enabled = true;
             interactPanel.SetActive(false);
+            GameManager.Instance.tasks.transform.parent.gameObject.SetActive(false);
             TransitionManager.Instance.coffeeGame.transform.GetChild(0).gameObject.SetActive(false);
             TransitionManager.Instance.coffeeGame.transform.GetChild(1).gameObject.SetActive(true);
             TransitionManager.Instance.coffeeGame.transform.GetChild(2).gameObject.SetActive(true);
+            gameObject.GetComponent<CoffeeGame>().enabled = true;
+        }
+        else if (canSleep)
+        {
+            sleepTimeline.Play();
+            GameManager.Instance.tasks.transform.parent.gameObject.SetActive(false);
+            cutscenePlaying = true;
         }
     }
 
@@ -412,6 +443,9 @@ public class MovementSystem : MonoBehaviour
 
         unknownGuy.gameObject.GetComponent<SpriteRenderer>().flipX = true;
         unknownGuy.gameObject.GetComponent<NPCMovement>().enabled = true;
+
+        GameManager.Instance.tasks.text = "- Make Coffee";
+        GameManager.Instance.tasks.transform.parent.gameObject.SetActive(true);
     }
 
     IEnumerator EnableChild(int index)
@@ -424,5 +458,25 @@ public class MovementSystem : MonoBehaviour
         }
     }
 
-    
+    public void OnSleepTimelineStateChanged(PlayableDirector timeline)
+    {
+        cutscenePlaying = false;
+        sleepPanel.SetActive(false);
+        StartCoroutine(DisableChild(0));
+        room.transform.GetChild(2).gameObject.SetActive(false);
+        GameManager.Instance.tasks.text = "- Escape";
+        GameManager.Instance.tasks.transform.parent.gameObject.SetActive(true);
+        InventoryManager.Instance.AfterSleep();
+    }
+
+    IEnumerator DisableChild(int index)
+    {
+        while (index < transform.childCount)
+        {
+            transform.GetChild(index).gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+            index++;
+        }
+    }
+
 }

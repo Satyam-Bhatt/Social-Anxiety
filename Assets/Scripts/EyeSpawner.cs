@@ -12,17 +12,25 @@ public class EyeSpawner : MonoBehaviour
 
     private GameObject obj;
 
-    private void Start()
+    private void OnEnable()
     {
+        if (transform.Find("Eye Keepes") == null)
+        { 
+            obj = new GameObject("Eye Keepes");
+            obj.transform.position = new Vector3(0, 0, 0);
 
-        obj = new GameObject("Eye Keepes");
-        obj.transform.position = new Vector3(0, 0, 0);
-
-        obj.transform.SetParent(this.transform.parent);
+            obj.transform.SetParent(this.transform.parent);        
+        }
 
         StartCoroutine(Spawner());
         StartCoroutine(SpawnSpeed());
         StartCoroutine(DeleteGameObject());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        Destroy(obj);
     }
 
     private int RandomPicker()

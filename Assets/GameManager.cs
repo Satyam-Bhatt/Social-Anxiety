@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class GameManager : MonoBehaviour
     public bool eyesShut { get; private set; } = false;
 
     public bool isBW { get; private set; } = false;
+
+    [HideInInspector]
+    public bool coffeeGameDone = false;
+
+    public TMP_Text tasks;
 
     public static GameManager Instance
     { get
@@ -48,6 +54,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
+    }
+
+    private void Start()
+    {
+        tasks.text = "- Go to the park";
     }
 
     public void BW_Transition()

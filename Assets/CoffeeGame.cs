@@ -14,15 +14,16 @@ public class CoffeeGame : MonoBehaviour
 
     public bool canPlay = true;
 
-    private Vector3 imagePosition;
     public float offset = 0f;
 
-    [SerializeField] private GameObject[] coffeeActivator = new GameObject[4];
+    public GameObject[] coffeeActivator = new GameObject[4];
 
     private TMP_Text letterToPress;
 
     private float value = 0;
     private int keyIndex = 1;
+
+    [SerializeField] private GameObject eyeGame;
 
     private void Awake()
     {
@@ -47,6 +48,8 @@ public class CoffeeGame : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("Enable");
+
         playerControls.CoffeGame.FirstPress.Enable();
         playerControls.CoffeGame.FirstPress.started += FirstPressed;
         playerControls.CoffeGame.FirstPress.canceled += FirstPressed;
@@ -63,6 +66,8 @@ public class CoffeeGame : MonoBehaviour
 
     private void OnDisable()
     {
+        Debug.Log("Disable");
+
         playerControls.CoffeGame.FirstPress.Disable();
         playerControls.CoffeGame.FirstPress.started -= FirstPressed;
         playerControls.CoffeGame.FirstPress.canceled -= FirstPressed;
@@ -151,6 +156,10 @@ public class CoffeeGame : MonoBehaviour
                     keyIndex++;
 
                     coffeeActivator[3].SetActive(false);
+                    eyeGame.SetActive(false);
+                    GameManager.Instance.coffeeGameDone = true;
+                    GameManager.Instance.tasks.transform.parent.gameObject.SetActive(true);
+                    GameManager.Instance.tasks.text = "- Get rid of thoughts";
                 }
                 break;
             }

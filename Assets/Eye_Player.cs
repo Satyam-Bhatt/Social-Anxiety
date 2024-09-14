@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 
 public class Eye_Player : MonoBehaviour
 {
@@ -14,19 +15,40 @@ public class Eye_Player : MonoBehaviour
     private float value = 0f;
     [SerializeField] private Material mat;
 
+    [SerializeField] private MovementSystem movementSystem;
+    private PlayableDirector timeline;
+
+    [SerializeField] private GameObject[] active_deactive;
+
+    private Vector3 posiStore = Vector3.zero;
+
+    [SerializeField] private Transform rect;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
         s = gameObject.transform.GetComponent<SpriteRenderer>();
+        timeline = GetComponent<PlayableDirector>();
     }
 
     private void OnEnable()
-    {
+    { 
+        
+        if (posiStore == Vector3.zero)
+        {
+            posiStore = transform.localPosition;
+        }
+        else { 
+            transform.localPosition = posiStore;
+        }
+
         mat.SetFloat("_Anxiety", 0f);
 
         playerControls.CoffeGame.EyesClose.Enable();
         playerControls.CoffeGame.EyesClose.started += SpriteChange;
         playerControls.CoffeGame.EyesClose.canceled += SpriteChange;
+
+        timeline.stopped += TimelineStopped;
     }
 
     private void OnDisable()
@@ -45,9 +67,17 @@ public class Eye_Player : MonoBehaviour
     private void Update()
     {
         if (position)
-        { 
+        {
+            float rightX = rect.transform.position.x + rect.transform.lossyScale.x / 2;
+            float leftX = rect.transform.position.x - rect.transform.lossyScale.x / 2;
+            float topY = rect.transform.position.y + rect.transform.lossyScale.y / 2;
+            float bottomY = rect.transform.position.y - rect.transform.lossyScale.y / 2;
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = Vector3.Lerp(transform.position, mousePosition, 30 * Time.deltaTime);
+
+            if (mousePosition.x < rightX && mousePosition.x > leftX && mousePosition.y < topY && mousePosition.y > bottomY)
+            {
+                transform.position = Vector3.Lerp(transform.position, mousePosition, 30 * Time.deltaTime);
+            }
         }
     }
 
@@ -71,5 +101,35 @@ public class Eye_Player : MonoBehaviour
         { 
             mat.SetFloat("_Anxiety", value += 0.1f);
         }
+
+        if (value >= 1f)
+        {
+            timeline.Play();
+            movementSystem.cutscenePlaying = true;
+
+            foreach (GameObject g in active_deactive)
+            {
+                g.SetActive(false);
+            }
+            movementSystem.gameObject.GetComponent<CoffeeGame>().coffeeActivator[0].transform.parent.gameObject.SetActive(false);
+            movementSystem.gameObject.GetComponent<CoffeeGame>().canPlay = false;
+            movementSystem.gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(false);
+            GameManager.Instance.tasks.transform.parent.gameObject.SetActive(false);
+        }
+    }
+
+    public void TimelineStopped(PlayableDirector timeline)
+    { 
+        movementSystem.cutscenePlaying = false;
+        transform.parent.transform.parent.transform.parent.Find("Trigger").gameObject.SetActive(true);
+
+        foreach (GameObject g in active_deactive)
+        {
+            g.SetActive(true);
+        }
+        transform.parent.transform.parent.gameObject.SetActive(false);
+        value = 0f;
+        mat.SetFloat("_Anxiety", 0f);
+        GameManager.Instance.tasks.transform.parent.gameObject.SetActive(true);
     }
 }

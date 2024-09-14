@@ -79,6 +79,21 @@ public class InventoryManager : MonoBehaviour
         healthBar.SetFloat("_Health", healthValue);
     }
 
+    public void AfterSleep()
+    {
+        for (int i = 0; i < containers.Length; i++)
+        {
+            if (containers[i].GetComponent<InventorySlot>().item != null)
+            {
+                GameObject child_ = containers[i].transform.GetChild(0).gameObject;
+                Destroy(child_);
+                containers[i].GetComponent<InventorySlot>().item = null;
+            }
+        }
+
+        CheckList(1);
+    }
+
     public void ItemUsed(Item item)
     {
         Debug.Log("check" + item.type);
