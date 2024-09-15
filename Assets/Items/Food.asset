@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe95aa3e140e86d479f59b9fb07df981, type: 3}
   m_Name: Food
   m_EditorClassIdentifier: 
-  icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: -1944417275, guid: 155214f76b1aa224e9d09ea7f89d688a, type: 3}
   type: 0
-  name: Coffee

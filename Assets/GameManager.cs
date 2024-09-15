@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text tasks;
 
+    private int counter = 0;
+
     public static GameManager Instance
     { get
         {
@@ -29,12 +32,12 @@ public class GameManager : MonoBehaviour
             }
 
             return _instance;
-        }        
+        }
     }
 
     private void OnEnable()
     {
-        movementSystem  = FindObjectOfType<MovementSystem>();
+        movementSystem = FindObjectOfType<MovementSystem>();
         movementSystem.onTimelineStart += BW_Transition;
 
         playerControls.CoffeGame.EyesClose.Enable();
@@ -67,6 +70,15 @@ public class GameManager : MonoBehaviour
         //Food doesn't make happy
         Debug.Log("BW Transition");
         isBW = true;
+
+        //Changing all the notes to be different material and contain different Information
+        Notes[] notes = FindObjectsOfType<Notes>();
+
+        foreach (Notes n in notes)
+        {
+            GameObject g = n.gameObject;
+            g.GetComponent<SpriteRenderer>().material = movementSystem.materials[0];
+        }
     }
 
     public void EyesFollow(InputAction.CallbackContext context)
@@ -81,4 +93,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Yes()
+    {
+        Application.Quit();
+    }
+
+    public void No(GameObject open)
+    {
+        counter++;
+        if (counter == 3)
+        {
+            open.SetActive(true);
+        }
+        else {
+            InventoryManager.Instance.AfterSleep();
+        }
+    }
+    public void Replay()
+    {
+        string s = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(s);
+    }
+       
 }

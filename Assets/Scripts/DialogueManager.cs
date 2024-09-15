@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Playables;
 
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text textBox_Sentence;
     [SerializeField] private TMP_Text textBox_Name;
-
+    [SerializeField] private PlayableDirector timeline;
 
     //[TextArea(3, 10)]
     //[SerializeField] private string[] dialogues;
@@ -100,6 +101,7 @@ public class DialogueManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             Debug.Log("End" + Time.time);
+            timeline.Play();
             for (int i = 0; i < transform.childCount; i++)
             {
                 transform.GetChild(i).gameObject.SetActive(false);

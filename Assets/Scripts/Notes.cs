@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Notes : MonoBehaviour
 {
-    public int noteNumber;
     public bool confidneceIncreased = false;
+
+    [TextArea(3, 10)]
+    public string beforeBW;
+    [TextArea(3, 10)]
+    public string afterBW;
 }

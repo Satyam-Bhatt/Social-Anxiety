@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe95aa3e140e86d479f59b9fb07df981, type: 3}
   m_Name: Knife
   m_EditorClassIdentifier: 
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: 20f0a0b503274594a9143e288137b928, type: 3}
   type: 1
-  name: Knife

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
+using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -21,6 +22,12 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]
     private Material healthBar;
     private float healthValue = 0.5f;
+
+    [SerializeField]
+    private TMP_Text healthText;
+
+    [SerializeField]
+    private GameObject killPanel;
 
     private static InventoryManager _instance;
     public static InventoryManager Instance
@@ -76,6 +83,8 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
+        killPanel.SetActive(false);
+        healthText.text = "";
         healthBar.SetFloat("_Health", healthValue);
     }
 
@@ -92,6 +101,8 @@ public class InventoryManager : MonoBehaviour
         }
 
         CheckList(1);
+
+        StopAllCoroutines();
     }
 
     public void ItemUsed(Item item)
@@ -99,7 +110,11 @@ public class InventoryManager : MonoBehaviour
         Debug.Log("check" + item.type);
         if (item.type == Item.ItemType.Consumable && GameManager.Instance.isBW == false)
         {
-            healthBar.SetFloat("_Health", healthValue += 0.1f);
+            ConfidenceIncrease();
+        }
+        else if(item.type == Item.ItemType.Killable)
+        {
+            killPanel.SetActive(true);
         }
     }
 
@@ -110,17 +125,23 @@ public class InventoryManager : MonoBehaviour
 
     IEnumerator ConfidenceFall()
     { 
-        while(healthValue > 0f)
+        while(healthValue > 0.02f)
         { 
-            yield return new WaitForSeconds(0.5f);
-            healthBar.SetFloat("_Health", healthValue -= 0.005f);
+            yield return new WaitForSeconds(1.5f);
+            healthBar.SetFloat("_Health", healthValue -= 0.015f);
+            healthText.text = "-CONFIDENCE";
+            healthText.gameObject.GetComponent<Animator>().SetTrigger("Decrease");
         }
     }
 
     public void ConfidenceIncrease()
     {
         if(GameManager.Instance.isBW == false)
-        healthBar.SetFloat("_Health", healthValue += 0.1f);
+        {
+            healthBar.SetFloat("_Health", healthValue += 0.1f);
+            healthText.text = "+CONFIDENCE";
+            healthText.gameObject.GetComponent<Animator>().SetTrigger("Increase");
+        }
     }
 
 
