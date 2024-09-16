@@ -10,7 +10,7 @@ public class Eye_Player : MonoBehaviour
     [SerializeField] private Sprite[] EyesClose_Open = new Sprite[2];
     private SpriteRenderer s;
 
-    private bool position = false;
+    public bool position = false;
 
     private float value = 0f;
     [SerializeField] private Material mat;
@@ -23,6 +23,9 @@ public class Eye_Player : MonoBehaviour
     private Vector3 posiStore = Vector3.zero;
 
     [SerializeField] private Transform rect;
+
+    [SerializeField] private GameObject rmb_ToStart;
+    [SerializeField] private GameObject spawner;
 
     private void Awake()
     {
@@ -43,6 +46,8 @@ public class Eye_Player : MonoBehaviour
         }
 
         mat.SetFloat("_Anxiety", 0f);
+        rmb_ToStart.SetActive(true);
+        spawner.SetActive(false);
 
         playerControls.CoffeGame.EyesClose.Enable();
         playerControls.CoffeGame.EyesClose.started += SpriteChange;
@@ -87,11 +92,17 @@ public class Eye_Player : MonoBehaviour
         {
             s.sprite = EyesClose_Open[1];
             position = true;
+
+            rmb_ToStart.SetActive(false);
+            spawner.SetActive(true);
         }
         else 
         {
             s.sprite = EyesClose_Open[0];
-            position = false;        
+            position = false;
+
+            rmb_ToStart.SetActive(true);
+            spawner.SetActive(false);
         }
     }
 

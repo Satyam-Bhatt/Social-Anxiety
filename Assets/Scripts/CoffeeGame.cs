@@ -48,8 +48,6 @@ public class CoffeeGame : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("Enable");
-
         playerControls.CoffeGame.FirstPress.Enable();
         playerControls.CoffeGame.FirstPress.started += FirstPressed;
         playerControls.CoffeGame.FirstPress.canceled += FirstPressed;
@@ -66,8 +64,6 @@ public class CoffeeGame : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("Disable");
-
         playerControls.CoffeGame.FirstPress.Disable();
         playerControls.CoffeGame.FirstPress.started -= FirstPressed;
         playerControls.CoffeGame.FirstPress.canceled -= FirstPressed;

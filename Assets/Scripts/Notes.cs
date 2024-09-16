@@ -10,4 +10,7 @@ public class Notes : MonoBehaviour
     public string beforeBW;
     [TextArea(3, 10)]
     public string afterBW;
+
+    public AudioClip audio_BeforeBW;
+    public AudioClip audio_AfterBW;
 }

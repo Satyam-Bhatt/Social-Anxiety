@@ -49,8 +49,6 @@ public class DialogueManager : MonoBehaviour
             transform.GetChild(i).gameObject.SetActive(true);
         }
 
-        Debug.Log("Start" + Time.time);
-
         textBox_Name.text = name[dialogueIndex];
         this.dialoguePosition = dialoguePosition;
 
@@ -100,7 +98,6 @@ public class DialogueManager : MonoBehaviour
         else 
         {
             yield return new WaitForSeconds(1f);
-            Debug.Log("End" + Time.time);
             timeline.Play();
             for (int i = 0; i < transform.childCount; i++)
             {

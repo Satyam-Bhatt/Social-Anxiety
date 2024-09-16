@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     private int counter = 0;
 
+    public AudioSource audioSrc;
     public static GameManager Instance
     { get
         {
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
+        audioSrc = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -70,15 +72,6 @@ public class GameManager : MonoBehaviour
         //Food doesn't make happy
         Debug.Log("BW Transition");
         isBW = true;
-
-        //Changing all the notes to be different material and contain different Information
-        Notes[] notes = FindObjectsOfType<Notes>();
-
-        foreach (Notes n in notes)
-        {
-            GameObject g = n.gameObject;
-            g.GetComponent<SpriteRenderer>().material = movementSystem.materials[0];
-        }
     }
 
     public void EyesFollow(InputAction.CallbackContext context)
@@ -91,6 +84,12 @@ public class GameManager : MonoBehaviour
         {
             eyesShut = false;
         }
+    }
+
+    public void AudioPlay(AudioClip clip)
+    {
+        audioSrc.clip = clip;
+        audioSrc.Play();
     }
 
     public void Yes()

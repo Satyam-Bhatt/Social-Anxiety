@@ -30,6 +30,9 @@ public class MovementSystem : MonoBehaviour
     private InventoryManager inventoryManager;
 
     [SerializeField]
+    private Eye_Player eyePlayer;
+
+    [SerializeField]
     private GameObject kitchen;
     [SerializeField]
     private GameObject room;
@@ -213,8 +216,16 @@ public class MovementSystem : MonoBehaviour
                 else if (collider.gameObject.layer == 10)
                 {
                     gameObject.GetComponent<CoffeeGame>().enabled = true;
-                    gameObject.GetComponent<CoffeeGame>().canPlay = true;
-                    gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(true);
+                    if (eyePlayer.position)
+                    {
+                        gameObject.GetComponent<CoffeeGame>().canPlay = true;
+                        gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<CoffeeGame>().canPlay = false;
+                        gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(false);
+                    }
                 }
                 else if (collider.gameObject.layer == 11)
                 { 
@@ -231,9 +242,21 @@ public class MovementSystem : MonoBehaviour
             canTravel = false;
             interactPanel.SetActive(false);
             notePanel.SetActive(false);
-            messageShown = false;
-            noteScript = null;
+            
             canSleep = false;
+
+            if (noteScript != null )
+            {
+                if (!GameManager.Instance.isBW && messageShown) {
+                    GameManager.Instance.AudioPlay(noteScript.audio_BeforeBW);
+                }
+                else if (GameManager.Instance.isBW && messageShown)
+                {
+                    GameManager.Instance.AudioPlay(noteScript.audio_AfterBW);
+                }
+                messageShown = false;
+                noteScript = null;
+            }
 
             //Turnig off Coffee Game
             gameObject.GetComponent<CoffeeGame>().canPlay = false;
@@ -384,6 +407,8 @@ public class MovementSystem : MonoBehaviour
                 InventoryManager.Instance.ConfidenceIncrease();
                 noteScript.confidneceIncreased = true;
             }
+
+            GameManager.Instance.audioSrc.Pause();
             noteScript.gameObject.GetComponent<SpriteRenderer>().material = materials[1];
         }
         else if (coffeeGamePlaying)
@@ -443,6 +468,15 @@ public class MovementSystem : MonoBehaviour
 
         GameManager.Instance.tasks.text = "- Make Coffee";
         GameManager.Instance.tasks.transform.parent.gameObject.SetActive(true);
+
+        //Changing all the notes to be different material and contain different Information
+        Notes[] notes = FindObjectsOfType<Notes>(true);
+
+        foreach (Notes n in notes)
+        {
+            GameObject g = n.gameObject;
+            g.GetComponent<SpriteRenderer>().material = materials[0];
+        }
     }
 
     IEnumerator EnableChild(int index)
