@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Notes : MonoBehaviour
 {
+    public enum  Type { 
+        Notes,
+        Awards
+    };
+
+    public Type type;
+    
     public bool confidneceIncreased = false;
 
     [TextArea(3, 10)]

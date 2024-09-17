@@ -88,8 +88,9 @@ public class GameManager : MonoBehaviour
 
     public void AudioPlay(AudioClip clip)
     {
-        audioSrc.clip = clip;
-        audioSrc.Play();
+        //audioSrc.clip = clip;
+        audioSrc.Stop();
+        audioSrc.PlayOneShot(clip);
     }
 
     public void Yes()

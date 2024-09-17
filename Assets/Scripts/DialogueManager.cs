@@ -34,6 +34,8 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private AudioClip[] clips_This;
+
     private void Start()
     {
         for(int i = 0; i < transform.childCount; i++)
@@ -42,7 +44,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void DialogueCharacter(string[] dialogues, string[] name, Vector2[] dialoguePosition)
+    public void DialogueCharacter(string[] dialogues, string[] name, Vector2[] dialoguePosition, AudioClip[] clips)
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -51,6 +53,9 @@ public class DialogueManager : MonoBehaviour
 
         textBox_Name.text = name[dialogueIndex];
         this.dialoguePosition = dialoguePosition;
+        clips_This = clips;
+
+        GameManager.Instance.AudioPlay(clips[dialogueIndex]);
 
         if (previousName == null)
         {
@@ -92,12 +97,18 @@ public class DialogueManager : MonoBehaviour
         dialogueIndex++;
         if (dialogueIndex < dialogueLength)
         {
+            while (GameManager.Instance.audioSrc.isPlaying)
+            { 
+                yield return null;
+            }
+
             yield return new WaitForSeconds(1f);
-            DialogueCharacter(dialogues, name, dialoguePosition);
+            DialogueCharacter(dialogues, name, dialoguePosition, clips_This);
         }
         else 
         {
             yield return new WaitForSeconds(1f);
+            dialogueIndex = 0;
             timeline.Play();
             for (int i = 0; i < transform.childCount; i++)
             {

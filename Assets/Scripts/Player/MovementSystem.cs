@@ -167,7 +167,7 @@ public class MovementSystem : MonoBehaviour
         else if (noteScript != null)
         {
             interactPanel.SetActive(!messageShown);
-            interactText.text = "Press E to read the note";
+            interactText.text = "Press E to Interact";
         }
         else if(canSleep)
         {
@@ -391,15 +391,34 @@ public class MovementSystem : MonoBehaviour
         }
         else if (noteScript != null)
         {
-            notePanel.SetActive(true);
-            messageShown = true;
+            noteScript.gameObject.GetComponent<SpriteRenderer>().material = materials[1];
 
-            if (!GameManager.Instance.isBW)
+            if (noteScript.type == Notes.Type.Notes)
             {
-                noteText.text = noteScript.beforeBW;
+                notePanel.SetActive(true);
+                messageShown = true;
+
+                if (!GameManager.Instance.isBW)
+                {
+                    noteText.text = noteScript.beforeBW;
+                }
+                else
+                {
+                    noteText.text = noteScript.afterBW;
+                }
             }
-            else { 
-                noteText.text = noteScript.afterBW;
+            else
+            {
+                if (!GameManager.Instance.isBW)
+                {
+                    Debug.Log("cc1");
+                    GameManager.Instance.AudioPlay(noteScript.audio_BeforeBW);
+                }
+                else if (GameManager.Instance.isBW)
+                {
+                    Debug.Log("cc2");
+                    GameManager.Instance.AudioPlay(noteScript.audio_AfterBW);
+                }
             }
 
             if (!noteScript.confidneceIncreased)
@@ -407,9 +426,6 @@ public class MovementSystem : MonoBehaviour
                 InventoryManager.Instance.ConfidenceIncrease();
                 noteScript.confidneceIncreased = true;
             }
-
-            GameManager.Instance.audioSrc.Pause();
-            noteScript.gameObject.GetComponent<SpriteRenderer>().material = materials[1];
         }
         else if (coffeeGamePlaying)
         {

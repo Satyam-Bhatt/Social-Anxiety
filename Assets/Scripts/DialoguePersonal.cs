@@ -14,6 +14,8 @@ public class DialoguePersonal : MonoBehaviour
 
     [SerializeField] private PlayableDirector timeline;
 
+    [SerializeField] private AudioClip[] audioClips;
+
 
     // Update is called once per frame
     public void DialogueStart()
@@ -21,6 +23,6 @@ public class DialoguePersonal : MonoBehaviour
         Debug.Log("dialogue start");
         timeline.Pause();
 
-        DialogueManager.Instance.DialogueCharacter(sentences, names, dialoguePosition);
+        DialogueManager.Instance.DialogueCharacter(sentences, names, dialoguePosition, audioClips);
     }
 }
