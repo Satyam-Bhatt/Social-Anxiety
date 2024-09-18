@@ -8,12 +8,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-    private MovementSystem movementSystem;
+    public MovementSystem movementSystem;
 
     private PlayerControls playerControls;
     public bool eyesShut { get; private set; } = false;
 
-    public bool isBW { get; private set; } = false;
+    public bool isBW;// { get; private set; } = false;
 
     [HideInInspector]
     public bool coffeeGameDone = false;

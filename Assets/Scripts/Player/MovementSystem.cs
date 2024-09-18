@@ -175,14 +175,10 @@ public class MovementSystem : MonoBehaviour
             interactText.text = "Press E to sleep";
         }
 
-        //-------Debug Timeline-------//
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            timeline.Play();
-        }
+        //-------Debug Code-------//
         if (Input.GetKeyDown(KeyCode.P))
         {
-            StartCoroutine(EnableChild(0));
+
         }
     }
 
@@ -377,14 +373,16 @@ public class MovementSystem : MonoBehaviour
             }
             else if (doorName == "OutsideDoor")
             {
-                kitchen.SetActive(true);
-                outside.SetActive(false);
-                transform.position = new Vector3(10.46f, -31.0f, 0f);
+                if (!GameManager.Instance.isBW)
+                { 
+                    kitchen.SetActive(true);
+                    outside.SetActive(false);
+                    transform.position = new Vector3(10.46f, -31.0f, 0f);                
+                }
 
                 if (GameManager.Instance.isBW)
                 {
-                    outside.transform.GetChild(0).gameObject.SetActive(false);
-                    kitchen.transform.GetChild(1).gameObject.SetActive(false);
+                    outside.GetComponent<ConfirmationPopUp>().PanelActivate();
                 }
             }
 
@@ -439,6 +437,7 @@ public class MovementSystem : MonoBehaviour
         else if (canSleep)
         {
             sleepTimeline.Play();
+            GameManager.Instance.audioSrc.Stop();
             GameManager.Instance.tasks.transform.parent.gameObject.SetActive(false);
             room.transform.GetChild(1).gameObject.SetActive(false);
             cutscenePlaying = true;
@@ -478,6 +477,11 @@ public class MovementSystem : MonoBehaviour
         StopCoroutine(coroutine);
 
         StartCoroutine(EnableChild(0));
+
+        GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Delay(0, 2f);
+        
+        float delay = GameManager.Instance.gameObject.GetComponent<RandomThoughts>().clips[0].length;
+        GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Delay(1, delay + 5f);
 
         unknownGuy.gameObject.GetComponent<SpriteRenderer>().flipX = true;
         unknownGuy.gameObject.GetComponent<NPCMovement>().enabled = true;
@@ -530,6 +534,15 @@ public class MovementSystem : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             index++;
         }
+    }
+
+    public void ConfirmationPopUp_Yes()
+    {
+        kitchen.SetActive(true);
+        outside.SetActive(false);
+        transform.position = new Vector3(10.46f, -31.0f, 0f);
+        outside.transform.GetChild(0).gameObject.SetActive(false);
+        kitchen.transform.GetChild(1).gameObject.SetActive(false);
     }
 
 }
