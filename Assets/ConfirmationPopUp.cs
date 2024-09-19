@@ -15,12 +15,12 @@ public class ConfirmationPopUp : MonoBehaviour
         if (count == 0)
         { 
             panel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = "Do I have everything for coffee?";
-            GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(0);
+            GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(4);
         }
         else if(count == 1)
         {
             panel.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = "Would it be safe inside?";
-            GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(1);
+            GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(5);
         }
     }
 

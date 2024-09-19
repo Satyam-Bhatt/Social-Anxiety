@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public bool isBW;// { get; private set; } = false;
 
-    [HideInInspector]
+    //[HideInInspector]
     public bool coffeeGameDone = false;
 
     public TMP_Text tasks;
@@ -95,19 +95,29 @@ public class GameManager : MonoBehaviour
 
     public void Yes()
     {
-        Application.Quit();
+        gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(12);
+        //Application.Quit();
     }
 
     public void No(GameObject open)
     {
         counter++;
-        if (counter == 3)
+
+        if (counter == 1)
+        {
+            gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(9);
+        }
+        else if (counter == 2)
+        {
+            gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(10);
+        }
+        else if (counter == 3)
         {
             open.SetActive(true);
+            gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(11);
         }
-        else {
-            InventoryManager.Instance.AfterSleep();
-        }
+        InventoryManager.Instance.AfterSleep();
+        
     }
     public void Replay()
     {

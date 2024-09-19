@@ -26,6 +26,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Anxiety: 0.9000001
+    - _Anxiety: 0.70000005
     m_Colors: []
   m_BuildTextureStacks: []

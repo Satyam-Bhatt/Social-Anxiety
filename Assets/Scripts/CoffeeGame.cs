@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class CoffeeGame : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class CoffeeGame : MonoBehaviour
 
     private float value = 0;
     private int keyIndex = 1;
+
+    public Action onCoffeeGameCompleted;
 
     [SerializeField] private GameObject eyeGame;
 
@@ -156,6 +159,8 @@ public class CoffeeGame : MonoBehaviour
                     GameManager.Instance.coffeeGameDone = true;
                     GameManager.Instance.tasks.transform.parent.gameObject.SetActive(true);
                     GameManager.Instance.tasks.text = "- Get rid of thoughts";
+                    
+                    onCoffeeGameCompleted?.Invoke();
                 }
                 break;
             }

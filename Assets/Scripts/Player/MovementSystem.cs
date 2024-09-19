@@ -76,6 +76,7 @@ public class MovementSystem : MonoBehaviour
     public event Timeline_Start onTimelineStart;
 
     private CoffeeGame coffeeGame;
+    private RandomThoughts randomThoughts;
 
     private void Awake()
     {
@@ -83,6 +84,7 @@ public class MovementSystem : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         coffeeGame = GetComponent<CoffeeGame>();
+        randomThoughts = GameManager.Instance.GetComponent<RandomThoughts>();
     }
     private void OnEnable()
     {
@@ -93,6 +95,8 @@ public class MovementSystem : MonoBehaviour
 
         timeline.stopped += OnPlayableDirectorStopped;
         sleepTimeline.stopped += OnSleepTimelineStateChanged;
+
+        coffeeGame.onCoffeeGameCompleted += OnCoffeeGameComplete;
     }
 
     private void OnDisable()
@@ -104,6 +108,8 @@ public class MovementSystem : MonoBehaviour
 
         timeline.stopped -= OnPlayableDirectorStopped;
         sleepTimeline.stopped -= OnSleepTimelineStateChanged;
+
+        coffeeGame.onCoffeeGameCompleted -= OnCoffeeGameComplete;
     }
 
     // Start is called before the first frame update
@@ -133,6 +139,8 @@ public class MovementSystem : MonoBehaviour
         coffeeGame.enabled = false;
 
         room.transform.Find("Knife").gameObject.SetActive(false);
+
+        randomThoughts.ClipPlay_Immediate(3);
     }
 
     void Update()
@@ -362,6 +370,12 @@ public class MovementSystem : MonoBehaviour
                 {
                     room.transform.GetChild(0).gameObject.SetActive(false);
                     room.transform.GetChild(1).gameObject.SetActive(true);
+
+                    if (randomThoughts.audioCaption[8].clip != null)
+                    {
+                        randomThoughts.ClipPlay_Delay(8, 1f);
+                        randomThoughts.audioCaption[8].clip = null;
+                    }
                 }
             }
             else if (doorName == "KitchenOutsideDoor")
@@ -370,6 +384,12 @@ public class MovementSystem : MonoBehaviour
                 kitchen.SetActive(false);
                 animator.SetInteger("MovementSwitch", 0);
                 transform.position = new Vector3(10.46f, -37.46f, 0f);
+
+                if (randomThoughts.audioCaption[2].clip != null)
+                {
+                    randomThoughts.ClipPlay_Immediate(2);
+                    randomThoughts.audioCaption[2].clip = null;
+                }
             }
             else if (doorName == "OutsideDoor")
             {
@@ -479,9 +499,11 @@ public class MovementSystem : MonoBehaviour
         StartCoroutine(EnableChild(0));
 
         GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Delay(0, 2f);
-        
-        float delay = GameManager.Instance.gameObject.GetComponent<RandomThoughts>().clips[0].length;
-        GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Delay(1, delay + 5f);
+        // Use coroutine instead
+        float delay = GameManager.Instance.gameObject.GetComponent<RandomThoughts>().audioCaption[0].clip.length;
+        GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Delay(1, delay + 1f);
+        //float delay2 = randomThoughts.audioCaption[1].clip.length;
+        //randomThoughts.ClipPlay_Delay(6,delay + delay2 + 2f);
 
         unknownGuy.gameObject.GetComponent<SpriteRenderer>().flipX = true;
         unknownGuy.gameObject.GetComponent<NPCMovement>().enabled = true;
@@ -524,6 +546,8 @@ public class MovementSystem : MonoBehaviour
         }
 
         room.transform.Find("Knife").gameObject.SetActive(true);
+
+        randomThoughts.ClipPlay_Delay(7, 2f);
     }
 
     IEnumerator DisableChild(int index)
@@ -543,6 +567,13 @@ public class MovementSystem : MonoBehaviour
         transform.position = new Vector3(10.46f, -31.0f, 0f);
         outside.transform.GetChild(0).gameObject.SetActive(false);
         kitchen.transform.GetChild(1).gameObject.SetActive(false);
+    }
+
+    public void OnCoffeeGameComplete()
+    {
+        randomThoughts.ClipPlay_Immediate(13);
+        float delay = randomThoughts.audioCaption[13].clip.length;
+        randomThoughts.ClipPlay_Delay(14, delay + 1f);
     }
 
 }
