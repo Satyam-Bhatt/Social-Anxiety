@@ -18,6 +18,8 @@ public class Notes : MonoBehaviour
     [TextArea(3, 10)]
     public string afterBW;
 
+    public AudioCaptionMix[] auddioCaption = new AudioCaptionMix[2];
+
     public AudioClip audio_BeforeBW;
     public AudioClip audio_AfterBW;
 }

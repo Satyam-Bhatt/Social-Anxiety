@@ -3396,11 +3396,11 @@ PrefabInstance:
       objectReference: {fileID: 711759467, guid: e832ef5c8118d53408608c988df1b96a, type: 3}
     - target: {fileID: 9140061566298288234, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.87
+      value: 2.82
       objectReference: {fileID: 0}
     - target: {fileID: 9140061566298288234, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 3.28
+      value: 4.19
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c390130afc4700478596133fca7ad83, type: 3}
@@ -4551,11 +4551,11 @@ PrefabInstance:
       objectReference: {fileID: 323906003, guid: e832ef5c8118d53408608c988df1b96a, type: 3}
     - target: {fileID: 9140061566298288234, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 2.67
+      value: 4.85
       objectReference: {fileID: 0}
     - target: {fileID: 9140061566298288234, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 3.13
+      value: 3.11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c390130afc4700478596133fca7ad83, type: 3}
@@ -4713,11 +4713,11 @@ PrefabInstance:
       objectReference: {fileID: -196000503, guid: e832ef5c8118d53408608c988df1b96a, type: 3}
     - target: {fileID: 9140061566298288234, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.87
+      value: 2.67
       objectReference: {fileID: 0}
     - target: {fileID: 9140061566298288234, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 3.28
+      value: 3.13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c390130afc4700478596133fca7ad83, type: 3}
@@ -8733,6 +8733,24 @@ PrefabInstance:
       propertyPath: audio_BeforeBW
       value: 
       objectReference: {fileID: 8300000, guid: 22d32cc7ad40bb240bf6fde954d26b0f, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 22d32cc7ad40bb240bf6fde954d26b0f, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a65e6a3367763cc4e9e97217b690a1c7, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].caption
+      value: This was the first ever time in my life I truly aspired for something.
+        I worked incredibly hard, giving up all my free time and just to practise.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].caption
+      value: "I couldn\u2019t clear it in the first attempt. I was just lucky to
+        get the second chance and thats when I cleared it"
+      objectReference: {fileID: 0}
     - target: {fileID: 8235901821504856064, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -8781,6 +8799,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 919279675, guid: e832ef5c8118d53408608c988df1b96a, type: 3}
+    - target: {fileID: 9140061566298288234, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140061566298288234, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 3.28
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c390130afc4700478596133fca7ad83, type: 3}
 --- !u!1 &1185048201
@@ -16722,7 +16748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
-      value: After 1
+      value: <s>After 1</s>
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: beforeBW
@@ -16739,6 +16765,27 @@ PrefabInstance:
       propertyPath: audio_BeforeBW
       value: 
       objectReference: {fileID: 8300000, guid: 63e3cbdc5c37b0242a668ea75a13b6d4, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 63e3cbdc5c37b0242a668ea75a13b6d4, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 376652b2220157e4ebad1d9fd6a9101a, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].caption
+      value: I remember the time Gaurav is referring to. I had really bad grades
+        in my third semester, I remember but then I worked hard and improved in fourth
+        semester. And yes trying to do something for the community, I have always
+        tried to do something!
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].caption
+      value: Fourth semester course were easy and Smriti helped me which is why I
+        got good grades. In the tougher third semester I was slouchy and lazy, as
+        I am
+      objectReference: {fileID: 0}
     - target: {fileID: 8235901821504856064, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_RootOrder
       value: 3

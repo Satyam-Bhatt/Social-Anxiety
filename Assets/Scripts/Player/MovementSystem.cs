@@ -252,11 +252,13 @@ public class MovementSystem : MonoBehaviour
             if (noteScript != null )
             {
                 if (!GameManager.Instance.isBW && messageShown) {
-                    GameManager.Instance.AudioPlay(noteScript.audio_BeforeBW);
+                    //GameManager.Instance.AudioPlay(noteScript.audio_BeforeBW);
+                    randomThoughts.ClipPlay_Immediate(noteScript.auddioCaption[0]);
                 }
                 else if (GameManager.Instance.isBW && messageShown)
                 {
-                    GameManager.Instance.AudioPlay(noteScript.audio_AfterBW);
+                    //GameManager.Instance.AudioPlay(noteScript.audio_AfterBW);
+                    randomThoughts.ClipPlay_Immediate(noteScript.auddioCaption[1]);
                 }
                 messageShown = false;
                 noteScript = null;
@@ -430,12 +432,14 @@ public class MovementSystem : MonoBehaviour
                 if (!GameManager.Instance.isBW)
                 {
                     Debug.Log("cc1");
-                    GameManager.Instance.AudioPlay(noteScript.audio_BeforeBW);
+                    //GameManager.Instance.AudioPlay(noteScript.audio_BeforeBW);
+                    randomThoughts.ClipPlay_Immediate(noteScript.auddioCaption[0]);
                 }
                 else if (GameManager.Instance.isBW)
                 {
                     Debug.Log("cc2");
-                    GameManager.Instance.AudioPlay(noteScript.audio_AfterBW);
+                    //GameManager.Instance.AudioPlay(noteScript.audio_AfterBW);
+                    randomThoughts.ClipPlay_Immediate(noteScript.auddioCaption[1]);
                 }
             }
 
@@ -501,7 +505,7 @@ public class MovementSystem : MonoBehaviour
         GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Delay(0, 2f);
         // Use coroutine instead
         float delay = GameManager.Instance.gameObject.GetComponent<RandomThoughts>().audioCaption[0].clip.length;
-        GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Delay(1, delay + 1f);
+        StartCoroutine(AudioPlay_Delay(1, delay + 1f));
         //float delay2 = randomThoughts.audioCaption[1].clip.length;
         //randomThoughts.ClipPlay_Delay(6,delay + delay2 + 2f);
 
@@ -575,5 +579,11 @@ public class MovementSystem : MonoBehaviour
         float delay = randomThoughts.audioCaption[13].clip.length;
         randomThoughts.ClipPlay_Delay(14, delay + 1f);
     }
+
+    IEnumerator AudioPlay_Delay(int clipIndex, float delay)
+    { 
+        yield return new WaitForSeconds(delay);
+        GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(1);
+    } 
 
 }

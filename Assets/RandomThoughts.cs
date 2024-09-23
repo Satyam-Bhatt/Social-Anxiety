@@ -37,6 +37,18 @@ public class RandomThoughts : MonoBehaviour
         StartCoroutine(CharacterDialogue(audioCaption[clipIndex].caption));
     }
 
+    public void ClipPlay_Immediate(AudioCaptionMix audioCaption)
+    {
+        GameManager.Instance.AudioPlay(audioCaption.clip);
+        captionPanel.SetActive(true);
+        //captionPanel.transform.GetChild(0).GetComponent<TMP_Text>().text = audioCaption[clipIndex].caption;
+        float closeTime = audioCaption.clip.length;
+
+        StopAllCoroutines();
+        StartCoroutine(CloseCaption(closeTime));
+        StartCoroutine(CharacterDialogue(audioCaption.caption));
+    }
+
     public void ClipPlay_Delay(int clipIndex, float delay)
     {
         StartCoroutine(DelayAudio(clipIndex, delay));
