@@ -3334,6 +3334,24 @@ PrefabInstance:
       propertyPath: audio_BeforeBW
       value: 
       objectReference: {fileID: 8300000, guid: 405ce03640888b041892c6209f0e95b1, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 405ce03640888b041892c6209f0e95b1, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1c84fcf26de4b7044ab07b3489547f94, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].caption
+      value: This one surprised me! I never really cared much for academics in college,
+        but good grades just came naturally.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].caption
+      value: I have now lost all that glory now! I cant manage one thing at a time.
+        Let alone balancing academics and Co cirruculars together.
+      objectReference: {fileID: 0}
     - target: {fileID: 8235901821504856064, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -4489,6 +4507,26 @@ PrefabInstance:
       propertyPath: audio_BeforeBW
       value: 
       objectReference: {fileID: 8300000, guid: be99fcef53bbf7f46b6567b370035a1a, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: be99fcef53bbf7f46b6567b370035a1a, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f28af2436e66d10498d6d41cb699c43d, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].caption
+      value: I was the only one from my state in my batch to get into an IIT. The
+        state Government honoured me with a scholarship of One Lakh Rupees. I remember
+        how proud my parents were of me!
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].caption
+      value: I got it only  because I had good education. Most of the kids of my
+        state do not have that privilege. If they too had it, they would have been
+        far better than me!
+      objectReference: {fileID: 0}
     - target: {fileID: 8235901821504856064, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -4651,6 +4689,26 @@ PrefabInstance:
       propertyPath: audio_BeforeBW
       value: 
       objectReference: {fileID: 8300000, guid: 13822ffd51fc7f44f82e03f6237afc07, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 13822ffd51fc7f44f82e03f6237afc07, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 83f04a99a0be0ff4e9d21992e37d699b, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].caption
+      value: "Yes, I remember! I was the teacher\u2019s favorurite. The kids loved
+        me too. They all praised me for the several initives I had taken for the
+        development of the school."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].caption
+      value: I became the head boy by accident. Kunal, who was supposed to get it,
+        fractured his leg and was absent. If he had he been there during the election,
+        I wouldnt have stood a chance
+      objectReference: {fileID: 0}
     - target: {fileID: 8235901821504856064, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -7261,6 +7319,16 @@ PrefabInstance:
       value: Notes (3)
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: afterBW
+      value: Thanks a lot Man! <s>You know you've saved my college life</s>. I HAVENT
+        SAVED A ANT And I don't think grateful or thank you are words enough to describe
+        how I truly feel.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: heading
+      value: COLLEGE YEARBOOK
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: beforeBW
       value: Thanks a lot Man! You know you've saved my college life. And I don't
         think grateful or thank you are words enough to describe how I truly feel.
@@ -7273,6 +7341,24 @@ PrefabInstance:
       propertyPath: audio_BeforeBW
       value: 
       objectReference: {fileID: 8300000, guid: 5a231d7f59a51c148897e7a9bbdfe6a1, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5a231d7f59a51c148897e7a9bbdfe6a1, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: bac891f5ac4a8eb47899f55d0f2bfb6d, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].caption
+      value: Yes I did help him a lot. His degree had been teminated and I defended
+        him successfully as a student representative in the meeting with the administration
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].caption
+      value: I hardly contributed to those meetings with the administration. Things
+        just went along. I have done nothing to deserve this gratitude
+      objectReference: {fileID: 0}
     - target: {fileID: 8235901821504856064, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -7336,6 +7422,141 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8235901821504856064, guid: 0c390130afc4700478596133fca7ad83, type: 3}
   m_PrefabInstance: {fileID: 1004774663}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1012696134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1012696135}
+  - component: {fileID: 1012696137}
+  - component: {fileID: 1012696136}
+  m_Layer: 5
+  m_Name: Heading
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1012696135
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012696134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1641664571}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -158}
+  m_SizeDelta: {x: 0, y: 92.769}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1012696136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012696134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Head Boy
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 44.6
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 44.6
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1012696137
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012696134}
+  m_CullTransparentMesh: 1
 --- !u!1 &1013144373
 GameObject:
   m_ObjectHideFlags: 0
@@ -7635,6 +7856,90 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1073858437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1073858439}
+  - component: {fileID: 1073858438}
+  m_Layer: 0
+  m_Name: Test Material
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1073858438
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073858437}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 530d984593ad660429d9728e8fc8dd7d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: c2e9494c7871f6147b3d0aa2890108be, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1073858439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073858437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 23.41, y: 0.2, z: 0}
+  m_LocalScale: {x: 0.60644686, y: 0.60644686, z: 0.60644686}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1076727306
 GameObject:
   m_ObjectHideFlags: 0
@@ -8413,6 +8718,17 @@ PrefabInstance:
       value: Notes (4)
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: afterBW
+      value: You've been through a lot of tough times on campus and still handled
+        it all so well! You have been a very <s>positive person</s> NEGATIVE and
+        I wish that you be that self of yours always. I'll always remember all the
+        enthusiasm and the positive vibe you had.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: heading
+      value: COLLEGE YEARBOOK
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: beforeBW
       value: You've been through a lot of tough times on campus and still handled
         it all so well! You have been a very positive person and I wish that you
@@ -8427,6 +8743,25 @@ PrefabInstance:
       propertyPath: audio_BeforeBW
       value: 
       objectReference: {fileID: 8300000, guid: ebbcd373e9630e441bdf1795725aed2a, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ebbcd373e9630e441bdf1795725aed2a, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: dcdfe2549513e4548af7d12064c2421a, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].caption
+      value: Well, everyone has their tough times in college and so did I. But yes
+        I did try taking them positively. Keeping my moto always high and taking
+        every setback as a learning oppurtunity
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].caption
+      value: That is what people saw on the surface. The Happy Me! Inside I was always
+        scared, fearful and anxious!
+      objectReference: {fileID: 0}
     - target: {fileID: 8235901821504856064, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -9791,6 +10126,17 @@ PrefabInstance:
       value: Notes (2)
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: afterBW
+      value: You're a great person Dhruv! I admire the fact that you have the <s>courage
+        to always stand up</s> NO NO I AM A COWARDfor what's right - like starting
+        a GameDevSociety - and the courage to pursue what you want, like contesting
+        for President - it was one hell of a feat.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: heading
+      value: COLLEGE YEARBOOK
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: beforeBW
       value: You're a great person Dhruv! I admire the fact that you have the courage
         to always stand up for what's right - like starting a GameDevSociety - and
@@ -9805,6 +10151,25 @@ PrefabInstance:
       propertyPath: audio_BeforeBW
       value: 
       objectReference: {fileID: 8300000, guid: c64b6d49b5531684c8c7f66ce6258230, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c64b6d49b5531684c8c7f66ce6258230, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9df9a89bf1a63654d96936fd46d9979c, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].caption
+      value: "Yes I did stick to my demand of creating a game dev society till the
+        very end. Wow I am really determined. I have done \u201CSOMETHING\u201D worth
+        remembering after all!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].caption
+      value: What was the point. No one is running it now. Its almost dead. All my
+        efforts lead to nothing.
+      objectReference: {fileID: 0}
     - target: {fileID: 8235901821504856064, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -12834,13 +13199,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1012696135}
   - {fileID: 2060659404}
   m_Father: {fileID: 297076256}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -592.8406, y: -36.06362}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 367.15942, y: -36.06362}
   m_SizeDelta: {x: 876.586, y: 899.4213}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1641664572
@@ -14895,35 +15261,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioCaption:
   - clip: {fileID: 8300000, guid: 1327c47fa0d396c4ea6fe0d6fa14d969, type: 3}
-    caption: aa
+    caption: Why are these people all looking at me?
   - clip: {fileID: 8300000, guid: 60309b818deba6544bd8c7612b2b3088, type: 3}
-    caption: clothes
+    caption: Have I done something wrong? Am I wearing wrong clothes? What is it?
   - clip: {fileID: 8300000, guid: 40164d72c484c1f4ea2d5578c1d77985, type: 3}
-    caption: Beautiful
+    caption: What a beautiful day! Just Look at the Sun!
   - clip: {fileID: 8300000, guid: d0310971755e1c54393e32315eff2c3b, type: 3}
-    caption: Fresh Air
+    caption: Let's go to the park and get in some fresh air!
   - clip: {fileID: 8300000, guid: 3d57245544533e6428d5029d66ae8a5b, type: 3}
-    caption: Did Coffee
+    caption: Did I get everything for coffee?
   - clip: {fileID: 8300000, guid: 64b9009124f78d845a37abb41c9dd17e, type: 3}
-    caption: Safe Inside
+    caption: Will I be safe inside? Are there no People in There?
   - clip: {fileID: 8300000, guid: 9756596a8a058d445a0d1a398bd5b765, type: 3}
-    caption: Get Some Coffee
+    caption: I must get some coffee
   - clip: {fileID: 8300000, guid: 55e75e2fa3cb67d478eb6450ef14e343, type: 3}
-    caption: How to escape
+    caption: Uhh!! How to escape this place? All these thoughts in my head!
   - clip: {fileID: 8300000, guid: 2a1fa8efa669d9c488148a5a0bfe4798, type: 3}
-    caption: Lock the Door
+    caption: Did I lock the door?
   - clip: {fileID: 8300000, guid: cff82e6f08655484c8f70e1c5075ce80, type: 3}
-    caption: Voices Not Going Away
+    caption: These voices in my head are just not going away!
   - clip: {fileID: 8300000, guid: 902f99480eff065468eab9a9edbdb837, type: 3}
-    caption: Stop These Thoughts
+    caption: 'How can I stop these thoughts? '
   - clip: {fileID: 8300000, guid: 4f35a02f984fcf145b37cdbc81acaf51, type: 3}
-    caption: No Clicked
+    caption: "I\u2019m so glad I chose to fight through this. I feel so much better
+      now. No, no, you don\u2019t have to fight against the thoughts.  You just have
+      to observe them, simply watch, without reacting and you\u2019ll notice\u2014they
+      begin to fade, to disappear on their own. That\u2019s the secret, really: not
+      battling them, but letting them pass"
   - clip: {fileID: 8300000, guid: a01b13d2545dbe544929ba00dbf98bc4, type: 3}
-    caption: No Clicked
+    caption: "Was this the only way to end it? Was there really no other way to overcome
+      this anxiety? It\u2019s hard to believe that the only escape from the fear,
+      the panic and the pain was... this. Could we not have tried harder and found
+      a different way, something less drastic than this? "
   - clip: {fileID: 8300000, guid: 9d0f8c9ce7f418e4495fe93cb0548e46, type: 3}
-    caption: Thoughts Crazy
+    caption: These Thoughts are driving me crazy!
   - clip: {fileID: 8300000, guid: 3def106adb03d0544bdda84add82bb04, type: 3}
-    caption: Sleep Help
+    caption: Ah! Some Sleep might help
   captionPanel: {fileID: 196798641}
 --- !u!1 &1937542847
 GameObject:
@@ -15468,15 +15841,15 @@ MonoBehaviour:
   - 'Gibberish
 
     (I am good, how are you?)*'
-  - I am good
+  - "I am good\u2026 good. Really good!"
   - 'Gibberish
 
     (What are you doing these days?)*'
-  - I am working from home
+  - These days I am working. No Not to the Office, I work from Home
   - 'Gibberish
 
     (Come, lets go for a walk)*'
-  - No I have some work
+  - Okay.. I Gotta go. I have got some work. Bye See you!
   dialoguePosition:
   - {x: -367, y: 235.66}
   - {x: 355, y: 235.66}
@@ -15536,12 +15909,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1641664571}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.65831, y: 8.039795}
-  m_SizeDelta: {x: 535.0132, y: 521.5277}
+  m_AnchoredPosition: {x: 9.65831, y: 11}
+  m_SizeDelta: {x: 535.0132, y: 409.1723}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2060659405
 MonoBehaviour:
@@ -15593,12 +15966,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.3
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 44.6
+  m_fontSizeMax: 36
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -16529,8 +16902,18 @@ PrefabInstance:
       value: Notes (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: afterBW
+      value: Dhruv, as someone who has seen and known you so closely, I know you
+        will do <s>great things</s>  <b>LOL I HAVE DONE NO GREAT THINGS</b> Even
+        though you haven't decided upon the specifics of how you will do it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: heading
+      value: COLLEGE YEARBOOK
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: beforeBW
-      value: Dhruv, as someone who has seen and known you so closely, i know you
+      value: Dhruv, as someone who has seen and known you so closely, I know you
         will do great things even though you haven't decided upon the specifics of
         how you will do it.
       objectReference: {fileID: 0}
@@ -16542,6 +16925,24 @@ PrefabInstance:
       propertyPath: audio_BeforeBW
       value: 
       objectReference: {fileID: 8300000, guid: 527be36b8037b1e4391c2bfd94b963a0, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 527be36b8037b1e4391c2bfd94b963a0, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d06a59f0bae6cc428858438912097b4, type: 3}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[0].caption
+      value: Wow! People really believed in me. Just look at how much confident they
+        are
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: auddioCaption.Array.data[1].caption
+      value: "I feel like I have let everyone down! I haven\u2019t achieved anything.
+        I have disaapointed everyone"
+      objectReference: {fileID: 0}
     - target: {fileID: 8235901821504856064, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -16748,7 +17149,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
-      value: <s>After 1</s>
+      value: You really were among the first people I met at this place. You were
+        also someone <s>genuinely wanted good</s> BAD for everyone. Got to learn
+        a lot from you, <s>springing back up every time</s> COULDNT DO ANYTHINGafter
+        something goes wrong, trying to do something for the community were a few
+        of them
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
+      propertyPath: heading
+      value: COLLEGE YEARBOOK
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: beforeBW

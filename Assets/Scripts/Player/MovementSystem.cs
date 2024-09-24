@@ -63,6 +63,7 @@ public class MovementSystem : MonoBehaviour
 
     private TMP_Text interactText;
     private TMP_Text noteText;
+    private TMP_Text noteHead;
     private Notes noteScript;
 
     private string doorName;
@@ -127,7 +128,8 @@ public class MovementSystem : MonoBehaviour
         interactText = interactPanel.GetComponentInChildren<TMP_Text>();
 
         notePanel.SetActive(false);
-        noteText = notePanel.GetComponentInChildren<TMP_Text>();
+        noteText = notePanel.transform.GetChild(1).GetComponent<TMP_Text>();
+        noteHead = notePanel.transform.GetChild(0).GetComponent<TMP_Text>();
 
         coroutine = MovePlayer();
 
@@ -417,6 +419,7 @@ public class MovementSystem : MonoBehaviour
             {
                 notePanel.SetActive(true);
                 messageShown = true;
+                noteHead.text = noteScript.heading;
 
                 if (!GameManager.Instance.isBW)
                 {
@@ -429,13 +432,13 @@ public class MovementSystem : MonoBehaviour
             }
             else
             {
-                if (!GameManager.Instance.isBW)
+                if (!GameManager.Instance.isBW && !noteScript.confidneceIncreased)
                 {
                     Debug.Log("cc1");
                     //GameManager.Instance.AudioPlay(noteScript.audio_BeforeBW);
                     randomThoughts.ClipPlay_Immediate(noteScript.auddioCaption[0]);
                 }
-                else if (GameManager.Instance.isBW)
+                else if (GameManager.Instance.isBW && !noteScript.confidneceIncreased)
                 {
                     Debug.Log("cc2");
                     //GameManager.Instance.AudioPlay(noteScript.audio_AfterBW);
