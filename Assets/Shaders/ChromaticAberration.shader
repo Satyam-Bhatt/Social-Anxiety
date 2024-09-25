@@ -3,6 +3,7 @@ Shader "Unlit/NewUnlitShader"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Strength("Strength", Float) = 0.01
     }
     SubShader
     {
@@ -10,6 +11,10 @@ Shader "Unlit/NewUnlitShader"
 
         Pass
         {
+            ZWrite Off
+            ZTest LEqual
+            Blend SrcAlpha OneMinusSrcAlpha
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -28,8 +33,11 @@ Shader "Unlit/NewUnlitShader"
                 float4 vertex : SV_POSITION;
             };
 
+            #define PI 3.1415926535897932384626433832795
+
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float _Strength;
 
             v2f vert (appdata v)
             {
@@ -41,16 +49,28 @@ Shader "Unlit/NewUnlitShader"
 
             float4 frag (v2f i) : SV_Target
             {
-                // sample the texture
+                float2 centeredUV = i.uv * 2 - 1;
+                float dist = 1 - length(centeredUV);
+                dist = dist + 0.5;
+                //return float4(dist.xxx,1);
+
+                float vary_Cos = (-cos(_Time.y/1.5 + PI/2)) * _Strength;
+                float vary_Sin = (-sin(_Time.y/1.5 + PI/2)) * _Strength;
+                float vary_Sin2 = (sin(_Time.y/1.5 + PI/2)) * _Strength;
+                
                 float4 col = tex2D(_MainTex,i.uv);
 
-                float4 col_right = tex2D(_MainTex, float2(i.uv.x,i.uv.y-0.04));
-                float4 col_left = tex2D(_MainTex, float2(i.uv.x,i.uv.y-0.05));
-                float4 col_down = tex2D(_MainTex, float2(i.uv.x,i.uv.y-0.03));
+                float4 col_right = tex2D(_MainTex, float2(i.uv.x + vary_Sin2,i.uv.y + vary_Sin2));
+                float4 col_left = tex2D(_MainTex, float2(i.uv.x - vary_Cos,i.uv.y - vary_Sin));
+                float4 col_down = tex2D(_MainTex, float2(i.uv.x + vary_Cos,i.uv.y + vary_Sin));
+
+                float4 finalCol = float4(col_right.r,col_left.g,col_down.b,col.a);
+
+                float4 lerpCol = lerp(finalCol,col,saturate(dist));
 
                 //float4 testShift = tex2D(col.r, i.uv);
 
-                return float4(col_right.r,col_left.g,col_down.b,1);
+                return lerpCol;
             }
             ENDCG
         }

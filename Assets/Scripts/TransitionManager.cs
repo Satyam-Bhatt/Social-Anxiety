@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 
 public class TransitionManager : MonoBehaviour
 {
@@ -30,6 +31,11 @@ public class TransitionManager : MonoBehaviour
     [Space(10)]
     [Header("Coffee Game")]
     public GameObject coffeeGame;
+
+    [Space(10)]
+    [Header("Paper")]
+    public Sprite crumbledPaper;
+    public GameObject notesPanel;
 
     private static TransitionManager _instance;
 
@@ -63,6 +69,8 @@ public class TransitionManager : MonoBehaviour
     {
         characters_BW.SetActive(false);
         coffeeGame.SetActive(false);
+
+        
     }
 
     void TransitionSprites_OnStart()
@@ -79,6 +87,8 @@ public class TransitionManager : MonoBehaviour
         }       
         park_BW.SetActive(false);
         coffeeGame.SetActive(true);
+
+        notesPanel.GetComponent<Image>().sprite = crumbledPaper;
     }
 
     IEnumerator CharacterSwitch()
