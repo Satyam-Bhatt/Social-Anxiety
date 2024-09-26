@@ -83,7 +83,7 @@ public class TransitionManager : MonoBehaviour
         for(int i = 0; i < colored_Area.Length; i++)
         {
             colored_Area[i].sprite = bw_Area[i];
-            colored_Area[i].material = bw_material[i];
+            colored_Area[i].material = bw_material[0];
         }       
         park_BW.SetActive(false);
         coffeeGame.SetActive(true);
