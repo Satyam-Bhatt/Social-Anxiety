@@ -7824,6 +7824,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2102b7091a38e4f996a61ea9809e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amp: 0
+  freq: 0
+  shakeAmount: 2
+  delay: 0.05
+  style: 0
 --- !u!114 &1064319877
 MonoBehaviour:
   m_ObjectHideFlags: 0
