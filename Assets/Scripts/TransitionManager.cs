@@ -37,6 +37,10 @@ public class TransitionManager : MonoBehaviour
     public Sprite crumbledPaper;
     public GameObject notesPanel;
 
+    [Space(10)]
+    [Header("Global Volume")]
+    [SerializeField] private GameObject globalVolume;
+
     private static TransitionManager _instance;
 
     public static TransitionManager Instance
@@ -69,8 +73,6 @@ public class TransitionManager : MonoBehaviour
     {
         characters_BW.SetActive(false);
         coffeeGame.SetActive(false);
-
-        
     }
 
     void TransitionSprites_OnStart()
@@ -89,6 +91,8 @@ public class TransitionManager : MonoBehaviour
         coffeeGame.SetActive(true);
 
         notesPanel.GetComponent<Image>().sprite = crumbledPaper;
+
+        globalVolume.SetActive(true);
     }
 
     IEnumerator CharacterSwitch()

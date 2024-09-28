@@ -54,15 +54,19 @@ public class CoffeeGame : MonoBehaviour
     {
         playerControls.CoffeGame.FirstPress.Enable();
         playerControls.CoffeGame.FirstPress.started += FirstPressed;
+        playerControls.CoffeGame.FirstPress.performed += FirstPressed;
         playerControls.CoffeGame.FirstPress.canceled += FirstPressed;
 
         playerControls.CoffeGame.SecondPress.started += FirstPressed;
+        playerControls.CoffeGame.SecondPress.performed += FirstPressed;
         playerControls.CoffeGame.SecondPress.canceled += FirstPressed;
 
         playerControls.CoffeGame.ThirdPress.started += FirstPressed;
+        playerControls.CoffeGame.ThirdPress.performed += FirstPressed;
         playerControls.CoffeGame.ThirdPress.canceled += FirstPressed;
 
         playerControls.CoffeGame.FourthPress.started += FirstPressed;
+        playerControls.CoffeGame.FourthPress.performed += FirstPressed;
         playerControls.CoffeGame.FourthPress.canceled += FirstPressed;
     }
 
@@ -70,41 +74,128 @@ public class CoffeeGame : MonoBehaviour
     {
         playerControls.CoffeGame.FirstPress.Disable();
         playerControls.CoffeGame.FirstPress.started -= FirstPressed;
+        playerControls.CoffeGame.FirstPress.performed -= FirstPressed;
         playerControls.CoffeGame.FirstPress.canceled -= FirstPressed;
 
         playerControls.CoffeGame.SecondPress.Disable();
         playerControls.CoffeGame.SecondPress.started -= FirstPressed;
+        playerControls.CoffeGame.SecondPress.performed -= FirstPressed;
         playerControls.CoffeGame.SecondPress.canceled -= FirstPressed;
 
         playerControls.CoffeGame.ThirdPress.Disable();
         playerControls.CoffeGame.ThirdPress.started -= FirstPressed;
+        playerControls.CoffeGame.ThirdPress.performed -= FirstPressed;
         playerControls.CoffeGame.ThirdPress.canceled -= FirstPressed;
 
         playerControls.CoffeGame.FourthPress.Disable();
         playerControls.CoffeGame.FourthPress.started -= FirstPressed;
+        playerControls.CoffeGame.FourthPress.performed -= FirstPressed;
         playerControls.CoffeGame.FourthPress.canceled -= FirstPressed;
     }
 
     public void FirstPressed(InputAction.CallbackContext context)
     {
         if (canPlay)
-        { 
+        {
             if (context.started)
             {
                 StopAllCoroutines();
 
+                if (value <= 0)
+                {
+                    value += 0.1f;
+                }
+                value += 6f * Time.deltaTime;
+                image.fillAmount = value;
+                KeyEnabler();
+
                 //image.transform.position = imagePosition;
-                
-                StartCoroutine(ValueChange(0.1f));
+                //StartCoroutine(ValueChange(0.1f));
             }
             else
             {
                 StopAllCoroutines();
+                StartCoroutine(DecreaseValue());
 
                 //image.transform.position = imagePosition;
+                //StartCoroutine(ValueChange(-0.5f));
+            }
+        }
+    }
 
-                StartCoroutine(ValueChange(-0.5f));
-            }        
+    IEnumerator DecreaseValue()
+    {
+        while (value > 0 && value <= 1 && canPlay)
+        {
+            value -= 0.1f * Time.deltaTime;
+            image.fillAmount = value;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    void KeyEnabler()
+    {
+        if (value >= 1f)
+        {
+            if (keyIndex == 1)
+            {
+                playerControls.CoffeGame.FirstPress.Disable();
+                playerControls.CoffeGame.SecondPress.Enable();
+                keyIndex++;
+                letterToPress.text = "L";
+
+                coffeeActivator[0].SetActive(false);
+                coffeeActivator[1].SetActive(true);
+                image.transform.position = new Vector3(coffeeActivator[1].transform.position.x - offset, coffeeActivator[1].transform.position.y, coffeeActivator[1].transform.position.z);
+
+                //Audio Two
+            }
+            else if (keyIndex == 2)
+            {
+                playerControls.CoffeGame.SecondPress.Disable();
+                playerControls.CoffeGame.ThirdPress.Enable();
+                keyIndex++;
+                letterToPress.text = "Y";
+
+                coffeeActivator[1].SetActive(false);
+                coffeeActivator[2].SetActive(true);
+                image.transform.position = new Vector3(coffeeActivator[2].transform.position.x - offset, coffeeActivator[2].transform.position.y, coffeeActivator[2].transform.position.z);
+
+                //Audio Three
+            }
+            else if (keyIndex == 3)
+            {
+                playerControls.CoffeGame.ThirdPress.Disable();
+                playerControls.CoffeGame.FourthPress.Enable();
+                keyIndex++;
+                letterToPress.text = "V";
+
+                coffeeActivator[2].SetActive(false);
+                coffeeActivator[3].SetActive(true);
+                image.transform.position = new Vector3(coffeeActivator[3].transform.position.x - offset, coffeeActivator[3].transform.position.y, coffeeActivator[3].transform.position.z);
+
+                //Audio Four
+            }
+            else if (keyIndex == 4)
+            {
+                playerControls.CoffeGame.FourthPress.Disable();
+                keyIndex++;
+
+                coffeeActivator[3].SetActive(false);
+                eyeGame.SetActive(false);
+                GameManager.Instance.coffeeGameDone = true;
+                GameManager.Instance.tasks.transform.parent.gameObject.SetActive(true);
+                GameManager.Instance.tasks.text = "- Get rid of thoughts";
+
+                onCoffeeGameCompleted?.Invoke();
+
+                //Audio Five
+            }
+
+            value = 0;
+            image.fillAmount = value;
+            StopAllCoroutines();
+
         }
     }
 
@@ -140,7 +231,7 @@ public class CoffeeGame : MonoBehaviour
                     image.transform.position = new Vector3(coffeeActivator[2].transform.position.x - offset, coffeeActivator[2].transform.position.y, coffeeActivator[2].transform.position.z);
                 }
                 else if (keyIndex == 3)
-                { 
+                {
                     playerControls.CoffeGame.ThirdPress.Disable();
                     playerControls.CoffeGame.FourthPress.Enable();
                     keyIndex++;
@@ -150,7 +241,7 @@ public class CoffeeGame : MonoBehaviour
                     coffeeActivator[3].SetActive(true);
                     image.transform.position = new Vector3(coffeeActivator[3].transform.position.x - offset, coffeeActivator[3].transform.position.y, coffeeActivator[3].transform.position.z);
                 }
-                else if(keyIndex == 4)
+                else if (keyIndex == 4)
                 {
                     playerControls.CoffeGame.FourthPress.Disable();
                     keyIndex++;
@@ -160,7 +251,7 @@ public class CoffeeGame : MonoBehaviour
                     GameManager.Instance.coffeeGameDone = true;
                     GameManager.Instance.tasks.transform.parent.gameObject.SetActive(true);
                     GameManager.Instance.tasks.text = "- Get rid of thoughts";
-                    
+
                     onCoffeeGameCompleted?.Invoke();
                 }
                 break;
