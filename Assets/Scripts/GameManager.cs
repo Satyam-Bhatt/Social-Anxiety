@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     private int counter = 0;
 
+    [SerializeField] private GameObject deathPanel;
+
     public AudioSource audioSrc;
     public static GameManager Instance
     { get
@@ -64,6 +66,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         tasks.text = "- Go to the park";
+
+        deathPanel.SetActive(false);
     }
 
     public void BW_Transition()
@@ -97,6 +101,12 @@ public class GameManager : MonoBehaviour
     {
         gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(12);
         //Application.Quit();
+        deathPanel.SetActive(true);
+    }
+
+    public void Quit()
+    { 
+        Application.Quit();
     }
 
     public void No(GameObject open)

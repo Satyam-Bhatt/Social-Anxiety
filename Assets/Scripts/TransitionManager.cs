@@ -41,6 +41,10 @@ public class TransitionManager : MonoBehaviour
     [Header("Global Volume")]
     [SerializeField] private GameObject globalVolume;
 
+    [Space(10)]
+    [Header("Audio")]
+    [SerializeField] private AudioClip afterBW_Audio;
+
     private static TransitionManager _instance;
 
     public static TransitionManager Instance
@@ -93,6 +97,10 @@ public class TransitionManager : MonoBehaviour
         notesPanel.GetComponent<Image>().sprite = crumbledPaper;
 
         globalVolume.SetActive(true);
+
+        AudioManager.Instance.GetComponent<AudioSource>().Stop();
+        AudioManager.Instance.GetComponent<AudioSource>().clip = afterBW_Audio;
+        AudioManager.Instance.GetComponent<AudioSource>().Play();
     }
 
     IEnumerator CharacterSwitch()

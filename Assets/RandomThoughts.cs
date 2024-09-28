@@ -12,6 +12,8 @@ public class RandomThoughts : MonoBehaviour
     private float[] closeTime_Private;
     private AudioClip[] audioClips_Private;
 
+    private AudioSource audioManager_audioSource;
+
     private void Start()
     {
         captionPanel.SetActive(false);
@@ -23,6 +25,8 @@ public class RandomThoughts : MonoBehaviour
             closeTime_Private[i] = audioCaption[i].clip.length;
             audioClips_Private[i] = audioCaption[i].clip;
         }
+
+        audioManager_audioSource = AudioManager.Instance.GetComponent<AudioSource>();
     }
 
     public void ClipPlay_Immediate(int clipIndex)
@@ -87,10 +91,13 @@ public class RandomThoughts : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         captionPanel.SetActive(false);
+        audioManager_audioSource.volume = 0.5f;
     }
 
     IEnumerator CharacterDialogue(string dialogue)
     {
+        audioManager_audioSource.volume = 0.05f;
+
         //Stutter Text
         if (GameManager.Instance.isBW && dialogue != "I’m so glad I chose to fight through this. I feel so much better now. No, no, you don’t have to fight against the thoughts.  You just have to observe them, simply watch, without reacting and you’ll notice—they begin to fade, to disappear on their own. That’s the secret, really: not battling them, but letting them pass")
         { 

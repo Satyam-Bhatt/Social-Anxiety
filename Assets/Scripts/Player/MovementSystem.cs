@@ -317,6 +317,7 @@ public class MovementSystem : MonoBehaviour
 
         if (collision.CompareTag("Trigger"))
         {
+            AudioManager.Instance.GetComponent<AudioSource>().volume = 0.05f;
             timeline.Play();
             GameManager.Instance.tasks.transform.parent.gameObject.SetActive(false);
             onTimelineStart.Invoke();
@@ -324,6 +325,7 @@ public class MovementSystem : MonoBehaviour
             rb.velocity = Vector3.zero;
             animator.SetInteger("MovementSwitch", 3);
             StartCoroutine(coroutine);
+
             Destroy(collision.gameObject);
         }
 
@@ -435,13 +437,13 @@ public class MovementSystem : MonoBehaviour
             }
             else
             {
-                if (!GameManager.Instance.isBW && !noteScript.confidneceIncreased)
+                if (!GameManager.Instance.isBW)
                 {
                     Debug.Log("cc1");
                     //GameManager.Instance.AudioPlay(noteScript.audio_BeforeBW);
                     randomThoughts.ClipPlay_Immediate(noteScript.auddioCaption[0]);
                 }
-                else if (GameManager.Instance.isBW && !noteScript.confidneceIncreased)
+                else if (GameManager.Instance.isBW)
                 {
                     Debug.Log("cc2");
                     //GameManager.Instance.AudioPlay(noteScript.audio_AfterBW);
@@ -513,7 +515,7 @@ public class MovementSystem : MonoBehaviour
         GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Delay(0, 2f);
         // Use coroutine instead
         float delay = GameManager.Instance.gameObject.GetComponent<RandomThoughts>().audioCaption[0].clip.length;
-        StartCoroutine(AudioPlay_Delay(1, delay + 1f));
+        StartCoroutine(AudioPlay_Delay(1, delay + 2.5f));
         //float delay2 = randomThoughts.audioCaption[1].clip.length;
         //randomThoughts.ClipPlay_Delay(6,delay + delay2 + 2f);
 
@@ -531,6 +533,8 @@ public class MovementSystem : MonoBehaviour
             GameObject g = n.gameObject;
             g.GetComponent<SpriteRenderer>().material = materials[0];
         }
+
+        AudioManager.Instance.GetComponent<AudioSource>().volume = 0.5f;
     }
 
     IEnumerator EnableChild(int index)

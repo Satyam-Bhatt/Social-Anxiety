@@ -188,8 +188,6 @@ public class CoffeeGame : MonoBehaviour
                 GameManager.Instance.tasks.text = "- Get rid of thoughts";
 
                 onCoffeeGameCompleted?.Invoke();
-
-                //Audio Five
             }
 
             value = 0;
