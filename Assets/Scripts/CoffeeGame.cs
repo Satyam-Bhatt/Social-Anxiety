@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using Unity.VisualScripting;
 
 public class CoffeeGame : MonoBehaviour
 {
@@ -96,7 +97,7 @@ public class CoffeeGame : MonoBehaviour
                 
                 StartCoroutine(ValueChange(0.1f));
             }
-            else 
+            else
             {
                 StopAllCoroutines();
 

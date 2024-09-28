@@ -27,8 +27,11 @@ public class InventorySlot : MonoBehaviour
             //item.Use();
             onUse?.Invoke(item);
 
-            Destroy(item_PrefabScript);
-            item = null;
+            if (item.type == Item.ItemType.Consumable)
+            { 
+                Destroy(item_PrefabScript);
+                item = null;            
+            }
         }
     }
 }

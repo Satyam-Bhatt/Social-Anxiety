@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
             open.SetActive(true);
             gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(11);
         }
-        InventoryManager.Instance.AfterSleep();
+        //InventoryManager.Instance.AfterSleep();
         
     }
     public void Replay()
