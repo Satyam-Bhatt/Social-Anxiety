@@ -133,7 +133,7 @@ public class MovementSystem : MonoBehaviour
 
         coroutine = MovePlayer();
 
-        for(int i=0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
@@ -147,8 +147,8 @@ public class MovementSystem : MonoBehaviour
 
     void Update()
     {
-        if(cutscenePlaying) return;
-        
+        if (cutscenePlaying) return;
+
         moveInput = playerControls.Movement.Move.ReadValue<Vector2>().normalized;
 
         //-----ANIMATION-----//
@@ -179,7 +179,7 @@ public class MovementSystem : MonoBehaviour
             interactPanel.SetActive(!messageShown);
             interactText.text = "Press E to Interact";
         }
-        else if(canSleep)
+        else if (canSleep)
         {
             interactPanel.SetActive(true);
             interactText.text = "Press E to sleep";
@@ -200,9 +200,10 @@ public class MovementSystem : MonoBehaviour
         rb.velocity = moveInput * moveSpeed;
 
         Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, 1.5f);
-        foreach(Collider2D collider in colliderArray)
+        foreach (Collider2D collider in colliderArray)
         {
-            if (collider.gameObject.tag != "Player") {
+            if (collider.gameObject.tag != "Player")
+            {
                 if (collider.GetComponent<Object>() != null)
                 {
                     ObjectToPickUp = collider.gameObject;
@@ -234,7 +235,7 @@ public class MovementSystem : MonoBehaviour
                     }
                 }
                 else if (collider.gameObject.layer == 11)
-                { 
+                {
                     canSleep = true;
                 }
             }
@@ -248,12 +249,13 @@ public class MovementSystem : MonoBehaviour
             canTravel = false;
             interactPanel.SetActive(false);
             notePanel.SetActive(false);
-            
+
             canSleep = false;
 
-            if (noteScript != null )
+            if (noteScript != null)
             {
-                if (!GameManager.Instance.isBW && messageShown) {
+                if (!GameManager.Instance.isBW && messageShown)
+                {
                     //GameManager.Instance.AudioPlay(noteScript.audio_BeforeBW);
                     randomThoughts.ClipPlay_Immediate(noteScript.auddioCaption[0]);
                 }
@@ -300,7 +302,7 @@ public class MovementSystem : MonoBehaviour
             outside.SetActive(false);
             transform.position = new Vector3(10.69f, -49.5f, 0f);
         }
-        else if(collision.CompareTag("Park_OutsideCollider"))
+        else if (collision.CompareTag("Park_OutsideCollider"))
         {
             outside.SetActive(true);
             park.SetActive(false);
@@ -314,7 +316,7 @@ public class MovementSystem : MonoBehaviour
         }
 
         if (collision.CompareTag("Trigger"))
-        { 
+        {
             timeline.Play();
             GameManager.Instance.tasks.transform.parent.gameObject.SetActive(false);
             onTimelineStart.Invoke();
@@ -337,7 +339,8 @@ public class MovementSystem : MonoBehaviour
     {
         interactPanel.SetActive(false);
 
-        if (collision.CompareTag("CoffeeGame")) {
+        if (collision.CompareTag("CoffeeGame"))
+        {
             coffeeGamePanel.SetActive(false);
             coffeeGamePlaying = false;
         }
@@ -398,10 +401,10 @@ public class MovementSystem : MonoBehaviour
             else if (doorName == "OutsideDoor")
             {
                 if (!GameManager.Instance.isBW)
-                { 
+                {
                     kitchen.SetActive(true);
                     outside.SetActive(false);
-                    transform.position = new Vector3(10.46f, -31.0f, 0f);                
+                    transform.position = new Vector3(10.46f, -31.0f, 0f);
                 }
 
                 if (GameManager.Instance.isBW)
@@ -476,14 +479,14 @@ public class MovementSystem : MonoBehaviour
 
     private IEnumerator MovePlayer()
     {
-        while (transform.position != new Vector3(-5.4f, -49.9f, 0f)) 
+        while (transform.position != new Vector3(-5.4f, -49.9f, 0f))
         {
             if (timeline.time > 3.7f && timeline.time < 3.8f)
                 timeline.Pause();
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(-5.4f, -49.9f, 0f), 1f * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-        
+
 
         while (unknownGuy.transform.position != new Vector3(-7.0f, -49.9f, 0f))
         {
@@ -531,7 +534,7 @@ public class MovementSystem : MonoBehaviour
     IEnumerator EnableChild(int index)
     {
         while (index < transform.childCount)
-        { 
+        {
             transform.GetChild(index).gameObject.SetActive(true);
             yield return new WaitForSeconds(0.5f);
             index++;
@@ -548,7 +551,7 @@ public class MovementSystem : MonoBehaviour
         GameManager.Instance.tasks.transform.parent.gameObject.SetActive(true);
 
         for (int i = 0; i < room.transform.childCount; i++)
-        { 
+        {
             room.transform.GetChild(i).gameObject.SetActive(false);
         }
 
@@ -584,9 +587,9 @@ public class MovementSystem : MonoBehaviour
     }
 
     IEnumerator AudioPlay_Delay(int clipIndex, float delay)
-    { 
+    {
         yield return new WaitForSeconds(delay);
         GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(1);
-    } 
+    }
 
 }

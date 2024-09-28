@@ -61,6 +61,8 @@ public class DialogueManager : MonoBehaviour
         {
             previousName = name[dialogueIndex];
             GetComponent<RectTransform>().anchoredPosition = dialoguePosition[0];
+
+            textBox_Sentence.gameObject.GetComponent<TextEffect>().WavyTextEnable();
         }
         else if (previousName != name[dialogueIndex])
         {
@@ -69,11 +71,15 @@ public class DialogueManager : MonoBehaviour
             {
                 textBox_Name.alignment = TextAlignmentOptions.Right;
                 textBox_Sentence.alignment = TextAlignmentOptions.TopRight;
+
+                textBox_Sentence.gameObject.GetComponent<TextEffect>().StartRoutine();
             }
             else
             {
                 textBox_Name.alignment = TextAlignmentOptions.Left;
                 textBox_Sentence.alignment = TextAlignmentOptions.TopLeft;
+
+                textBox_Sentence.gameObject.GetComponent<TextEffect>().WavyTextEnable();
             }
 
             if (GetComponent<RectTransform>().anchoredPosition == dialoguePosition[0]) GetComponent<RectTransform>().anchoredPosition = dialoguePosition[1];
@@ -91,7 +97,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in dialogue.ToCharArray())
         { 
             textBox_Sentence.text += letter;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.06f);
         }
 
         dialogueIndex++;

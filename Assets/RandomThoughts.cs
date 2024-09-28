@@ -7,7 +7,7 @@ public class RandomThoughts : MonoBehaviour
 {
     public AudioCaptionMix[] audioCaption;
 
-    [SerializeField] private GameObject captionPanel;
+    public GameObject captionPanel;
 
     private float[] closeTime_Private;
     private AudioClip[] audioClips_Private;
@@ -91,11 +91,17 @@ public class RandomThoughts : MonoBehaviour
 
     IEnumerator CharacterDialogue(string dialogue)
     {
+        //Stutter Text
+        if (GameManager.Instance.isBW)
+        { 
+            captionPanel.transform.GetChild(0).GetComponent<TextEffect>().StartRoutine();
+        }
+
         captionPanel.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
         foreach (char letter in dialogue.ToCharArray())
         {
             captionPanel.transform.GetChild(0).GetComponent<TMP_Text>().text += letter;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }
