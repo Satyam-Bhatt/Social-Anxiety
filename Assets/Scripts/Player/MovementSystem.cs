@@ -68,9 +68,6 @@ public class MovementSystem : MonoBehaviour
 
     private string doorName;
 
-    [SerializeField]
-    private GameObject panel;//debug code
-
     private Animator animator;
 
     public delegate void Timeline_Start();
@@ -116,7 +113,6 @@ public class MovementSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        panel.SetActive(false);//debug code
         room.SetActive(true);
         kitchen.SetActive(false);
         outside.SetActive(false);
@@ -184,12 +180,6 @@ public class MovementSystem : MonoBehaviour
             interactPanel.SetActive(true);
             interactText.text = "Press E to sleep";
         }
-
-        //-------Debug Code-------//
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-
-        }
     }
 
     // Update is called once per frame
@@ -207,14 +197,12 @@ public class MovementSystem : MonoBehaviour
                 if (collider.GetComponent<Object>() != null)
                 {
                     ObjectToPickUp = collider.gameObject;
-                    panel.SetActive(true);//debug code
                     canInteract = true;
                 }
                 else if (collider.gameObject.layer == 7)
                 {
                     canTravel = true;
                     doorName = collider.gameObject.tag;
-                    panel.SetActive(true);//debug code
                 }
                 else if (collider.gameObject.layer == 9)
                 {
@@ -244,7 +232,6 @@ public class MovementSystem : MonoBehaviour
         {
             ObjectToPickUp = null;
             doorName = null;
-            panel.SetActive(false);//debug code
             canInteract = false;
             canTravel = false;
             interactPanel.SetActive(false);

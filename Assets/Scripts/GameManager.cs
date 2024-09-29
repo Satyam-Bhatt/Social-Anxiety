@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
 
     public AudioSource audioSrc;
     public static GameManager Instance
-    { get
+    {
+        get
         {
             _instance = FindObjectOfType<GameManager>();
             if (_instance == null)
@@ -46,6 +47,9 @@ public class GameManager : MonoBehaviour
         playerControls.CoffeGame.EyesClose.Enable();
         playerControls.CoffeGame.EyesClose.started += EyesFollow;
         playerControls.CoffeGame.EyesClose.canceled += EyesFollow;
+
+        playerControls.GeneralNavigation.PauseGame.Enable();
+        playerControls.GeneralNavigation.PauseGame.started += Pause;
     }
 
     private void OnDisable()
@@ -55,6 +59,9 @@ public class GameManager : MonoBehaviour
         playerControls.CoffeGame.EyesClose.Disable();
         playerControls.CoffeGame.EyesClose.started -= EyesFollow;
         playerControls.CoffeGame.EyesClose.canceled -= EyesFollow;
+
+        playerControls.GeneralNavigation.PauseGame.Disable();
+        playerControls.GeneralNavigation.PauseGame.started -= Pause;
     }
 
     private void Awake()
@@ -68,6 +75,7 @@ public class GameManager : MonoBehaviour
         tasks.text = "- Go to the park";
 
         deathPanel.SetActive(false);
+        pausePanel.SetActive(false);
     }
 
     public void BW_Transition()
@@ -105,7 +113,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void Quit()
-    { 
+    {
         Application.Quit();
     }
 
@@ -127,12 +135,55 @@ public class GameManager : MonoBehaviour
             gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(11);
         }
         //InventoryManager.Instance.AfterSleep();
-        
+
     }
     public void Replay()
     {
         string s = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(s);
+        Time.timeScale = 1f;
     }
-       
+
+    [Space(10)]
+    [Header("Pause Game")]
+    [SerializeField] private GameObject pausePanel;
+    private bool pause = false;
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (!pause)
+            {
+                pause = true;
+                pausePanel.SetActive(true);
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                pause = false;
+                pausePanel.SetActive(false);
+                Time.timeScale = 1f;
+            }
+        }
+    }
+
+    public void Pause()
+    {
+        if (!pause)
+        {
+            pause = true;
+            pausePanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            pause = false;
+            pausePanel.SetActive(false);
+            Time.timeScale = 1f;
+        }
+
+    }
+
+
+
 }

@@ -8,7 +8,7 @@ public class CheckInOut : MonoBehaviour
     [SerializeField] private Transform blackEye;
     [SerializeField] private Transform outerEye;
 
-    private bool eyesFollow = false;
+    //private bool eyesFollow = false;
 
     private PlayerControls playerControls;
 
@@ -59,11 +59,11 @@ public class CheckInOut : MonoBehaviour
     {
         if (context.started)
         {
-            eyesFollow = true;
+            //eyesFollow = true;
         }
         else if(context.canceled)
         {
-            eyesFollow = false;
+            //eyesFollow = false;
         }
     }
 

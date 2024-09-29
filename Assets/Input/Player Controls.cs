@@ -264,6 +264,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""GeneralNavigation"",
+            ""id"": ""1325da1c-499b-4c96-9a18-71391ac16bb0"",
+            ""actions"": [
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""87573a2c-7040-464d-a389-3894a5000618"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b56e1e10-ac23-4c50-8135-760264787d51"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player"",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -286,6 +314,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_CoffeGame_ThirdPress = m_CoffeGame.FindAction("ThirdPress", throwIfNotFound: true);
         m_CoffeGame_FourthPress = m_CoffeGame.FindAction("FourthPress", throwIfNotFound: true);
         m_CoffeGame_EyesClose = m_CoffeGame.FindAction("EyesClose", throwIfNotFound: true);
+        // GeneralNavigation
+        m_GeneralNavigation = asset.FindActionMap("GeneralNavigation", throwIfNotFound: true);
+        m_GeneralNavigation_PauseGame = m_GeneralNavigation.FindAction("PauseGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -483,6 +514,52 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public CoffeGameActions @CoffeGame => new CoffeGameActions(this);
+
+    // GeneralNavigation
+    private readonly InputActionMap m_GeneralNavigation;
+    private List<IGeneralNavigationActions> m_GeneralNavigationActionsCallbackInterfaces = new List<IGeneralNavigationActions>();
+    private readonly InputAction m_GeneralNavigation_PauseGame;
+    public struct GeneralNavigationActions
+    {
+        private @PlayerControls m_Wrapper;
+        public GeneralNavigationActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PauseGame => m_Wrapper.m_GeneralNavigation_PauseGame;
+        public InputActionMap Get() { return m_Wrapper.m_GeneralNavigation; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GeneralNavigationActions set) { return set.Get(); }
+        public void AddCallbacks(IGeneralNavigationActions instance)
+        {
+            if (instance == null || m_Wrapper.m_GeneralNavigationActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GeneralNavigationActionsCallbackInterfaces.Add(instance);
+            @PauseGame.started += instance.OnPauseGame;
+            @PauseGame.performed += instance.OnPauseGame;
+            @PauseGame.canceled += instance.OnPauseGame;
+        }
+
+        private void UnregisterCallbacks(IGeneralNavigationActions instance)
+        {
+            @PauseGame.started -= instance.OnPauseGame;
+            @PauseGame.performed -= instance.OnPauseGame;
+            @PauseGame.canceled -= instance.OnPauseGame;
+        }
+
+        public void RemoveCallbacks(IGeneralNavigationActions instance)
+        {
+            if (m_Wrapper.m_GeneralNavigationActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IGeneralNavigationActions instance)
+        {
+            foreach (var item in m_Wrapper.m_GeneralNavigationActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_GeneralNavigationActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public GeneralNavigationActions @GeneralNavigation => new GeneralNavigationActions(this);
     private int m_PlayerSchemeIndex = -1;
     public InputControlScheme PlayerScheme
     {
@@ -505,5 +582,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnThirdPress(InputAction.CallbackContext context);
         void OnFourthPress(InputAction.CallbackContext context);
         void OnEyesClose(InputAction.CallbackContext context);
+    }
+    public interface IGeneralNavigationActions
+    {
+        void OnPauseGame(InputAction.CallbackContext context);
     }
 }

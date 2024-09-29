@@ -21,7 +21,7 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField]
     private Material healthBar;
-    private float healthValue = 0.5f;
+    private float healthValue = 0.4f;
 
     [SerializeField]
     private TMP_Text healthText;
@@ -138,7 +138,10 @@ public class InventoryManager : MonoBehaviour
     {
         if(GameManager.Instance.isBW == false)
         {
-            healthBar.SetFloat("_Health", healthValue += 0.1f);
+            if (healthValue <= 1f)
+            { 
+                healthBar.SetFloat("_Health", healthValue += 0.1f);
+            }
             healthText.text = "+CONFIDENCE";
             healthText.gameObject.GetComponent<Animator>().SetTrigger("Increase");
         }
