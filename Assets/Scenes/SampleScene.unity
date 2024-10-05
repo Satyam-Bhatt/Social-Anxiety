@@ -3327,8 +3327,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press E to Make Coffee
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 57a79f350c144b0448fa9638b2145360, type: 2}
+  m_sharedMaterial: {fileID: -5595597686061069644, guid: 57a79f350c144b0448fa9638b2145360, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9016,8 +9016,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Head Boy
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 57a79f350c144b0448fa9638b2145360, type: 2}
+  m_sharedMaterial: {fileID: -5595597686061069644, guid: 57a79f350c144b0448fa9638b2145360, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15939,8 +15939,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press E to open door
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 57a79f350c144b0448fa9638b2145360, type: 2}
+  m_sharedMaterial: {fileID: -5595597686061069644, guid: 57a79f350c144b0448fa9638b2145360, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17913,8 +17913,8 @@ MonoBehaviour:
     back up every time after something goes wrong, trying to do something for the
     community were a few of them
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 57a79f350c144b0448fa9638b2145360, type: 2}
+  m_sharedMaterial: {fileID: -5595597686061069644, guid: 57a79f350c144b0448fa9638b2145360, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
