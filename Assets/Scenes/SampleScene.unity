@@ -2228,6 +2228,7 @@ MonoBehaviour:
   - {fileID: 451879903}
   - {fileID: 2095093630}
   - {fileID: 756334661}
+  - {fileID: 303268610}
   items:
   - {fileID: 11400000, guid: 6b6a0192ff2203146aa5e8e8d3e4daf7, type: 2}
   - {fileID: 11400000, guid: fef075390b5697a47b10298b6c849250, type: 2}
@@ -2623,6 +2624,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &303268610 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 944279389438908083, guid: 7e7b18fa012d71a4bb3c4c9b11b9cc96, type: 3}
+  m_PrefabInstance: {fileID: 7644581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &346543902
 GameObject:
   m_ObjectHideFlags: 0
