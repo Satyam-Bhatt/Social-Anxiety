@@ -17413,7 +17413,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 9bf13f0d157eb4c40ba16089235fa8a2, type: 2}
+  sharedProfile: {fileID: 11400000, guid: bc4769b4792049940b72957dc9faeb3e, type: 2}
 --- !u!4 &1840562747
 Transform:
   m_ObjectHideFlags: 0
@@ -18196,6 +18196,7 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: 67d17cbe19b123d4395b1c9060e073ae, type: 3}
     caption: Yes, I can do it. I feel confident
   captionPanel: {fileID: 196798641}
+  coffeeGame: {fileID: 2068600706}
 --- !u!1 &1935128927
 GameObject:
   m_ObjectHideFlags: 0
@@ -19367,6 +19368,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16e0c19aafd8384439fb44ccae86ca73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2068600706 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3019389771881059093, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
+  m_PrefabInstance: {fileID: 3019389771881059091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f423e7c7482ac46b2e9557889ad3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2070393186 stripped

@@ -8,6 +8,7 @@ public class RandomThoughts : MonoBehaviour
     public AudioCaptionMix[] audioCaption;
 
     [SerializeField] private GameObject captionPanel;
+    [SerializeField] private CoffeeGame coffeeGame;
 
     private float[] closeTime_Private;
     private AudioClip[] audioClips_Private;
@@ -92,6 +93,7 @@ public class RandomThoughts : MonoBehaviour
         yield return new WaitForSeconds(delay);
         captionPanel.SetActive(false);
         audioManager_audioSource.volume = 0.5f;
+        coffeeGame.incrementValue = 0.1f;
     }
 
     IEnumerator CharacterDialogue(string dialogue)

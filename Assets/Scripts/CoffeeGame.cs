@@ -29,7 +29,7 @@ public class CoffeeGame : MonoBehaviour
 
     [SerializeField] private GameObject eyeGame;
 
-    private float incrementValue = 0.007f;
+    public float incrementValue = 0.007f;
 
     private void Awake()
     {

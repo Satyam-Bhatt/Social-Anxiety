@@ -102,6 +102,7 @@ public class Eye_Player : MonoBehaviour
             if (once == false)
             {
                 GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(15);
+                movementSystem.GetComponent<CoffeeGame>().incrementValue = 0.007f;
                 once = true;
             }
         }
