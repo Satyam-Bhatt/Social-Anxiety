@@ -2094,7 +2094,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.7502149, y: 2.8700001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4961,7 +4961,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.8802309, y: 3.19}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -7917,7 +7917,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b1f98e24601fa5e46bcdc58dda70d944, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9869bab2a574578429396e3e43082f42, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -8030,6 +8030,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1ba561d5663334b828716417e95a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coffeeGame_Audio: {fileID: 8300000, guid: a8f4439acbd13c242b902846b63ffa8d, type: 3}
+  afterBW_Clip: {fileID: 8300000, guid: 32d2e5237c1fb1847bc36a417efb78f5, type: 3}
 --- !u!1 &953839172 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 944279389438908083, guid: 7e7b18fa012d71a4bb3c4c9b11b9cc96, type: 3}
@@ -8855,8 +8857,8 @@ PrefabInstance:
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
       value: Thanks a lot Man! <s>You know you've saved my college life</s>. I HAVENT
-        SAVED A ANT And I don't think grateful or thank you are words enough to describe
-        how I truly feel.
+        SAVED AN ANT And I don't think grateful or thank you are words enough to
+        describe how I truly feel.
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: heading
@@ -10015,7 +10017,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.3001597, y: 2.9}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -10501,7 +10503,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.8802309, y: 3.19}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -10825,7 +10827,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.7802187, y: 2.95}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -11197,7 +11199,7 @@ SpriteRenderer:
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 1.7702175, y: 3.6200001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -11480,7 +11482,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 1.9602407, y: 2.8500001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -13440,7 +13442,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.0002458, y: 2.95}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -13865,7 +13867,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.6602039, y: 3.55}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -13949,7 +13951,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.3001597, y: 2.89}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -14689,7 +14691,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.7502149, y: 2.9199998}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -15227,7 +15229,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.7502149, y: 2.8700001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -15461,7 +15463,7 @@ MonoBehaviour:
   crumbledPaper: {fileID: 21300000, guid: 25e328ef3ccef354bae401d1baf6e842, type: 3}
   notesPanel: {fileID: 1641664570}
   globalVolume: {fileID: 1258791406}
-  afterBW_Audio: {fileID: 8300000, guid: 60a433bb978693646b4c25d0a068fc72, type: 3}
+  afterBW_Audio: {fileID: 8300000, guid: 32d2e5237c1fb1847bc36a417efb78f5, type: 3}
 --- !u!4 &1708810133
 Transform:
   m_ObjectHideFlags: 0
@@ -16693,7 +16695,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.9602407, y: 2.8500001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -17135,6 +17137,38 @@ MonoBehaviour:
     caption: These Thoughts are driving me crazy!
   - clip: {fileID: 8300000, guid: 3def106adb03d0544bdda84add82bb04, type: 3}
     caption: Ah! Some Sleep might help
+  - clip: {fileID: 8300000, guid: d401272a577ac2c4e865f583cbc26708, type: 3}
+    caption: "Ugh! Why is it so hard for me to make this machine work? Do other people
+      also struggle like this? No, no, it\u2019s just me... I\u2019m the loser. I\u2019m
+      the one left behind. All my college mates have great jobs, great lives, they\u2019re
+      so successful. And look at me! Everyone in college thought I\u2019d do something
+      amazing, but here I am, struggling to make a simple cup of coffee."
+  - clip: {fileID: 8300000, guid: b18406a7b240ec8499d86f5233a2c5a5, type: 3}
+    caption: "How do I even switch on the gas? Why do I feel like someone\u2019s
+      watching me through the window? They\u2019re judging me, I know. All these
+      people, always talking about everything I\u2019ve done wrong. What a loser
+      I\u2019ve become. How I\u2019ve done nothing since college. I wish they could
+      see what it\u2019s like to be me\u2014to have these thoughts running through
+      my head all the time."
+  - clip: {fileID: 8300000, guid: 809176ac8e6d1974e88e800345e23ec4, type: 3}
+    caption: "Quick\u2014how long will this take to brew? Did I do everything right?
+      Where\u2019s the milk? The sugar? I bet Kunal never has these problems. He
+      always gets everything perfect, like he always has. He asked me to go for a
+      walk, and I said no. Was that the right thing to do? What must he think of
+      me now? I\u2019m ruining my image in front of everyone"
+  - clip: {fileID: 8300000, guid: 0c5d33f03e4058348ab6aa75cf99e558, type: 3}
+    caption: "Why can\u2019t I stop thinking about what people think of me? My therapist
+      says people don\u2019t really think about others\u2014they\u2019re too busy
+      with their own stuff. Back in college, it didn\u2019t bother me at all. But
+      now... now it\u2019s all that I think about. I should\u2019ve just stayed in
+      my room and never gone to the park! I want to kill these thoughts!!! Does that
+      mean killing myself?"
+  - clip: {fileID: 8300000, guid: 90d33b6436224ad4aa8020191d14a226, type: 3}
+    caption: I feel so drained!
+  - clip: {fileID: 8300000, guid: 67d17cbe19b123d4395b1c9060e073ae, type: 3}
+    caption: Yes, I can do it. I feel confident
+  - clip: {fileID: 8300000, guid: 41275360d5d873d4a8f426618de03b14, type: 3}
+    caption: valued, respected, confident, worthy, happy
   captionPanel: {fileID: 196798641}
 --- !u!1 &1937542847
 GameObject:
@@ -17233,7 +17267,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 2.0002458, y: 2.95}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -17454,7 +17488,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.7802187, y: 2.95}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -18066,7 +18100,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.6602039, y: 3.55}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -19486,7 +19520,7 @@ SpriteRenderer:
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 1.7102101, y: 3.6200001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

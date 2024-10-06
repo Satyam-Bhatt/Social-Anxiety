@@ -76,6 +76,9 @@ public class MovementSystem : MonoBehaviour
     private CoffeeGame coffeeGame;
     private RandomThoughts randomThoughts;
 
+    [Header("Debug")]
+    public bool debug = false;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -451,9 +454,8 @@ public class MovementSystem : MonoBehaviour
             TransitionManager.Instance.coffeeGame.transform.GetChild(0).gameObject.SetActive(false);
             TransitionManager.Instance.coffeeGame.transform.GetChild(1).gameObject.SetActive(true);
             TransitionManager.Instance.coffeeGame.transform.GetChild(2).gameObject.SetActive(true);
+            AudioManager.Instance.AudioPlay(AudioManager.Instance.coffeeGame_Audio);
             gameObject.GetComponent<CoffeeGame>().enabled = true;
-
-            //Audio One
         }
         else if (canSleep)
         {
@@ -522,6 +524,8 @@ public class MovementSystem : MonoBehaviour
         }
 
         AudioManager.Instance.GetComponent<AudioSource>().volume = 0.5f;
+        animator.SetBool("BW", true);
+        animator.SetInteger("MovementSwitch", 3);
     }
 
     IEnumerator EnableChild(int index)
@@ -577,6 +581,8 @@ public class MovementSystem : MonoBehaviour
         randomThoughts.ClipPlay_Immediate(13);
         float delay = randomThoughts.audioCaption[13].clip.length;
         randomThoughts.ClipPlay_Delay(14, delay + 1f);
+
+        AudioManager.Instance.AudioPlay(AudioManager.Instance.afterBW_Clip);
     }
 
     IEnumerator AudioPlay_Delay(int clipIndex, float delay)

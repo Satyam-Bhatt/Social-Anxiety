@@ -27,6 +27,8 @@ public class Eye_Player : MonoBehaviour
     [SerializeField] private GameObject rmb_ToStart;
     [SerializeField] private GameObject spawner;
 
+    private bool once = false;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -35,13 +37,14 @@ public class Eye_Player : MonoBehaviour
     }
 
     private void OnEnable()
-    { 
-        
+    {
+
         if (posiStore == Vector3.zero)
         {
             posiStore = transform.localPosition;
         }
-        else { 
+        else
+        {
             transform.localPosition = posiStore;
         }
 
@@ -95,8 +98,14 @@ public class Eye_Player : MonoBehaviour
 
             rmb_ToStart.SetActive(false);
             spawner.SetActive(true);
+
+            if (once == false)
+            {
+                GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(15);
+                once = true;
+            }
         }
-        else 
+        else
         {
             s.sprite = EyesClose_Open[0];
             position = false;
@@ -109,7 +118,7 @@ public class Eye_Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Eyes"))
-        { 
+        {
             mat.SetFloat("_Anxiety", value += 0.1f);
         }
 
@@ -130,7 +139,7 @@ public class Eye_Player : MonoBehaviour
     }
 
     public void TimelineStopped(PlayableDirector timeline)
-    { 
+    {
         movementSystem.cutscenePlaying = false;
         transform.parent.transform.parent.transform.parent.Find("Trigger").gameObject.SetActive(true);
 

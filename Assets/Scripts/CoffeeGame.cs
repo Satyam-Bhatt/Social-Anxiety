@@ -101,18 +101,18 @@ public class CoffeeGame : MonoBehaviour
             {
                 StopAllCoroutines();
 
-                if (value <= 0)
+                /*if (value <= 0)
                 {
-                    value += 0.1f;
-                }
-                value += 6f * Time.deltaTime;
+                  value += 0.06f;
+                }*/
+                value += 0.5f * Time.fixedDeltaTime;
                 image.fillAmount = value;
                 KeyEnabler();
 
                 //image.transform.position = imagePosition;
                 //StartCoroutine(ValueChange(0.1f));
             }
-            else
+            else if (context.canceled)
             {
                 StopAllCoroutines();
                 StartCoroutine(DecreaseValue());
@@ -127,7 +127,7 @@ public class CoffeeGame : MonoBehaviour
     {
         while (value > 0 && value <= 1 && canPlay)
         {
-            value -= 0.1f * Time.deltaTime;
+            value -= 0.004f * Time.fixedDeltaTime;
             image.fillAmount = value;
             yield return new WaitForEndOfFrame();
         }
@@ -148,7 +148,7 @@ public class CoffeeGame : MonoBehaviour
                 coffeeActivator[1].SetActive(true);
                 image.transform.position = new Vector3(coffeeActivator[1].transform.position.x - offset, coffeeActivator[1].transform.position.y, coffeeActivator[1].transform.position.z);
 
-                //Audio Two
+                GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(16);
             }
             else if (keyIndex == 2)
             {
@@ -161,7 +161,7 @@ public class CoffeeGame : MonoBehaviour
                 coffeeActivator[2].SetActive(true);
                 image.transform.position = new Vector3(coffeeActivator[2].transform.position.x - offset, coffeeActivator[2].transform.position.y, coffeeActivator[2].transform.position.z);
 
-                //Audio Three
+                GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(17);
             }
             else if (keyIndex == 3)
             {
@@ -174,7 +174,7 @@ public class CoffeeGame : MonoBehaviour
                 coffeeActivator[3].SetActive(true);
                 image.transform.position = new Vector3(coffeeActivator[3].transform.position.x - offset, coffeeActivator[3].transform.position.y, coffeeActivator[3].transform.position.z);
 
-                //Audio Four
+                GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(18);
             }
             else if (keyIndex == 4)
             {
@@ -195,71 +195,5 @@ public class CoffeeGame : MonoBehaviour
             StopAllCoroutines();
 
         }
-    }
-
-    IEnumerator ValueChange(float incrementDecrement)
-    {
-        while (value >= 0 && value <= 1 && canPlay)
-        {
-            value += incrementDecrement * Time.deltaTime;
-            image.fillAmount = value;
-
-            if (value >= 1f)
-            {
-                if (keyIndex == 1)
-                {
-                    playerControls.CoffeGame.FirstPress.Disable();
-                    playerControls.CoffeGame.SecondPress.Enable();
-                    keyIndex++;
-                    letterToPress.text = "L";
-
-                    coffeeActivator[0].SetActive(false);
-                    coffeeActivator[1].SetActive(true);
-                    image.transform.position = new Vector3(coffeeActivator[1].transform.position.x - offset, coffeeActivator[1].transform.position.y, coffeeActivator[1].transform.position.z);
-                }
-                else if (keyIndex == 2)
-                {
-                    playerControls.CoffeGame.SecondPress.Disable();
-                    playerControls.CoffeGame.ThirdPress.Enable();
-                    keyIndex++;
-                    letterToPress.text = "Y";
-
-                    coffeeActivator[1].SetActive(false);
-                    coffeeActivator[2].SetActive(true);
-                    image.transform.position = new Vector3(coffeeActivator[2].transform.position.x - offset, coffeeActivator[2].transform.position.y, coffeeActivator[2].transform.position.z);
-                }
-                else if (keyIndex == 3)
-                {
-                    playerControls.CoffeGame.ThirdPress.Disable();
-                    playerControls.CoffeGame.FourthPress.Enable();
-                    keyIndex++;
-                    letterToPress.text = "V";
-
-                    coffeeActivator[2].SetActive(false);
-                    coffeeActivator[3].SetActive(true);
-                    image.transform.position = new Vector3(coffeeActivator[3].transform.position.x - offset, coffeeActivator[3].transform.position.y, coffeeActivator[3].transform.position.z);
-                }
-                else if (keyIndex == 4)
-                {
-                    playerControls.CoffeGame.FourthPress.Disable();
-                    keyIndex++;
-
-                    coffeeActivator[3].SetActive(false);
-                    eyeGame.SetActive(false);
-                    GameManager.Instance.coffeeGameDone = true;
-                    GameManager.Instance.tasks.transform.parent.gameObject.SetActive(true);
-                    GameManager.Instance.tasks.text = "- Get rid of thoughts";
-
-                    onCoffeeGameCompleted?.Invoke();
-                }
-                break;
-            }
-
-            yield return new WaitForEndOfFrame();
-        }
-        Debug.Log("Coroutine Stop");
-        value = 0;
-        image.fillAmount = value;
-        StopAllCoroutines();
     }
 }

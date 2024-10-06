@@ -18,4 +18,21 @@ public class AudioManager : MonoBehaviour
             return _instance;
         }
     }
+
+    private AudioSource audioSource;
+
+    public AudioClip coffeeGame_Audio;
+    public AudioClip afterBW_Clip;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void AudioPlay(AudioClip clip)
+    {
+        audioSource.Stop();
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
 }
