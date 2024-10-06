@@ -76,9 +76,6 @@ public class MovementSystem : MonoBehaviour
     private CoffeeGame coffeeGame;
     private RandomThoughts randomThoughts;
 
-    [Header("Debug")]
-    public bool debug = false;
-
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -140,8 +137,6 @@ public class MovementSystem : MonoBehaviour
         coffeeGame.enabled = false;
 
         room.transform.Find("Knife").gameObject.SetActive(false);
-
-        randomThoughts.ClipPlay_Immediate(3);
     }
 
     void Update()
