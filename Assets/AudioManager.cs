@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip coffeeGame_Audio;
     public AudioClip afterBW_Clip;
+    public AudioClip beforeBW_Clip;
 
     private void Awake()
     {

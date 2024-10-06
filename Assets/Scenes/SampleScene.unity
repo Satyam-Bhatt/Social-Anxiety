@@ -8675,6 +8675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coffeeGame_Audio: {fileID: 8300000, guid: a8f4439acbd13c242b902846b63ffa8d, type: 3}
   afterBW_Clip: {fileID: 8300000, guid: 32d2e5237c1fb1847bc36a417efb78f5, type: 3}
+  beforeBW_Clip: {fileID: 8300000, guid: 9869bab2a574578429396e3e43082f42, type: 3}
 --- !u!1 &953839172 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 944279389438908083, guid: 7e7b18fa012d71a4bb3c4c9b11b9cc96, type: 3}

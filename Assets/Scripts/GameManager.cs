@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour
         {
             open.SetActive(true);
             gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(11);
+            AudioManager.Instance.AudioPlay(AudioManager.Instance.beforeBW_Clip);
         }
         //InventoryManager.Instance.AfterSleep();
 
