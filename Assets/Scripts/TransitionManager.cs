@@ -82,6 +82,7 @@ public class TransitionManager : MonoBehaviour
     void TransitionSprites_OnStart()
     { 
         StartCoroutine(CharacterSwitch());
+        AudioManager.Instance.AudioPlay(AudioManager.Instance.coffeeGame_Audio);
     }
 
     void TransitionSprites_OnEnd(PlayableDirector obj)

@@ -93,7 +93,7 @@ public class RandomThoughts : MonoBehaviour
         yield return new WaitForSeconds(delay);
         captionPanel.SetActive(false);
         audioManager_audioSource.volume = 0.5f;
-        coffeeGame.incrementValue = 0.1f;
+        coffeeGame.incrementValue = 1.25f;
     }
 
     IEnumerator CharacterDialogue(string dialogue)

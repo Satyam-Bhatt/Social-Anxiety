@@ -103,19 +103,19 @@ public class CoffeeGame : MonoBehaviour
             {
                 StopAllCoroutines();
 
-                /*if (value <= 0)
+                if (value <= 0)
                 {
                   value += 0.06f;
-                }*/
-                //value += 0.5f * Time.fixedDeltaTime;
-                StartCoroutine(IncreaseValue());
-                //image.fillAmount = value;
-                //KeyEnabler();
+                }
+                value += incrementValue * Time.fixedDeltaTime;
+                //StartCoroutine(IncreaseValue());
+                image.fillAmount = value;
+                KeyEnabler();
 
                 //image.transform.position = imagePosition;
                 //StartCoroutine(ValueChange(0.1f));
             }
-            else if (context.canceled)
+            else
             {
                 StopAllCoroutines();
                 StartCoroutine(DecreaseValue());
@@ -128,9 +128,10 @@ public class CoffeeGame : MonoBehaviour
 
     IEnumerator DecreaseValue()
     {
+        yield return new WaitForSeconds(0.5f);
         while (value > 0 && value <= 1 && canPlay)
         {
-            value -= 0.02f * Time.fixedDeltaTime;
+            value -= 0.05f * Time.fixedDeltaTime;
             image.fillAmount = value;
             yield return new WaitForEndOfFrame();
         }
@@ -157,7 +158,7 @@ public class CoffeeGame : MonoBehaviour
         {
             if (keyIndex == 1)
             {
-                incrementValue = 0.015f;
+                incrementValue = 0.2f;
                 playerControls.CoffeGame.FirstPress.Disable();
                 playerControls.CoffeGame.SecondPress.Enable();
                 keyIndex++;
@@ -171,7 +172,7 @@ public class CoffeeGame : MonoBehaviour
             }
             else if (keyIndex == 2)
             {
-                incrementValue = 0.02f;
+                incrementValue = 0.2f;
                 playerControls.CoffeGame.SecondPress.Disable();
                 playerControls.CoffeGame.ThirdPress.Enable();
                 keyIndex++;
@@ -185,7 +186,7 @@ public class CoffeeGame : MonoBehaviour
             }
             else if (keyIndex == 3)
             {
-                incrementValue = 0.02f;
+                incrementValue = 0.2f;
                 playerControls.CoffeGame.ThirdPress.Disable();
                 playerControls.CoffeGame.FourthPress.Enable();
                 keyIndex++;

@@ -1219,7 +1219,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: db2aed8f3fd6d634e976361e705ff69c, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -13813,7 +13813,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press
+  m_text: Hold
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18658,7 +18658,7 @@ Transform:
   m_GameObject: {fileID: 2009233661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.04, y: 0.09, z: 0}
-  m_LocalScale: {x: 8.733494, y: 0.748704, z: 1.245273}
+  m_LocalScale: {x: 8.733494, y: 0, z: 1.245273}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

@@ -302,7 +302,7 @@ public class MovementSystem : MonoBehaviour
 
         if (collision.CompareTag("Trigger"))
         {
-            AudioManager.Instance.GetComponent<AudioSource>().volume = 0.05f;
+            AudioManager.Instance.GetComponent<AudioSource>().volume = 0.2f;
             timeline.Play();
             GameManager.Instance.tasks.transform.parent.gameObject.SetActive(false);
             onTimelineStart.Invoke();
@@ -499,9 +499,9 @@ public class MovementSystem : MonoBehaviour
         GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Delay(0, 2f);
         // Use coroutine instead
         float delay = GameManager.Instance.gameObject.GetComponent<RandomThoughts>().audioCaption[0].clip.length;
-        StartCoroutine(AudioPlay_Delay(1, delay + 2.5f));
-        //float delay2 = randomThoughts.audioCaption[1].clip.length;
-        //randomThoughts.ClipPlay_Delay(6,delay + delay2 + 2f);
+        StartCoroutine(AudioPlay_Delay(1, delay + 2f + 1f));
+        float delay2 = randomThoughts.audioCaption[1].clip.length + delay + 1f;
+        StartCoroutine(AudioPlay_Delay(6, delay2 + 3f));
 
         unknownGuy.gameObject.GetComponent<SpriteRenderer>().flipX = true;
         unknownGuy.gameObject.GetComponent<NPCMovement>().enabled = true;
@@ -583,7 +583,7 @@ public class MovementSystem : MonoBehaviour
     IEnumerator AudioPlay_Delay(int clipIndex, float delay)
     {
         yield return new WaitForSeconds(delay);
-        GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(1);
+        GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(clipIndex);
     }
 
 }

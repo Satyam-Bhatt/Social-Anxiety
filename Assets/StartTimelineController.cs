@@ -16,6 +16,7 @@ public class StartTimelineController : MonoBehaviour
     private void Start()
     {
         player.cutscenePlaying = true;
+        StartCoroutine(StartTimeline());
     }
 
     private void OnEnable()
@@ -32,5 +33,11 @@ public class StartTimelineController : MonoBehaviour
     {
         player.cutscenePlaying = false;
         GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Delay(3, 1f);
+    }
+
+    IEnumerator StartTimeline()
+    { 
+        yield return new WaitForSeconds(2f);
+        timeline.Play();
     }
 }
