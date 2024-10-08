@@ -113,4 +113,11 @@ public class RandomThoughts : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
     }
+
+    public void AudioCloseReset()
+    {
+        captionPanel.SetActive(false);
+        audioManager_audioSource.volume = 0.5f;
+        coffeeGame.incrementValue = 1.25f;
+    }
 }

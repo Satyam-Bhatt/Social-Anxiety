@@ -101,7 +101,6 @@ public class Eye_Player : MonoBehaviour
 
             if (once == false)
             {
-                GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(15);
                 movementSystem.GetComponent<CoffeeGame>().incrementValue = 0.2f;
                 once = true;
             }
@@ -126,6 +125,8 @@ public class Eye_Player : MonoBehaviour
         if (value >= 1f)
         {
             timeline.Play();
+            GameManager.Instance.GetComponent<AudioSource>().Stop();
+            GameManager.Instance.GetComponent<RandomThoughts>().AudioCloseReset();
             movementSystem.cutscenePlaying = true;
 
             foreach (GameObject g in active_deactive)

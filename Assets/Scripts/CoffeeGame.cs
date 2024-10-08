@@ -24,12 +24,14 @@ public class CoffeeGame : MonoBehaviour
 
     private float value = 0;
     private int keyIndex = 1;
+    private bool playOnce = true;
 
     public Action onCoffeeGameCompleted;
 
     [SerializeField] private GameObject eyeGame;
 
     public float incrementValue = 0.007f;
+    private bool firstAudioPlay = false;
 
     private void Awake()
     {
@@ -105,15 +107,39 @@ public class CoffeeGame : MonoBehaviour
 
                 if (value <= 0)
                 {
-                  value += 0.06f;
+                    value += 0.06f;
                 }
                 value += incrementValue * Time.fixedDeltaTime;
                 //StartCoroutine(IncreaseValue());
                 image.fillAmount = value;
-                KeyEnabler();
+                
 
                 //image.transform.position = imagePosition;
                 //StartCoroutine(ValueChange(0.1f));
+                if (firstAudioPlay == false)
+                {
+                    GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(15);
+                    firstAudioPlay = true;
+                }
+
+                if (keyIndex == 2 && !playOnce)
+                {
+                    GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(16);
+                    playOnce = true;
+                }
+                else if (keyIndex == 3 && !playOnce)
+                {
+                    GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(17);
+                    playOnce = true;
+                }
+                else if (keyIndex == 4 && !playOnce)
+                {
+                    GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(18);
+                    playOnce = true;
+                }
+
+                KeyEnabler();
+
             }
             else
             {
@@ -145,7 +171,7 @@ public class CoffeeGame : MonoBehaviour
             image.fillAmount = value;
 
             if (value >= 1)
-            { 
+            {
                 KeyEnabler();
             }
             yield return new WaitForEndOfFrame();
@@ -167,8 +193,7 @@ public class CoffeeGame : MonoBehaviour
                 coffeeActivator[0].SetActive(false);
                 coffeeActivator[1].SetActive(true);
                 image.transform.position = new Vector3(coffeeActivator[1].transform.position.x - offset, coffeeActivator[1].transform.position.y, coffeeActivator[1].transform.position.z);
-
-                GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(16);
+                playOnce = false;
             }
             else if (keyIndex == 2)
             {
@@ -181,8 +206,7 @@ public class CoffeeGame : MonoBehaviour
                 coffeeActivator[1].SetActive(false);
                 coffeeActivator[2].SetActive(true);
                 image.transform.position = new Vector3(coffeeActivator[2].transform.position.x - offset, coffeeActivator[2].transform.position.y, coffeeActivator[2].transform.position.z);
-
-                GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(17);
+                playOnce = false;
             }
             else if (keyIndex == 3)
             {
@@ -195,8 +219,7 @@ public class CoffeeGame : MonoBehaviour
                 coffeeActivator[2].SetActive(false);
                 coffeeActivator[3].SetActive(true);
                 image.transform.position = new Vector3(coffeeActivator[3].transform.position.x - offset, coffeeActivator[3].transform.position.y, coffeeActivator[3].transform.position.z);
-
-                GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(18);
+                playOnce = false;
             }
             else if (keyIndex == 4)
             {
