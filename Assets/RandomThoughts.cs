@@ -118,6 +118,6 @@ public class RandomThoughts : MonoBehaviour
     {
         captionPanel.SetActive(false);
         audioManager_audioSource.volume = 0.5f;
-        coffeeGame.incrementValue = 1.25f;
+        //coffeeGame.incrementValue = 1.25f;
     }
 }

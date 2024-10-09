@@ -931,6 +931,7 @@ GameObject:
   - component: {fileID: 46165104}
   - component: {fileID: 46165105}
   - component: {fileID: 46165106}
+  - component: {fileID: 46165107}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -978,6 +979,7 @@ MonoBehaviour:
   rect: {fileID: 264814333}
   rmb_ToStart: {fileID: 1786570819}
   spawner: {fileID: 1455257960}
+  audioClip: {fileID: 8300000, guid: 9194eca5ac7966a4990bdf54f5427aaa, type: 3}
 --- !u!212 &46165103
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1094,8 +1096,106 @@ PlayableDirector:
     value: {fileID: 1927658428}
   - key: {fileID: 5243067642028849855, guid: 5947baba6790cab49807d548fec35912, type: 2}
     value: {fileID: 1927658429}
+  - key: {fileID: -5052833441820035518, guid: 5947baba6790cab49807d548fec35912, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
+--- !u!82 &46165107
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46165100}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.4
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 96
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &63412585
 GameObject:
   m_ObjectHideFlags: 3
@@ -9657,9 +9757,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
-      value: Thanks a lot Man! <s>You know you've saved my college life</s>. I HAVENT
-        SAVED AN ANT And I don't think grateful or thank you are words enough to
-        describe how I truly feel.
+      value: 'Thanks a lot Man! <s>You know you''ve saved my college life</s>. I
+        HAVENT SAVED AN ANT And I don''t think grateful or thank you are words enough
+        to describe how I truly feel.
+
+
+        <margin left=70%> - Akarsh</margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: heading
@@ -9667,8 +9770,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: beforeBW
-      value: Thanks a lot Man! You know you've saved my college life. And I don't
+      value: 'Thanks a lot Man! You know you''ve saved my college life. And I don''t
         think grateful or thank you are words enough to describe how I truly feel.
+
+
+        <margin
+        left=70%> - Akarsh</margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: audio_AfterBW
@@ -10990,10 +11097,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
-      value: You've been through a lot of tough times on campus and still handled
+      value: 'You''ve been through a lot of tough times on campus and still handled
         it all so well! You have been a very <s>positive person</s> NEGATIVE and
-        I wish that you be that self of yours always. I'll always remember all the
+        I wish that you be that self of yours always. I''ll always remember all the
         enthusiasm and the positive vibe you had.
+
+
+        <margin left=70%> - Kunal</margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: heading
@@ -11001,10 +11111,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: beforeBW
-      value: You've been through a lot of tough times on campus and still handled
+      value: 'You''ve been through a lot of tough times on campus and still handled
         it all so well! You have been a very positive person and I wish that you
-        be that self of yours always. I'll always remember all the enthusiasm and
+        be that self of yours always. I''ll always remember all the enthusiasm and
         the positive vibe you had.
+
+
+        <margin left=70%> - Kunal</margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: audio_AfterBW
@@ -12615,8 +12728,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '- CONFIDENCE'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 57a79f350c144b0448fa9638b2145360, type: 2}
+  m_sharedMaterial: {fileID: -5595597686061069644, guid: 57a79f350c144b0448fa9638b2145360, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12646,7 +12759,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 17
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -12842,10 +12955,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
-      value: You're a great person Dhruv! I admire the fact that you have the <s>courage
-        to always stand up</s> NO NO I AM A COWARDfor what's right - like starting
+      value: 'You''re a great person Dhruv! I admire the fact that you have the <s>courage
+        to always stand up</s> NO NO I AM A COWARDfor what''s right - like starting
         a GameDevSociety - and the courage to pursue what you want, like contesting
         for President - it was one hell of a feat.
+
+
+        <margin left=70%> -
+        Anant</margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: heading
@@ -12853,10 +12970,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: beforeBW
-      value: You're a great person Dhruv! I admire the fact that you have the courage
-        to always stand up for what's right - like starting a GameDevSociety - and
+      value: 'You''re a great person Dhruv! I admire the fact that you have the courage
+        to always stand up for what''s right - like starting a GameDevSociety - and
         the courage to pursue what you want, like contesting for President - it was
         one hell of a feat.
+
+
+        <margin left=70%> - Anant</margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: audio_AfterBW
@@ -14975,8 +15095,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Confidence
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 57a79f350c144b0448fa9638b2145360, type: 2}
+  m_sharedMaterial: {fileID: -5595597686061069644, guid: 57a79f350c144b0448fa9638b2145360, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15006,7 +15126,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 17
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -17032,7 +17152,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hold Right Mouse Button to begin
+  m_text: Hold Right Mouse Button to shut your eyes
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17059,8 +17179,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.5
-  m_fontSizeBase: 0.5
+  m_fontSize: 0.45
+  m_fontSizeBase: 0.45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20309,9 +20429,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
-      value: Dhruv, as someone who has seen and known you so closely, I know you
+      value: 'Dhruv, as someone who has seen and known you so closely, I know you
         will do <s>great things</s>  <b>LOL I HAVE DONE NO GREAT THINGS</b> Even
-        though you haven't decided upon the specifics of how you will do it.
+        though you haven''t decided upon the specifics of how you will do it.
+
+
+        <margin
+        left=70%> - Smriti</margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: heading
@@ -20319,9 +20443,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: beforeBW
-      value: Dhruv, as someone who has seen and known you so closely, I know you
-        will do great things even though you haven't decided upon the specifics of
-        how you will do it.
+      value: 'Dhruv, as someone who has seen and known you so closely, I know you
+        will do great things even though you haven''t decided upon the specifics
+        of how you will do it.
+
+
+        <margin left=70%> - Smriti</margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: audio_AfterBW
@@ -20555,11 +20682,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
-      value: You really were among the first people I met at this place. You were
+      value: 'You really were among the first people I met at this place. You were
         also someone <s>genuinely wanted good</s> BAD for everyone. Got to learn
         a lot from you, <s>springing back up every time</s> COULDNT DO ANYTHINGafter
         something goes wrong, trying to do something for the community were a few
         of them
+
+
+        <margin left=70%> - Gaurav</margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: heading
@@ -20567,10 +20697,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: beforeBW
-      value: You really were among the first people I met at this place. You were
+      value: 'You really were among the first people I met at this place. You were
         also someone genuinely wanted good for everyone. Got to learn a lot from
         you, springing back up every time after something goes wrong, trying to do
         something for the community were a few of them
+
+
+        <margin left=70%>
+        - Gaurav</margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: audio_AfterBW

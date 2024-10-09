@@ -23,15 +23,15 @@ public class CoffeeGame : MonoBehaviour
     private TMP_Text letterToPress;
 
     private float value = 0;
-    private int keyIndex = 1;
-    private bool playOnce = true;
+    public int keyIndex = 1;
+    public bool playOnce = true;
 
     public Action onCoffeeGameCompleted;
 
     [SerializeField] private GameObject eyeGame;
 
     public float incrementValue = 0.007f;
-    private bool firstAudioPlay = false;
+    public bool firstAudioPlay = false;
 
     private void Awake()
     {
@@ -223,6 +223,7 @@ public class CoffeeGame : MonoBehaviour
             }
             else if (keyIndex == 4)
             {
+                incrementValue = 0.2f;
                 playerControls.CoffeGame.FourthPress.Disable();
                 keyIndex++;
 

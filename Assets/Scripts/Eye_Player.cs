@@ -27,13 +27,20 @@ public class Eye_Player : MonoBehaviour
     [SerializeField] private GameObject rmb_ToStart;
     [SerializeField] private GameObject spawner;
 
+    private CoffeeGame coffeeGame;
+
     private bool once = false;
+    private AudioSource audioSrc;
+    [SerializeField] private AudioClip audioClip;
+    private bool invinsible = false;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
         s = gameObject.transform.GetComponent<SpriteRenderer>();
         timeline = GetComponent<PlayableDirector>();
+        coffeeGame = movementSystem.GetComponent<CoffeeGame>();
+        audioSrc = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -117,9 +124,12 @@ public class Eye_Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Eyes"))
+        if (collision.gameObject.CompareTag("Eyes") && !invinsible)
         {
             mat.SetFloat("_Anxiety", value += 0.1f);
+            audioSrc.Stop();
+            audioSrc.PlayOneShot(audioClip);
+            StartCoroutine(InvinsibilityFrames());
         }
 
         if (value >= 1f)
@@ -127,6 +137,16 @@ public class Eye_Player : MonoBehaviour
             timeline.Play();
             GameManager.Instance.GetComponent<AudioSource>().Stop();
             GameManager.Instance.GetComponent<RandomThoughts>().AudioCloseReset();
+
+            if (coffeeGame.keyIndex > 1)
+            {
+                coffeeGame.playOnce = false;
+            }
+            else if (coffeeGame.keyIndex == 1)
+            { 
+                coffeeGame.firstAudioPlay = false;
+            }
+
             movementSystem.cutscenePlaying = true;
 
             foreach (GameObject g in active_deactive)
@@ -153,5 +173,12 @@ public class Eye_Player : MonoBehaviour
         value = 0f;
         mat.SetFloat("_Anxiety", 0f);
         GameManager.Instance.tasks.transform.parent.gameObject.SetActive(true);
+    }
+
+    IEnumerator InvinsibilityFrames()
+    {
+        invinsible = true;
+        yield return new WaitForSeconds(0.2f);
+        invinsible = false;
     }
 }

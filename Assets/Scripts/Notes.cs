@@ -15,9 +15,9 @@ public class Notes : MonoBehaviour
 
     public string heading;
 
-    [TextArea(5, 10)]
+    [TextArea(10, 15)]
     public string beforeBW;
-    [TextArea(5, 10)]
+    [TextArea(10, 15)]
     public string afterBW;
 
     public AudioCaptionMix[] auddioCaption = new AudioCaptionMix[2];
