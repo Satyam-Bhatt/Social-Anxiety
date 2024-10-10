@@ -27,6 +27,6 @@ Material:
     m_Ints: []
     m_Floats:
     - _Float: 1
-    - _Health: 0.9000001
+    - _Health: 0.010000826
     m_Colors: []
   m_BuildTextureStacks: []
