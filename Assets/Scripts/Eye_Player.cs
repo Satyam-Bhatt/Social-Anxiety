@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using Cinemachine;
 
 public class Eye_Player : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class Eye_Player : MonoBehaviour
     [SerializeField] private AudioClip audioClip;
     private bool invinsible = false;
 
+    private CinemachineImpulseSource impulseSource;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -41,6 +44,7 @@ public class Eye_Player : MonoBehaviour
         timeline = GetComponent<PlayableDirector>();
         coffeeGame = movementSystem.GetComponent<CoffeeGame>();
         audioSrc = GetComponent<AudioSource>();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     private void OnEnable()
@@ -122,6 +126,8 @@ public class Eye_Player : MonoBehaviour
         }
     }
 
+    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Eyes") && !invinsible)
@@ -129,6 +135,8 @@ public class Eye_Player : MonoBehaviour
             mat.SetFloat("_Anxiety", value += 0.1f);
             audioSrc.Stop();
             audioSrc.PlayOneShot(audioClip);
+            impulseSource.GenerateImpulseWithForce(0.5f);
+
             StartCoroutine(InvinsibilityFrames());
         }
 

@@ -333,10 +333,10 @@ public class MovementSystem : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+/*    private void OnDrawGizmos()
     {
         Handles.DrawWireDisc(transform.position, new Vector3(0, 0, 1), 1.5f);
-    }
+    }*/
 
     public void Interact(InputAction.CallbackContext context)
     {
