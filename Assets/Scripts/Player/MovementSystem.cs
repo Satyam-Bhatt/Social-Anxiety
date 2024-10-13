@@ -148,22 +148,6 @@ public class MovementSystem : MonoBehaviour
         //-----ANIMATION-----//
         animator.SetFloat("BlendX", moveInput.x);
         animator.SetFloat("BlendY", moveInput.y);
-/*        if (moveInput.x > 0)
-        {
-            animator.SetInteger("MovementSwitch", 2);
-        }
-        else if (moveInput.x < 0)
-        {
-            animator.SetInteger("MovementSwitch", 3);
-        }
-        else if (moveInput.y > 0)
-        {
-            animator.SetInteger("MovementSwitch", 1);
-        }
-        else if (moveInput.y < 0)
-        {
-            animator.SetInteger("MovementSwitch", 0);
-        }*/
 
         if (canInteract)
         {
@@ -310,7 +294,9 @@ public class MovementSystem : MonoBehaviour
             onTimelineStart.Invoke();
             cutscenePlaying = true;
             rb.velocity = Vector3.zero;
-            animator.SetInteger("MovementSwitch", 3);
+            animator.SetBool("Cutscene", true);
+/*            animator.SetFloat("BlendX", -1);
+            animator.SetFloat("BlendY", 0);*/
             StartCoroutine(coroutine);
 
             Destroy(collision.gameObject);
@@ -378,7 +364,6 @@ public class MovementSystem : MonoBehaviour
             {
                 outside.SetActive(true);
                 kitchen.SetActive(false);
-                animator.SetInteger("MovementSwitch", 0);
                 transform.position = new Vector3(10.46f, -37.46f, 0f);
 
                 if (randomThoughts.audioCaption[2].clip != null)
@@ -522,7 +507,7 @@ public class MovementSystem : MonoBehaviour
 
         AudioManager.Instance.GetComponent<AudioSource>().volume = 0.5f;
         animator.SetBool("BW", true);
-        animator.SetInteger("MovementSwitch", 3);
+        animator.SetBool("Cutscene", false);
     }
 
     IEnumerator EnableChild(int index)
