@@ -137,13 +137,24 @@ public class MovementSystem : MonoBehaviour
         coffeeGame.enabled = false;
 
         room.transform.Find("Knife").gameObject.SetActive(false);
+
     }
+
+    private bool moveStopper = false;
 
     void Update()
     {
         if (cutscenePlaying) return;
 
-        moveInput = playerControls.Movement.Move.ReadValue<Vector2>().normalized;
+        if (!moveStopper)
+        {
+            moveInput = playerControls.Movement.Move.ReadValue<Vector2>().normalized;
+        }
+        else
+        {
+            moveInput = Vector2.zero;
+            CheckInput();
+        }
 
         //-----ANIMATION-----//
         animator.SetFloat("BlendX", moveInput.x);
@@ -163,6 +174,33 @@ public class MovementSystem : MonoBehaviour
         {
             interactPanel.SetActive(true);
             interactText.text = "Press E to sleep";
+        }
+    }
+
+    private bool takeInput = false;
+    private void CheckInput()
+    {
+        if (takeInput)
+        {
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+            {
+                moveStopper = false;
+                takeInput = false;
+                animator.SetBool("Confused", false);
+            }
+        }
+    }
+
+    IEnumerator StopMovement()
+    {
+        while (true)
+        {
+            float delay = Random.Range(5f, 12f);
+            yield return new WaitForSeconds(delay);
+            moveStopper = true;
+            animator.SetBool("Confused", true);
+            yield return new WaitForSeconds(1.5f);
+            takeInput = true;
         }
     }
 
@@ -295,8 +333,8 @@ public class MovementSystem : MonoBehaviour
             cutscenePlaying = true;
             rb.velocity = Vector3.zero;
             animator.SetBool("Cutscene", true);
-/*            animator.SetFloat("BlendX", -1);
-            animator.SetFloat("BlendY", 0);*/
+            /*            animator.SetFloat("BlendX", -1);
+                        animator.SetFloat("BlendY", 0);*/
             StartCoroutine(coroutine);
 
             Destroy(collision.gameObject);
@@ -321,10 +359,10 @@ public class MovementSystem : MonoBehaviour
         }
     }
 
-/*    private void OnDrawGizmos()
-    {
-        Handles.DrawWireDisc(transform.position, new Vector3(0, 0, 1), 1.5f);
-    }*/
+    /*    private void OnDrawGizmos()
+        {
+            Handles.DrawWireDisc(transform.position, new Vector3(0, 0, 1), 1.5f);
+        }*/
 
     public void Interact(InputAction.CallbackContext context)
     {
@@ -508,6 +546,9 @@ public class MovementSystem : MonoBehaviour
         AudioManager.Instance.GetComponent<AudioSource>().volume = 0.5f;
         animator.SetBool("BW", true);
         animator.SetBool("Cutscene", false);
+
+        moveSpeed = 4;
+        StartCoroutine(StopMovement());
     }
 
     IEnumerator EnableChild(int index)
