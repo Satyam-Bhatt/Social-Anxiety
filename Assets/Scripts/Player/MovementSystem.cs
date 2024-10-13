@@ -146,7 +146,9 @@ public class MovementSystem : MonoBehaviour
         moveInput = playerControls.Movement.Move.ReadValue<Vector2>().normalized;
 
         //-----ANIMATION-----//
-        if (moveInput.x > 0)
+        animator.SetFloat("BlendX", moveInput.x);
+        animator.SetFloat("BlendY", moveInput.y);
+/*        if (moveInput.x > 0)
         {
             animator.SetInteger("MovementSwitch", 2);
         }
@@ -161,7 +163,7 @@ public class MovementSystem : MonoBehaviour
         else if (moveInput.y < 0)
         {
             animator.SetInteger("MovementSwitch", 0);
-        }
+        }*/
 
         if (canInteract)
         {
