@@ -48,6 +48,8 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         //RectTransformUtility.ScreenPointToLocalPointInRectangle(this.GetComponent<RectTransform>(), Input.mousePosition, null, out mousePosition);
         //use_Panel.GetComponent<RectTransform>().anchoredPosition = new Vector2(mousePosition.x, mousePosition.y + 100);
+
+        if (item == null) return;
         Vector2 anchorPos = GetComponent<RectTransform>().anchoredPosition;
         use_Panel.GetComponent<RectTransform>().anchoredPosition = new Vector2(anchorPos.x, anchorPos.y + 800);
         use_Panel.SetActive(true);
