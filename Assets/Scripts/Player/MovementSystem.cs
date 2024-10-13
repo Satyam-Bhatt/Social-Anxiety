@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Playables;
 using Unity.VisualScripting;
+using Cinemachine;
 
 public class MovementSystem : MonoBehaviour
 {
@@ -75,6 +76,8 @@ public class MovementSystem : MonoBehaviour
 
     private CoffeeGame coffeeGame;
     private RandomThoughts randomThoughts;
+
+    [SerializeField] private CinemachineVirtualCamera vcam;
 
     private void Awake()
     {
@@ -472,10 +475,12 @@ public class MovementSystem : MonoBehaviour
             interactPanel.SetActive(false);
             GameManager.Instance.tasks.transform.parent.gameObject.SetActive(false);
             TransitionManager.Instance.coffeeGame.transform.GetChild(0).gameObject.SetActive(false);
-            TransitionManager.Instance.coffeeGame.transform.GetChild(1).gameObject.SetActive(true);
-            TransitionManager.Instance.coffeeGame.transform.GetChild(2).gameObject.SetActive(true);
-            AudioManager.Instance.AudioPlay(AudioManager.Instance.coffeeGame_Audio);
-            gameObject.GetComponent<CoffeeGame>().enabled = true;
+
+            var transposer_ = vcam.GetCinemachineComponent<CinemachineTransposer>();
+            if (transposer_.m_FollowOffset.x < 4.8f)
+            { 
+                StartCoroutine(CameraOffset());
+            }
         }
         else if (canSleep)
         {
@@ -485,6 +490,22 @@ public class MovementSystem : MonoBehaviour
             room.transform.GetChild(1).gameObject.SetActive(false);
             cutscenePlaying = true;
         }
+    }
+
+    private IEnumerator CameraOffset()
+    {
+        float x = 0;
+        while (x < 4.9f)
+        { 
+            x = Mathf.Lerp(x, 5f, 10f * Time.deltaTime);
+            var transposer_ = vcam.GetCinemachineComponent<CinemachineTransposer>();
+            transposer_.m_FollowOffset = new Vector3(x, transposer_.m_FollowOffset.y, transposer_.m_FollowOffset.z);
+            yield return new WaitForEndOfFrame();
+        }
+        TransitionManager.Instance.coffeeGame.transform.GetChild(1).gameObject.SetActive(true);
+        TransitionManager.Instance.coffeeGame.transform.GetChild(2).gameObject.SetActive(true);
+        AudioManager.Instance.AudioPlay(AudioManager.Instance.coffeeGame_Audio);
+        gameObject.GetComponent<CoffeeGame>().enabled = true;
     }
 
     [SerializeField]
@@ -606,6 +627,22 @@ public class MovementSystem : MonoBehaviour
         randomThoughts.ClipPlay_Delay(14, delay + 1f);
 
         AudioManager.Instance.AudioPlay(AudioManager.Instance.afterBW_Clip);
+        StartCoroutine(CameraOffsetReset());
+    }
+
+    private IEnumerator CameraOffsetReset()
+    {
+        float x = 5;
+        while (x > 0.01f)
+        {
+            x = Mathf.Lerp(x, 0f, 3f * Time.deltaTime);
+
+            var transposer = vcam.GetCinemachineComponent<CinemachineTransposer>();
+            transposer.m_FollowOffset = new Vector3(x, transposer.m_FollowOffset.y, transposer.m_FollowOffset.z);
+            yield return new WaitForEndOfFrame();
+        }
+        var transposer_ = vcam.GetCinemachineComponent<CinemachineTransposer>();
+        transposer_.m_FollowOffset = new Vector3(0, transposer_.m_FollowOffset.y, transposer_.m_FollowOffset.z);
     }
 
     IEnumerator AudioPlay_Delay(int clipIndex, float delay)

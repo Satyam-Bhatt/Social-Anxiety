@@ -37,6 +37,8 @@ public class Eye_Player : MonoBehaviour
 
     private CinemachineImpulseSource impulseSource;
 
+    [SerializeField] private CinemachineVirtualCamera vcam;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -164,7 +166,11 @@ public class Eye_Player : MonoBehaviour
             movementSystem.gameObject.GetComponent<CoffeeGame>().coffeeActivator[0].transform.parent.gameObject.SetActive(false);
             movementSystem.gameObject.GetComponent<CoffeeGame>().canPlay = false;
             movementSystem.gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(false);
+            movementSystem.GetComponent<CoffeeGame>().incrementValue = 1.5f;
             GameManager.Instance.tasks.transform.parent.gameObject.SetActive(false);
+
+            var transposer = vcam.GetCinemachineComponent<CinemachineTransposer>();
+            transposer.m_FollowOffset = new Vector3(0f, transposer.m_FollowOffset.y, transposer.m_FollowOffset.z);
         }
     }
 
