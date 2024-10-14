@@ -495,7 +495,7 @@ public class MovementSystem : MonoBehaviour
     private IEnumerator CameraOffset()
     {
         float x = 0;
-        while (x < 4.9f)
+        while (x < 4.6f)
         { 
             x = Mathf.Lerp(x, 5f, 10f * Time.deltaTime);
             var transposer_ = vcam.GetCinemachineComponent<CinemachineTransposer>();
@@ -632,7 +632,8 @@ public class MovementSystem : MonoBehaviour
 
     private IEnumerator CameraOffsetReset()
     {
-        float x = 5;
+        var transposer_ref = vcam.GetCinemachineComponent<CinemachineTransposer>();
+        float x = transposer_ref.m_FollowOffset.x;
         while (x > 0.01f)
         {
             x = Mathf.Lerp(x, 0f, 3f * Time.deltaTime);
