@@ -55,6 +55,7 @@ public class InventoryManager : MonoBehaviour
                 containers[i].GetComponent<InventorySlot>().AddItem(newItem, items[itemIndex]);
                 itemslot inventoryItem = newItem.GetComponent<itemslot>();
                 inventoryItem.InitializeItem(items[itemIndex]);
+                inventoryItem.GetComponent<RectTransform>().rotation = Quaternion.Euler(0, 0, 0f);
                 return;
             }
         }
