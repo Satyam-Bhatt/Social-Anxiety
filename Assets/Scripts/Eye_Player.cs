@@ -39,6 +39,10 @@ public class Eye_Player : MonoBehaviour
 
     [SerializeField] private CinemachineVirtualCamera vcam;
 
+    [Space(10)]
+    [Header("Box Game")]
+    [SerializeField] private Transform box;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -100,6 +104,8 @@ public class Eye_Player : MonoBehaviour
                 transform.position = Vector3.Lerp(transform.position, mousePosition, 30 * Time.deltaTime);
             }
         }
+
+        box.transform.position = new Vector2(transform.position.x, transform.position.y - 1f);
     }
 
     public void SpriteChange(InputAction.CallbackContext context)
