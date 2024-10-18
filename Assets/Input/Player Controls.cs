@@ -205,6 +205,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BallMovement"",
+                    ""type"": ""Value"",
+                    ""id"": ""e305d9fd-04ea-4625-841c-f0da3b82dd06"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -262,6 +271,61 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""EyesClose"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up/Down/Right/Left"",
+                    ""id"": ""2a4216aa-004c-43d1-9bbc-381b6bec6a8c"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BallMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""89ee84c1-1622-456c-aadf-ffbb1106e46e"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BallMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""66323f63-18a0-4d6a-ae6b-a27430058031"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BallMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""286af4e9-9cb5-4bf5-b6c1-6bda970984d3"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BallMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""f1ea4d0f-027b-4061-a68f-225c9b09726c"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BallMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -314,6 +378,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_CoffeGame_ThirdPress = m_CoffeGame.FindAction("ThirdPress", throwIfNotFound: true);
         m_CoffeGame_FourthPress = m_CoffeGame.FindAction("FourthPress", throwIfNotFound: true);
         m_CoffeGame_EyesClose = m_CoffeGame.FindAction("EyesClose", throwIfNotFound: true);
+        m_CoffeGame_BallMovement = m_CoffeGame.FindAction("BallMovement", throwIfNotFound: true);
         // GeneralNavigation
         m_GeneralNavigation = asset.FindActionMap("GeneralNavigation", throwIfNotFound: true);
         m_GeneralNavigation_PauseGame = m_GeneralNavigation.FindAction("PauseGame", throwIfNotFound: true);
@@ -445,6 +510,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_CoffeGame_ThirdPress;
     private readonly InputAction m_CoffeGame_FourthPress;
     private readonly InputAction m_CoffeGame_EyesClose;
+    private readonly InputAction m_CoffeGame_BallMovement;
     public struct CoffeGameActions
     {
         private @PlayerControls m_Wrapper;
@@ -454,6 +520,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @ThirdPress => m_Wrapper.m_CoffeGame_ThirdPress;
         public InputAction @FourthPress => m_Wrapper.m_CoffeGame_FourthPress;
         public InputAction @EyesClose => m_Wrapper.m_CoffeGame_EyesClose;
+        public InputAction @BallMovement => m_Wrapper.m_CoffeGame_BallMovement;
         public InputActionMap Get() { return m_Wrapper.m_CoffeGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -478,6 +545,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @EyesClose.started += instance.OnEyesClose;
             @EyesClose.performed += instance.OnEyesClose;
             @EyesClose.canceled += instance.OnEyesClose;
+            @BallMovement.started += instance.OnBallMovement;
+            @BallMovement.performed += instance.OnBallMovement;
+            @BallMovement.canceled += instance.OnBallMovement;
         }
 
         private void UnregisterCallbacks(ICoffeGameActions instance)
@@ -497,6 +567,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @EyesClose.started -= instance.OnEyesClose;
             @EyesClose.performed -= instance.OnEyesClose;
             @EyesClose.canceled -= instance.OnEyesClose;
+            @BallMovement.started -= instance.OnBallMovement;
+            @BallMovement.performed -= instance.OnBallMovement;
+            @BallMovement.canceled -= instance.OnBallMovement;
         }
 
         public void RemoveCallbacks(ICoffeGameActions instance)
@@ -582,6 +655,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnThirdPress(InputAction.CallbackContext context);
         void OnFourthPress(InputAction.CallbackContext context);
         void OnEyesClose(InputAction.CallbackContext context);
+        void OnBallMovement(InputAction.CallbackContext context);
     }
     public interface IGeneralNavigationActions
     {

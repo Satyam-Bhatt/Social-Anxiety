@@ -183,6 +183,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "BallMovement",
+                    "type": "Value",
+                    "id": "e305d9fd-04ea-4625-841c-f0da3b82dd06",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -240,6 +249,61 @@
                     "action": "EyesClose",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Up/Down/Right/Left",
+                    "id": "2a4216aa-004c-43d1-9bbc-381b6bec6a8c",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BallMovement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "89ee84c1-1622-456c-aadf-ffbb1106e46e",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BallMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "66323f63-18a0-4d6a-ae6b-a27430058031",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BallMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "286af4e9-9cb5-4bf5-b6c1-6bda970984d3",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BallMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "f1ea4d0f-027b-4061-a68f-225c9b09726c",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BallMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
