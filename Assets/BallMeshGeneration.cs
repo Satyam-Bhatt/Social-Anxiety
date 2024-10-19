@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class BallMeshGeneration : MonoBehaviour
@@ -13,10 +14,16 @@ public class BallMeshGeneration : MonoBehaviour
     private Vector3 previousPosition;
 
     private PlayerControls playerControls;
+    private EdgeCollider2D edgeCollider;
+    private PolygonCollider2D polygonCollider2D;
+
+    private bool createMesh = true;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
+        edgeCollider = GetComponent<EdgeCollider2D>();
+        polygonCollider2D = GetComponent<PolygonCollider2D>();
     }
 
     private void OnEnable()
@@ -48,11 +55,42 @@ public class BallMeshGeneration : MonoBehaviour
             direction = move;
         }
 
-        if (Vector2.Distance(previousPosition, ball.transform.position) > 0.5f && direction != Vector2.zero)
+        if (Vector2.Distance(previousPosition, ball.transform.position) > 2f && direction != Vector2.zero)
         {
-            UpdateMesh(direction.normalized);
             previousPosition = ball.transform.position;
+            UpdateMesh(direction.normalized);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (Physics2D.CircleCast(ball.transform.position, ball.transform.lossyScale.x/20 , Vector3.forward))
+        { 
+/*            RaycastHit2D hit = Physics2D.Raycast(ball.transform.position, Vector3.forward, 1f);
+            Debug.Log(hit.collider.name);*/
+            createMesh = false;
+        }
+        else
+        {
+            createMesh = true;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Handles.color = Color.magenta;
+        Handles.DrawWireDisc(ball.transform.position, -Vector3.forward, ball.transform.lossyScale.x/20, 5f);
+
+        if (createMesh)
+        {
+            Handles.color = Color.green;
+        }
+        else 
+        {
+            Handles.color = Color.red;
+        }
+        Handles.DrawWireDisc(ball.transform.position, -Vector3.forward, 1.5f, 5f);
+
     }
 
     private void UpdateMesh(Vector3 direction)
@@ -79,13 +117,19 @@ public class BallMeshGeneration : MonoBehaviour
         triangles.Add(vertexLength - 1);
         triangles.Add(vertexLength - 2);
 
+        triangles.Add(vertexLength - 2);
         triangles.Add(vertexLength - 1);
         triangles.Add(vertexLength);
-        triangles.Add(vertexLength - 2);
 
         mesh.vertices = vertices.ToArray();
         mesh.triangles = triangles.ToArray();
+
+        //edgeCollider.points = ConvertToPolygonPoints(mesh.vertices);
+        Debug.Log("Call: " + mesh.vertices.Length);
+        polygonCollider2D.points = ConvertToPolygonPoints(mesh.vertices);
     }
+
+
 
     private void CreateMesh()
     {
@@ -95,8 +139,8 @@ public class BallMeshGeneration : MonoBehaviour
         List<Vector3> vertices = new List<Vector3>
         {
             new Vector3(x - 1,y + 1, 0), //0
-            new Vector3(x + 1,y + 1, 0),  //1
-            new Vector3(x - 1,y - 1, 0),//2
+            new Vector3(x - 1,y - 1, 0),  //1
+            new Vector3(x + 1,y + 1, 0),//2
             new Vector3(x + 1,y - 1, 0)  //3
         };
 
@@ -104,11 +148,11 @@ public class BallMeshGeneration : MonoBehaviour
         List<int> triangles = new List<int>
         {
             0,
-            1,
             2,
             1,
-            3,
-            2
+            1,
+            2,
+            3
         };
 
         mesh = new Mesh();
@@ -118,6 +162,34 @@ public class BallMeshGeneration : MonoBehaviour
         //mesh.SetNormals(normals);
 
         GetComponent<MeshFilter>().sharedMesh = mesh;
+
+        //edgeCollider.points = ConvertToPolygonPoints(mesh.vertices);
+        polygonCollider2D.points = ConvertToPolygonPoints(mesh.vertices);
+    }
+
+    private Vector2[] ConvertToPolygonPoints(Vector3[] vertices)
+    {
+        Vector2[] polygonPoints = new Vector2[vertices.Length];
+        Debug.Log(vertices.Length);
+
+        for (int j = 0; j < vertices.Length; j=j+4)
+        { 
+                polygonPoints[j + 0] = vertices[j + 1];
+                polygonPoints[j + 1] = vertices[j + 0];
+            if(j+2 < vertices.Length)
+                polygonPoints[j + 2] = vertices[j + 2];
+            if(j+3 < vertices.Length)
+                polygonPoints[j + 3] = vertices[j + 3];
+        }
+
+        return polygonPoints;
+
+
+        //for (int i = 0; i < vertices.Length; i++)
+        //{
+        //    polygonPoints[i] = new Vector2(vertices[i].x, vertices[i].y);
+        //}
+        //return polygonPoints;
     }
 
     //mesh = new Mesh();

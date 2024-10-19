@@ -148,7 +148,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365133842}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -267,7 +267,7 @@ MonoBehaviour:
   mazeParent: {fileID: 1609736824}
   mazeBall: {fileID: 2254403274264179814, guid: 47ff33a304f973346af674c652f01779, type: 3}
   rows: 5
-  columns: 3
+  columns: 5
 --- !u!4 &385778186
 Transform:
   m_ObjectHideFlags: 0
@@ -295,6 +295,8 @@ GameObject:
   - component: {fileID: 975416646}
   - component: {fileID: 975416645}
   - component: {fileID: 975416644}
+  - component: {fileID: 975416647}
+  - component: {fileID: 975416648}
   m_Layer: 0
   m_Name: BallMesh
   m_TagString: Untagged
@@ -380,6 +382,58 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975416642}
   m_Mesh: {fileID: 0}
+--- !u!68 &975416647
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975416642}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.5, y: 0}
+  - {x: 0.5, y: 0}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!60 &975416648
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975416642}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 1}
+      - {x: -0.95105654, y: 0.30901697}
+      - {x: -0.5877852, y: -0.80901706}
+      - {x: 0.58778536, y: -0.80901694}
+      - {x: 0.9510565, y: 0.30901712}
 --- !u!1 &1308457206
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +835,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1854177976}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -937,6 +991,10 @@ PrefabInstance:
     - target: {fileID: 2254403274264179814, guid: 47ff33a304f973346af674c652f01779, type: 3}
       propertyPath: m_Name
       value: MazeBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254403274264179814, guid: 47ff33a304f973346af674c652f01779, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47ff33a304f973346af674c652f01779, type: 3}
