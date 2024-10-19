@@ -71,7 +71,7 @@ public class BallMovementScript : MonoBehaviour
 
     private bool RayHitCheck(Vector3 startPos1, Vector3 startPos2, Vector3 direction)
     {
-        if (Physics2D.Raycast(startPos1, direction, 1f) || Physics2D.Raycast(startPos2, direction, 1f))
+        if (Physics2D.Raycast(startPos1, direction, 1f * transform.lossyScale.x) || Physics2D.Raycast(startPos2, direction, 1f * transform.lossyScale.x))
         {
             return false;
         }
@@ -88,16 +88,16 @@ public class BallMovementScript : MonoBehaviour
             Handles.color = Color.green;
             Vector3 pos1 = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y / 2, transform.position.z);
             Vector3 pos2 = new Vector3(transform.position.x, transform.position.y - transform.lossyScale.y / 2, transform.position.z);
-            Handles.DrawLine(pos1, pos1 + transform.right, 10f);
-            Handles.DrawLine(pos2, pos2 + transform.right, 10f);
+            Handles.DrawLine(pos1, pos1 + transform.right * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 + transform.right * transform.lossyScale.x, 10f);
         }
         else if (!right)
         {
             Handles.color = Color.red;
             Vector3 pos1 = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y / 2, transform.position.z);
             Vector3 pos2 = new Vector3(transform.position.x, transform.position.y - transform.lossyScale.y / 2, transform.position.z);
-            Handles.DrawLine(pos1, pos1 + transform.right, 10f);
-            Handles.DrawLine(pos2, pos2 + transform.right, 10f);
+            Handles.DrawLine(pos1, pos1 + transform.right * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 + transform.right * transform.lossyScale.x, 10f);
         }
 
         if (left)
@@ -105,16 +105,16 @@ public class BallMovementScript : MonoBehaviour
             Handles.color = Color.green;
             Vector3 pos1 = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y / 2, transform.position.z);
             Vector3 pos2 = new Vector3(transform.position.x, transform.position.y - transform.lossyScale.y / 2, transform.position.z);
-            Handles.DrawLine(pos1, pos1 - transform.right, 10f);
-            Handles.DrawLine(pos2, pos2 - transform.right, 10f);
+            Handles.DrawLine(pos1, pos1 - transform.right * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 - transform.right * transform.lossyScale.x, 10f);
         }
         else if (!left)
         {
             Handles.color = Color.red;
             Vector3 pos1 = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y / 2, transform.position.z);
             Vector3 pos2 = new Vector3(transform.position.x, transform.position.y - transform.lossyScale.y / 2, transform.position.z);
-            Handles.DrawLine(pos1, pos1 - transform.right, 10f);
-            Handles.DrawLine(pos2, pos2 - transform.right, 10f);
+            Handles.DrawLine(pos1, pos1 - transform.right * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 - transform.right * transform.lossyScale.x, 10f);
         }
 
         if (up)
@@ -122,16 +122,16 @@ public class BallMovementScript : MonoBehaviour
             Handles.color = Color.green;
             Vector3 pos1 = new Vector3(transform.position.x + transform.lossyScale.x / 2, transform.position.y, transform.position.z);
             Vector3 pos2 = new Vector3(transform.position.x - transform.lossyScale.x / 2, transform.position.y, transform.position.z);
-            Handles.DrawLine(pos1, pos1 + transform.up, 10f);
-            Handles.DrawLine(pos2, pos2 + transform.up, 10f);
+            Handles.DrawLine(pos1, pos1 + transform.up * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 + transform.up * transform.lossyScale.x, 10f);
         }
         else if (!up)
         {
             Handles.color = Color.red;
             Vector3 pos1 = new Vector3(transform.position.x + transform.lossyScale.x / 2, transform.position.y, transform.position.z);
             Vector3 pos2 = new Vector3(transform.position.x - transform.lossyScale.x / 2, transform.position.y, transform.position.z);
-            Handles.DrawLine(pos1, pos1 + transform.up, 10f);
-            Handles.DrawLine(pos2, pos2 + transform.up, 10f);
+            Handles.DrawLine(pos1, pos1 + transform.up * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 + transform.up * transform.lossyScale.x, 10f);
         }
 
         if (down)
@@ -139,16 +139,16 @@ public class BallMovementScript : MonoBehaviour
             Handles.color = Color.green;
             Vector3 pos1 = new Vector3(transform.position.x + transform.lossyScale.x / 2, transform.position.y, transform.position.z);
             Vector3 pos2 = new Vector3(transform.position.x - transform.lossyScale.x / 2, transform.position.y, transform.position.z);
-            Handles.DrawLine(pos1, pos1 - transform.up, 10f);
-            Handles.DrawLine(pos2, pos2 - transform.up, 10f);
+            Handles.DrawLine(pos1, pos1 - transform.up * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 - transform.up * transform.lossyScale.x, 10f);
         }
         else if (!down)
         {
             Handles.color = Color.red;
             Vector3 pos1 = new Vector3(transform.position.x + transform.lossyScale.x / 2, transform.position.y, transform.position.z);
             Vector3 pos2 = new Vector3(transform.position.x - transform.lossyScale.x / 2, transform.position.y, transform.position.z);
-            Handles.DrawLine(pos1, pos1 - transform.up, 10f);
-            Handles.DrawLine(pos2, pos2 - transform.up, 10f);
+            Handles.DrawLine(pos1, pos1 - transform.up * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 - transform.up * transform.lossyScale.x, 10f);
         }
     }
 }

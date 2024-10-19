@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &365133843
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -250,7 +250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &385778185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +267,7 @@ MonoBehaviour:
   mazeParent: {fileID: 1609736824}
   mazeBall: {fileID: 2254403274264179814, guid: 47ff33a304f973346af674c652f01779, type: 3}
   rows: 5
-  columns: 1
+  columns: 3
 --- !u!4 &385778186
 Transform:
   m_ObjectHideFlags: 0
@@ -300,7 +300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1308457207
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -411,7 +411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1334048327
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -671,7 +671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1854177977
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -820,9 +820,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: MazeBall
       objectReference: {fileID: 0}
-    - target: {fileID: 3821225274883905117, guid: 47ff33a304f973346af674c652f01779, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 2254403274264179814, guid: 47ff33a304f973346af674c652f01779, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47ff33a304f973346af674c652f01779, type: 3}
