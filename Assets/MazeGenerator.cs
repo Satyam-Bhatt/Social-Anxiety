@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour
@@ -35,10 +36,10 @@ public class MazeGenerator : MonoBehaviour
         //    }
         //}
 
-        GenerateMesh(null, maze[0, 0]);
+        StartCoroutine(GenerateMesh(null, maze[0, 0]));
     }
 
-    private void GenerateMesh(MazeCell previousCell, MazeCell currentCell)
+    private IEnumerator GenerateMesh(MazeCell previousCell, MazeCell currentCell)
     {
         currentCell.Visit();
 
@@ -47,20 +48,74 @@ public class MazeGenerator : MonoBehaviour
             ClearWalls(previousCell, currentCell);
         }
 
+        yield return new WaitForSeconds(0.1f);
         MazeCell nextCell;
 
-        nextCell = GetUnvisitedNeighbor(currentCell);
+        do
+        {
+            nextCell = GetUnvisitedNeighbor(currentCell);
+
+            if (nextCell != null)
+            { 
+                Debug.Log(nextCell.transform.position);
+                yield return GenerateMesh(currentCell, nextCell);
+            }
+        } while (nextCell != null);
     }
 
     private MazeCell GetUnvisitedNeighbor(MazeCell currentCell)
     {
-        var unvisitedNeighbors = new List<MazeCell>();
-        return null;
+        var unvisitedNeighbors = FindAllUnvisitedNeighbors(currentCell);
+
+        return unvisitedNeighbors.OrderBy(_ => UnityEngine.Random.Range(1, 10)).FirstOrDefault();
     }
 
-    IEnumerable<MazeCell> GetUnvisitedNeighbors(MazeCell currentCell)
+    IEnumerable<MazeCell> FindAllUnvisitedNeighbors(MazeCell currentCell)
     { 
-        return null;
+        int x = (int)currentCell.transform.position.x;
+        int y = (int)currentCell.transform.position.y;
+
+        if (x + 1 < rows)
+        { 
+            MazeCell rightCell = maze[x + 1, y];
+
+            if (!rightCell.visited)
+            {
+                yield return rightCell;
+            }
+        }
+
+        if (y + 1 < columns)
+        { 
+            MazeCell topCell = maze[x, y + 1];
+
+            if (!topCell.visited)
+            {
+                yield return topCell;
+            }
+        }
+
+        if(x - 1 >= 0)
+        { 
+            MazeCell leftCell = maze[x - 1, y];
+
+            if (!leftCell.visited)
+            {
+                yield return leftCell;
+            }
+        }
+
+        if(y - 1 >= 0)
+        { 
+            MazeCell mazeCell = maze[x, y - 1];
+
+            if (!mazeCell.visited)
+            {
+                yield return mazeCell;
+            }
+        }
+
+        //yield return null;
     }
 
     private void ClearWalls(MazeCell previousCell, MazeCell currentCell)
@@ -79,14 +134,14 @@ public class MazeGenerator : MonoBehaviour
         }
         if (currentCell.transform.position.y < previousCell.transform.position.y)
         {
-            currentCell.SetWallState("bottom");
-            previousCell.SetWallState("top");
+            currentCell.SetWallState("top");
+            previousCell.SetWallState("bottom");
             return;
         }
         if (currentCell.transform.position.y > previousCell.transform.position.y)
         {
-            currentCell.SetWallState("top");
-            previousCell.SetWallState("bottom");
+            currentCell.SetWallState("bottom");
+            previousCell.SetWallState("top");
             return;
         }
     }

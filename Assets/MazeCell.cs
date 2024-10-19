@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MazeCell : MonoBehaviour
@@ -8,6 +9,13 @@ public class MazeCell : MonoBehaviour
     private GameObject topWall, bottomWall, leftWall, rightWall, cellCap;
 
     public bool visited = false;
+
+    //public Vector2 showLocation;
+
+    //private void Update()
+    //{
+    //    showLocation = cellCap.transform.position;
+    //}
 
     public void Visit()
     { 
