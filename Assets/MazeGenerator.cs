@@ -7,7 +7,7 @@ using UnityEngine;
 public class MazeGenerator : MonoBehaviour
 {
     [SerializeField]
-    private GameObject mazeCell;
+    private GameObject mazeCell, mazeParent;
 
     [SerializeField]
     private int rows, columns;
@@ -22,19 +22,12 @@ public class MazeGenerator : MonoBehaviour
         {
             for(int j = 0; j < columns; j++)
             {
-                GameObject newMazeCell = Instantiate(mazeCell, new Vector3(i, j, 0), Quaternion.identity);
+                GameObject newMazeCell = Instantiate(mazeCell, new Vector3(mazeParent.transform .position.x + i, mazeParent.transform.position.y + j, 0), Quaternion.identity);
                 newMazeCell.name = "Cell (" + i + ", " + j + ")";
+                newMazeCell.transform.SetParent(mazeParent.transform);
                 maze[i, j] = newMazeCell.GetComponent<MazeCell>();
             }
         }
-
-        //for(int i = 0; i < rows; i++)
-        //{
-        //    for(int j = 0; j < columns; j++)
-        //    {
-        //        Debug.Log("x: " + i + " y: " + j + " cell: " + maze[i, j].gameObject.name);
-        //    }
-        //}
 
         StartCoroutine(GenerateMesh(null, maze[0, 0]));
     }
@@ -48,7 +41,7 @@ public class MazeGenerator : MonoBehaviour
             ClearWalls(previousCell, currentCell);
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.01f);
         MazeCell nextCell;
 
         do
@@ -72,8 +65,8 @@ public class MazeGenerator : MonoBehaviour
 
     IEnumerable<MazeCell> FindAllUnvisitedNeighbors(MazeCell currentCell)
     { 
-        int x = (int)currentCell.transform.position.x;
-        int y = (int)currentCell.transform.position.y;
+        int x = (int)currentCell.transform.localPosition.x;
+        int y = (int)currentCell.transform.localPosition.y;
 
         if (x + 1 < rows)
         { 
@@ -120,25 +113,25 @@ public class MazeGenerator : MonoBehaviour
 
     private void ClearWalls(MazeCell previousCell, MazeCell currentCell)
     {
-        if (currentCell.transform.position.x < previousCell.transform.position.x)
+        if (currentCell.transform.localPosition.x < previousCell.transform.localPosition.x)
         {
             currentCell.SetWallState("right");
             previousCell.SetWallState("left");
             return;
         }
-        if (currentCell.transform.position.x > previousCell.transform.position.x)
+        if (currentCell.transform.localPosition.x > previousCell.transform.localPosition.x)
         {
             currentCell.SetWallState("left");
             previousCell.SetWallState("right");
             return;
         }
-        if (currentCell.transform.position.y < previousCell.transform.position.y)
+        if (currentCell.transform.localPosition.y < previousCell.transform.localPosition.y)
         {
             currentCell.SetWallState("top");
             previousCell.SetWallState("bottom");
             return;
         }
-        if (currentCell.transform.position.y > previousCell.transform.position.y)
+        if (currentCell.transform.localPosition.y > previousCell.transform.localPosition.y)
         {
             currentCell.SetWallState("bottom");
             previousCell.SetWallState("top");
