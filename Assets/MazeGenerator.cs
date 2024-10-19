@@ -50,7 +50,6 @@ public class MazeGenerator : MonoBehaviour
 
             if (nextCell != null)
             { 
-                Debug.Log(nextCell.transform.position);
                 yield return GenerateMesh(currentCell, nextCell);
             }
         } while (nextCell != null);
@@ -65,8 +64,8 @@ public class MazeGenerator : MonoBehaviour
 
     IEnumerable<MazeCell> FindAllUnvisitedNeighbors(MazeCell currentCell)
     { 
-        int x = (int)currentCell.transform.localPosition.x;
-        int y = (int)currentCell.transform.localPosition.y;
+        int x = (int)(currentCell.transform.localPosition.x * mazeParent.transform.lossyScale.x);
+        int y = (int)(currentCell.transform.localPosition.y * mazeParent.transform.lossyScale.y);
 
         if (x + 1 < rows)
         { 
