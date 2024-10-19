@@ -7,22 +7,24 @@ using UnityEngine;
 public class MazeGenerator : MonoBehaviour
 {
     [SerializeField]
-    private GameObject mazeCell, mazeParent;
+    private GameObject mazeCell, mazeParent, mazeBall;
 
     [SerializeField]
     private int rows, columns;
 
     private MazeCell[,] maze;
 
+    private bool done, ballSpawned = false;
+
     private void Start()
     {
         maze = new MazeCell[rows, columns];
 
-        for(int i = 0; i < rows; i++)
+        for (int i = 0; i < rows; i++)
         {
-            for(int j = 0; j < columns; j++)
+            for (int j = 0; j < columns; j++)
             {
-                GameObject newMazeCell = Instantiate(mazeCell, new Vector3(mazeParent.transform .position.x + i, mazeParent.transform.position.y + j, 0), Quaternion.identity);
+                GameObject newMazeCell = Instantiate(mazeCell, new Vector3(mazeParent.transform.position.x + i, mazeParent.transform.position.y + j, 0), Quaternion.identity);
                 newMazeCell.name = "Cell (" + i + ", " + j + ")";
                 newMazeCell.transform.SetParent(mazeParent.transform);
                 maze[i, j] = newMazeCell.GetComponent<MazeCell>();
@@ -30,6 +32,7 @@ public class MazeGenerator : MonoBehaviour
         }
 
         StartCoroutine(GenerateMesh(null, maze[0, 0]));
+
     }
 
     private IEnumerator GenerateMesh(MazeCell previousCell, MazeCell currentCell)
@@ -49,10 +52,36 @@ public class MazeGenerator : MonoBehaviour
             nextCell = GetUnvisitedNeighbor(currentCell);
 
             if (nextCell != null)
-            { 
+            {
                 yield return GenerateMesh(currentCell, nextCell);
             }
         } while (nextCell != null);
+
+        foreach (MazeCell cell in maze)
+        {
+            if (cell.visited == false)
+            {
+                done = false;
+                break;
+            }
+            else
+            {
+                done = true;
+            }
+        }
+
+        if (done && !ballSpawned)
+        {
+            GameObject mazeBall_Get = Instantiate(mazeBall, new Vector3(mazeParent.transform.position.x, mazeParent.transform.position.y, 0), Quaternion.identity);
+            mazeBall_Get.transform.SetParent(mazeParent.transform);
+
+            //Set Maze ball size here
+            float scaleX = mazeBall_Get.transform.localScale.x;
+            float scaleY = mazeBall_Get.transform.localScale.y;
+            mazeBall_Get.transform.localScale = new Vector3(scaleX - 1  , scaleY - 1, 1f);
+
+            ballSpawned = true;
+        }
     }
 
     private MazeCell GetUnvisitedNeighbor(MazeCell currentCell)
@@ -63,12 +92,12 @@ public class MazeGenerator : MonoBehaviour
     }
 
     IEnumerable<MazeCell> FindAllUnvisitedNeighbors(MazeCell currentCell)
-    { 
+    {
         int x = (int)(currentCell.transform.localPosition.x * mazeParent.transform.lossyScale.x);
         int y = (int)(currentCell.transform.localPosition.y * mazeParent.transform.lossyScale.y);
 
         if (x + 1 < rows)
-        { 
+        {
             MazeCell rightCell = maze[x + 1, y];
 
             if (!rightCell.visited)
@@ -78,7 +107,7 @@ public class MazeGenerator : MonoBehaviour
         }
 
         if (y + 1 < columns)
-        { 
+        {
             MazeCell topCell = maze[x, y + 1];
 
             if (!topCell.visited)
@@ -87,8 +116,8 @@ public class MazeGenerator : MonoBehaviour
             }
         }
 
-        if(x - 1 >= 0)
-        { 
+        if (x - 1 >= 0)
+        {
             MazeCell leftCell = maze[x - 1, y];
 
             if (!leftCell.visited)
@@ -97,8 +126,8 @@ public class MazeGenerator : MonoBehaviour
             }
         }
 
-        if(y - 1 >= 0)
-        { 
+        if (y - 1 >= 0)
+        {
             MazeCell mazeCell = maze[x, y - 1];
 
             if (!mazeCell.visited)

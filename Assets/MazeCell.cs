@@ -10,13 +10,6 @@ public class MazeCell : MonoBehaviour
 
     public bool visited = false;
 
-    //public Vector2 showLocation;
-
-    //private void Update()
-    //{
-    //    showLocation = cellCap.transform.position;
-    //}
-
     public void Visit()
     { 
         visited = true;
