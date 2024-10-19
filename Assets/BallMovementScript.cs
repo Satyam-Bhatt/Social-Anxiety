@@ -31,8 +31,6 @@ public class BallMovementScript : MonoBehaviour
     {
         Vector2 move = playerControls.CoffeGame.BallMovement.ReadValue<Vector2>();
 
-        Debug.Log(move + " right: " + right);
-
         if (move == new Vector2(1,0) && right)
         {
             transform.position = transform.position + new Vector3(move.x, 0, 0) * Time.deltaTime * magnitude;

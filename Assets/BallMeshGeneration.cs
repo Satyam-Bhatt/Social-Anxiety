@@ -12,7 +12,23 @@ public class BallMeshGeneration : MonoBehaviour
 
     private Vector3 previousPosition;
 
-    [SerializeField] private Transform circle1, circle2;
+    private PlayerControls playerControls;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.CoffeGame.BallMovement.Enable();
+    }
+
+    // Start is called before the first frame update
+    private void OnDisable()
+    {
+        playerControls.CoffeGame.BallMovement.Disable();
+    }
 
     private void Start()
     {
@@ -24,9 +40,16 @@ public class BallMeshGeneration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(previousPosition, ball.transform.position) > 1f)
+        Vector2 move = playerControls.CoffeGame.BallMovement.ReadValue<Vector2>();
+        Vector2 direction = new Vector2(0, 0);
+
+        if (move == new Vector2(1, 0) || move == new Vector2(-1, 0) || move == new Vector2(0, 1) || move == new Vector2(0, -1))
         {
-            Vector3 direction = ball.transform.position - previousPosition;
+            direction = move;
+        }
+
+        if (Vector2.Distance(previousPosition, ball.transform.position) > 0.5f && direction != Vector2.zero)
+        {
             UpdateMesh(direction.normalized);
             previousPosition = ball.transform.position;
         }
@@ -38,20 +61,17 @@ public class BallMeshGeneration : MonoBehaviour
         float y = ball.transform.position.y;
 
         Vector3 normal2D = new Vector3(0, 0, -1f);
-        Vector3 pos1 = Vector3.Cross(direction, normal2D).normalized;
-        Vector3 pos2 = Vector3.Cross(direction, -normal2D).normalized;
+        Vector3 pos1 = ball.transform.position + Vector3.Cross(direction, normal2D).normalized;
+        Vector3 pos2 = ball.transform.position + Vector3.Cross(direction, -normal2D).normalized;
 
-        circle1.position = pos1;
-        circle2.position = pos2;
-
-/*        List<Vector3> vertices = new List<Vector3>();
+        List<Vector3> vertices = new List<Vector3>();
         List<int> triangles = new List<int>();
 
         vertices = mesh.vertices.ToList();
         triangles = mesh.triangles.ToList();
 
-        vertices.Add(new Vector3(x , y + 1 , 0));
-        vertices.Add(new Vector3(x , y - 1 , 0));
+        vertices.Add(pos1);
+        vertices.Add(pos2);
 
         int vertexLength = vertices.Count - 1;
 
@@ -64,7 +84,7 @@ public class BallMeshGeneration : MonoBehaviour
         triangles.Add(vertexLength - 2);
 
         mesh.vertices = vertices.ToArray();
-        mesh.triangles = triangles.ToArray();*/
+        mesh.triangles = triangles.ToArray();
     }
 
     private void CreateMesh()
