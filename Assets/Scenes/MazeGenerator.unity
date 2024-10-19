@@ -266,8 +266,8 @@ MonoBehaviour:
   mazeCell: {fileID: 228032263026415008, guid: be7cbbcfb2e294a47b545cdcba70bf05, type: 3}
   mazeParent: {fileID: 1609736824}
   mazeBall: {fileID: 2254403274264179814, guid: 47ff33a304f973346af674c652f01779, type: 3}
-  rows: 5
-  columns: 5
+  rows: 20
+  columns: 20
 --- !u!4 &385778186
 Transform:
   m_ObjectHideFlags: 0
@@ -389,7 +389,7 @@ EdgeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975416642}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -411,7 +411,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975416642}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

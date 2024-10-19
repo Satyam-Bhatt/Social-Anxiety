@@ -124,9 +124,9 @@ public class BallMeshGeneration : MonoBehaviour
         mesh.vertices = vertices.ToArray();
         mesh.triangles = triangles.ToArray();
 
-        //edgeCollider.points = ConvertToPolygonPoints(mesh.vertices);
+        edgeCollider.points = ConvertToPolygonPoints(mesh.vertices);
         Debug.Log("Call: " + mesh.vertices.Length);
-        polygonCollider2D.points = ConvertToPolygonPoints(mesh.vertices);
+        //polygonCollider2D.points = ConvertToPolygonPoints(mesh.vertices);
     }
 
 
@@ -163,26 +163,20 @@ public class BallMeshGeneration : MonoBehaviour
 
         GetComponent<MeshFilter>().sharedMesh = mesh;
 
-        //edgeCollider.points = ConvertToPolygonPoints(mesh.vertices);
-        polygonCollider2D.points = ConvertToPolygonPoints(mesh.vertices);
+        edgeCollider.points = ConvertToPolygonPoints(mesh.vertices);
+        //polygonCollider2D.points = ConvertToPolygonPoints(mesh.vertices);
     }
 
     private Vector2[] ConvertToPolygonPoints(Vector3[] vertices)
     {
-        Vector2[] polygonPoints = new Vector2[vertices.Length];
-        Debug.Log(vertices.Length);
+        List<Vector2> polygonPoints = new List<Vector2>();
 
-        for (int j = 0; j < vertices.Length; j=j+4)
-        { 
-                polygonPoints[j + 0] = vertices[j + 1];
-                polygonPoints[j + 1] = vertices[j + 0];
-            if(j+2 < vertices.Length)
-                polygonPoints[j + 2] = vertices[j + 2];
-            if(j+3 < vertices.Length)
-                polygonPoints[j + 3] = vertices[j + 3];
+        for (int i = 0; i < mesh.triangles.Length; i++)
+        {
+            polygonPoints.Add(new Vector2(vertices[mesh.triangles[i]].x, vertices[mesh.triangles[i]].y));
         }
-
-        return polygonPoints;
+        Debug.Log("Polygon Points: " + polygonPoints.Count + " triangles Points: " + mesh.triangles.Length);
+        return polygonPoints.ToArray();
 
 
         //for (int i = 0; i < vertices.Length; i++)
