@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,8 +26,7 @@ public class MazeGenerator : MonoBehaviour
 
     private GameObject mazeParent;
 
-    [SerializeField]
-    private GameObject[] mazeLevels;
+    public GameObject[] mazeLevels;
 
     [SerializeField]
     private MovementSystem movementSystem;
@@ -47,6 +47,8 @@ public class MazeGenerator : MonoBehaviour
     [Header("Canvas")]
     [Space(10)]
     public GameObject arrow;
+    [SerializeField] private float xDifference = 0f;
+    public GameObject t1, t2;
 
     private void Awake()
     {
@@ -204,8 +206,30 @@ public class MazeGenerator : MonoBehaviour
         arrow.SetActive(true);
         if (obj != null)
         { 
-            arrow.transform.position = obj.transform.position;
+            arrow.transform.position = new Vector3(obj.transform.position.x - xDifference, obj.transform.position.y, obj.transform.position.z);
         }
+
+        t1.SetActive(true);
+        t2.SetActive(true);
+
+        t1.GetComponent<TMP_Text>().text = "Walk Over To -";
+        if (coffeeGame.coffeeActivator[0].activeSelf)
+        {
+            t2.GetComponent<TMP_Text>().text = "Coffee Grinder";
+        }
+        else if (coffeeGame.coffeeActivator[1].activeSelf)
+        {
+            t2.GetComponent<TMP_Text>().text = "Stove";
+        }
+        else if (coffeeGame.coffeeActivator[2].activeSelf)
+        { 
+            t2.GetComponent<TMP_Text>().text = "Brewer";
+        }
+        else if (coffeeGame.coffeeActivator[3].activeSelf)
+        {
+            t2.GetComponent<TMP_Text>().text = "Coffee Cup";
+        }
+
     }
 
     private void MazeGeneratorComplete()

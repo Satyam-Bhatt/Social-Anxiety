@@ -155,6 +155,18 @@ public class Eye_Player : MonoBehaviour
             GameManager.Instance.GetComponent<AudioSource>().Stop();
             GameManager.Instance.GetComponent<RandomThoughts>().AudioCloseReset();
 
+            MazeGenerator.Instance.transform.GetChild(0).gameObject.SetActive(false);
+            MazeGenerator.Instance.transform.GetChild(1).gameObject.SetActive(false);
+            foreach (GameObject g in MazeGenerator.Instance.mazeLevels)
+            {
+                if (g.activeSelf)
+                {
+                    g.SetActive(false);
+                    break;
+                }
+            }
+            s.enabled = false;
+
             if (coffeeGame.keyIndex > 1)
             {
                 coffeeGame.playOnce = false;
@@ -185,6 +197,7 @@ public class Eye_Player : MonoBehaviour
     {
         movementSystem.cutscenePlaying = false;
         transform.parent.transform.parent.transform.parent.Find("Trigger").gameObject.SetActive(true);
+        s.enabled = true;
 
         foreach (GameObject g in active_deactive)
         {

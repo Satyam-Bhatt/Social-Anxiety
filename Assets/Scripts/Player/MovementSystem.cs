@@ -237,6 +237,8 @@ public class MovementSystem : MonoBehaviour
                 {
                     gameObject.GetComponent<CoffeeGame>().enabled = true;
                     MazeGenerator.Instance.arrow.SetActive(false);
+                    MazeGenerator.Instance.t1.SetActive(false);
+                    MazeGenerator.Instance.t2.SetActive(false);
                     if (eyePlayer.position)
                     {
                         MazeGenerator.Instance.ActiveDeactivateMaze(true);
@@ -586,7 +588,7 @@ public class MovementSystem : MonoBehaviour
         animator.SetBool("BW", true);
         animator.SetBool("Cutscene", false);
 
-        moveSpeed = 4;
+        moveSpeed = 3;
         StartCoroutine(StopMovement());
     }
 
