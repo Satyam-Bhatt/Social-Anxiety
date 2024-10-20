@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
 
         playerControls.GeneralNavigation.PauseGame.Disable();
         playerControls.GeneralNavigation.PauseGame.started -= Pause;
+
     }
 
     private void Awake()
@@ -76,6 +77,11 @@ public class GameManager : MonoBehaviour
 
         deathPanel.SetActive(false);
         pausePanel.SetActive(false);
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void BW_Transition()

@@ -91,7 +91,24 @@ public class MazeGenerator : MonoBehaviour
             g.SetActive(false);
         }
 
-        level++;
+        if (level == 1)
+        {
+            level++;
+        }
+        else if (level > 1 && GameManager.Instance.audioSrc.isPlaying == false)
+        {
+            level++;
+            coffeeGame.EnableSprites();
+            playOnce = false;
+        }
+
+        if (level > mazeLevels.Length)
+        {
+            level = 4;
+        }
+
+
+
         if (level - 1 < mazeLevels.Length && mazeLevels[level - 1] != null)
         {
             mazeLevels[level - 1].SetActive(true);
@@ -100,8 +117,7 @@ public class MazeGenerator : MonoBehaviour
             CreateMaze(mazeLevels[level - 1].transform);
             done = false; ballSpawned = false;
         }
-        coffeeGame.EnableSprites();
-        playOnce = false;
+
     }
 
     public void LoadMaze()
@@ -137,6 +153,7 @@ public class MazeGenerator : MonoBehaviour
         }
     }
 
+    //Plays Audio
     private void BallButtonsPressed(InputAction.CallbackContext context)
     {
         if (context.performed)
