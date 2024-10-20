@@ -10,13 +10,16 @@ public class BallMeshGeneration : MonoBehaviour
     private Mesh mesh;
 
     [SerializeField] private GameObject ball;
+    [SerializeField] private LayerMask layerMask;
 
     private Vector3 previousPosition;
 
     private PlayerControls playerControls;
     private PolygonCollider2D polygonCollider2D;
 
+    //[HideInInspector]
     public bool createMesh = true;
+    [HideInInspector]
     public bool callFixedUpdate = true;
 
     private void Awake()
@@ -96,7 +99,7 @@ public class BallMeshGeneration : MonoBehaviour
     {
         if (!callFixedUpdate) return;
 
-        if (Physics2D.Raycast(ball.transform.position, Vector3.forward))
+        if (Physics2D.Raycast(ball.transform.position, Vector3.forward, Mathf.Infinity, layerMask))
         {
             createMesh = false;
         }

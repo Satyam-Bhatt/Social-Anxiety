@@ -112,6 +112,9 @@ public class Eye_Player : MonoBehaviour
             rmb_ToStart.SetActive(false);
             spawner.SetActive(true);
 
+            //Maze Code
+            MazeGenerator.Instance.LoadMaze();
+
             if (once == false)
             {
                 movementSystem.GetComponent<CoffeeGame>().incrementValue = 0.2f;
@@ -120,11 +123,15 @@ public class Eye_Player : MonoBehaviour
         }
         else
         {
+            //Position is checked in the player movement script to enable disable stuff
             s.sprite = EyesClose_Open[0];
             position = false;
 
             rmb_ToStart.SetActive(true);
             spawner.SetActive(false);
+
+            //Set Maze deactive
+            MazeGenerator.Instance.ActiveDeactivateMaze(false);
         }
     }
 

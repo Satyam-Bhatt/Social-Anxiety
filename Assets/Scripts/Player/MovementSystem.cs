@@ -238,11 +238,15 @@ public class MovementSystem : MonoBehaviour
                     gameObject.GetComponent<CoffeeGame>().enabled = true;
                     if (eyePlayer.position)
                     {
+                        MazeGenerator.Instance.ActiveDeactivateMaze(true);
+
                         gameObject.GetComponent<CoffeeGame>().canPlay = true;
                         gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(true);
                     }
                     else
                     {
+                        MazeGenerator.Instance.ActiveDeactivateMaze(false);
+
                         gameObject.GetComponent<CoffeeGame>().canPlay = false;
                         gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(false);
                     }
@@ -283,6 +287,7 @@ public class MovementSystem : MonoBehaviour
             //Turnig off Coffee Game
             gameObject.GetComponent<CoffeeGame>().canPlay = false;
             gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(false);
+            MazeGenerator.Instance.ActiveDeactivateMaze(false);
         }
     }
 
@@ -478,7 +483,7 @@ public class MovementSystem : MonoBehaviour
 
             var transposer_ = vcam.GetCinemachineComponent<CinemachineTransposer>();
             if (transposer_.m_FollowOffset.x < 4.8f)
-            { 
+            {
                 StartCoroutine(CameraOffset());
             }
         }
@@ -496,7 +501,7 @@ public class MovementSystem : MonoBehaviour
     {
         float x = 0;
         while (x < 4.6f)
-        { 
+        {
             x = Mathf.Lerp(x, 5f, 10f * Time.deltaTime);
             var transposer_ = vcam.GetCinemachineComponent<CinemachineTransposer>();
             transposer_.m_FollowOffset = new Vector3(x, transposer_.m_FollowOffset.y, transposer_.m_FollowOffset.z);
@@ -506,6 +511,11 @@ public class MovementSystem : MonoBehaviour
         TransitionManager.Instance.coffeeGame.transform.GetChild(2).gameObject.SetActive(true);
         AudioManager.Instance.AudioPlay(AudioManager.Instance.coffeeGame_Audio);
         gameObject.GetComponent<CoffeeGame>().enabled = true;
+
+        for (int i = 0; i < MazeGenerator.Instance.transform.childCount; i++)
+        {
+            MazeGenerator.Instance.transform.GetChild(i).gameObject.SetActive(true);
+        }
     }
 
     [SerializeField]
@@ -627,6 +637,11 @@ public class MovementSystem : MonoBehaviour
         randomThoughts.ClipPlay_Delay(14, delay + 1f);
 
         AudioManager.Instance.AudioPlay(AudioManager.Instance.afterBW_Clip);
+        for (int i = 0; i < MazeGenerator.Instance.transform.childCount; i++)
+        {
+            MazeGenerator.Instance.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
         StartCoroutine(CameraOffsetReset());
     }
 

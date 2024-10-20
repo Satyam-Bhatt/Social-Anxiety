@@ -99,7 +99,7 @@ public class CoffeeGame : MonoBehaviour
 
     public void FirstPressed(InputAction.CallbackContext context)
     {
-        if (canPlay)
+/*        if (canPlay)
         {
             if (context.started)
             {
@@ -112,7 +112,7 @@ public class CoffeeGame : MonoBehaviour
                 value += incrementValue * Time.fixedDeltaTime;
                 //StartCoroutine(IncreaseValue());
                 image.fillAmount = value;
-                
+
 
                 //image.transform.position = imagePosition;
                 //StartCoroutine(ValueChange(0.1f));
@@ -149,7 +149,7 @@ public class CoffeeGame : MonoBehaviour
                 //image.transform.position = imagePosition;
                 //StartCoroutine(ValueChange(-0.5f));
             }
-        }
+        }*/
     }
 
     IEnumerator DecreaseValue()
@@ -176,6 +176,46 @@ public class CoffeeGame : MonoBehaviour
             }
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public void EnableSprites()
+    {
+        if (keyIndex == 1)
+        {
+            keyIndex++;
+
+            coffeeActivator[0].SetActive(false);
+            coffeeActivator[1].SetActive(true);
+        }
+        else if (keyIndex == 2)
+        {
+            keyIndex++;
+
+            coffeeActivator[1].SetActive(false);
+            coffeeActivator[2].SetActive(true);
+        }
+        else if (keyIndex == 3)
+        {
+            keyIndex++;
+
+            coffeeActivator[2].SetActive(false);
+            coffeeActivator[3].SetActive(true);
+        }
+        else if (keyIndex == 4)
+        {
+            keyIndex++;
+
+            coffeeActivator[3].SetActive(false);
+            eyeGame.SetActive(false);
+            GameManager.Instance.coffeeGameDone = true;
+            GameManager.Instance.tasks.transform.parent.gameObject.SetActive(true);
+            GameManager.Instance.tasks.text = "- Get rid of thoughts";
+
+            onCoffeeGameCompleted?.Invoke();
+        }
+
+        StopAllCoroutines();
+
     }
 
     void KeyEnabler()

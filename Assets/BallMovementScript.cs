@@ -66,7 +66,7 @@ public class BallMovementScript : MonoBehaviour
             {
                 ballMesh.createMesh = true;
                 ballMesh.callFixedUpdate = false;
-                MazeGenerator.Instance.LoadMaze();
+                MazeGenerator.Instance.LoadNextMaze();
                 return; // Can improve code here
             }
             ballMesh.callFixedUpdate = true;

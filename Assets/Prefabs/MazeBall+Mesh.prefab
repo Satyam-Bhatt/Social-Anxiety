@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 7907003447558328819}
   - component: {fileID: 7907003447558328831}
   - component: {fileID: 6725334230989654869}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BallMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,6 +204,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 7391323751109203799}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 16384
   createMesh: 1
   callFixedUpdate: 1
 --- !u!60 &7907003447558328831

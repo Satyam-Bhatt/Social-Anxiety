@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MazeGenerator : MonoBehaviour
 {
@@ -28,6 +29,10 @@ public class MazeGenerator : MonoBehaviour
     private GameObject[] mazeLevels;
 
     [SerializeField]
+    private MovementSystem movementSystem;
+    private CoffeeGame coffeeGame;
+
+    [SerializeField]
     private int rows, columns;
 
     private MazeCell[,] maze;
@@ -35,27 +40,82 @@ public class MazeGenerator : MonoBehaviour
     private bool done, ballSpawned = false;
     private int level = 1;
 
+    private bool playOnce = false;
+
+    private PlayerControls playerControls;
+
+    private void Awake()
+    {
+        coffeeGame = movementSystem.GetComponent<CoffeeGame>();
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.CoffeGame.BallMovement.Enable();
+        playerControls.CoffeGame.BallMovement.performed += BallButtonsPressed;
+    }
+
+    private void OnDisable()
+    {
+        playerControls.CoffeGame.BallMovement.Disable();
+        playerControls.CoffeGame.BallMovement.performed -= BallButtonsPressed;
+    }
+
     private void Start()
     {
         foreach (GameObject g in mazeLevels)
         {
             g.SetActive(false);
         }
-        LoadMaze();
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+        //LoadMaze();
     }
 
-    public void LoadMaze()
+    public void LoadNextMaze()
     {
         if (mazeParent != null)
-        { 
+        {
             for (int i = 0; i < mazeParent.transform.childCount; i++)
-            { 
+            {
                 Destroy(mazeParent.transform.GetChild(i).gameObject);
             }
         }
 
         foreach (GameObject g in mazeLevels)
-        { 
+        {
+            g.SetActive(false);
+        }
+
+        level++;
+        if (level - 1 < mazeLevels.Length && mazeLevels[level - 1] != null)
+        {
+            mazeLevels[level - 1].SetActive(true);
+            rows = mazeLevels[level - 1].GetComponent<MazeStats>().rows;
+            columns = mazeLevels[level - 1].GetComponent<MazeStats>().columns;
+            CreateMaze(mazeLevels[level - 1].transform);
+            done = false; ballSpawned = false;
+        }
+        coffeeGame.EnableSprites();
+        playOnce = false;
+    }
+
+    public void LoadMaze()
+    {
+        if (mazeParent != null)
+        {
+            for (int i = 0; i < mazeParent.transform.childCount; i++)
+            {
+                Destroy(mazeParent.transform.GetChild(i).gameObject);
+            }
+        }
+
+        foreach (GameObject g in mazeLevels)
+        {
             g.SetActive(false);
         }
 
@@ -66,7 +126,45 @@ public class MazeGenerator : MonoBehaviour
             columns = mazeLevels[level - 1].GetComponent<MazeStats>().columns;
             CreateMaze(mazeLevels[level - 1].transform);
             done = false; ballSpawned = false;
-            level++;
+        }
+    }
+
+    public void ActiveDeactivateMaze(bool state)
+    {
+        if (level - 1 < mazeLevels.Length && mazeLevels[level - 1] != null)
+        {
+            mazeLevels[level - 1].SetActive(state);
+        }
+    }
+
+    private void BallButtonsPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (mazeLevels[level - 1].activeSelf)
+            {
+                if (playOnce == false && coffeeGame.keyIndex == 1)
+                {
+                    GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(15);
+                    playOnce = true;
+                }
+
+                if (coffeeGame.keyIndex == 2 && !playOnce)
+                {
+                    GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(16);
+                    playOnce = true;
+                }
+                else if (coffeeGame.keyIndex == 3 && !playOnce)
+                {
+                    GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(17);
+                    playOnce = true;
+                }
+                else if (coffeeGame.keyIndex == 4 && !playOnce)
+                {
+                    GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(18);
+                    playOnce = true;
+                }
+            }
         }
     }
 
@@ -136,9 +234,9 @@ public class MazeGenerator : MonoBehaviour
             mazeBall_Get.transform.SetParent(mazeParent.transform);
 
             //Set Maze ball size here
-/*            float scaleX = mazeBall_Get.transform.localScale.x;
-            float scaleY = mazeBall_Get.transform.localScale.y;
-            mazeBall_Get.transform.localScale = new Vector3(scaleX - 1, scaleY - 1, 1f);*/
+            /*            float scaleX = mazeBall_Get.transform.localScale.x;
+                        float scaleY = mazeBall_Get.transform.localScale.y;
+                        mazeBall_Get.transform.localScale = new Vector3(scaleX - 1, scaleY - 1, 1f);*/
 
             //Instantiate Goal
             //GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[UnityEngine.Random.Range(0, rows), UnityEngine.Random.Range(0, columns)].transform.position, Quaternion.identity);

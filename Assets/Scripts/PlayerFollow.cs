@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerFollow : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private float distance = 0f;
+    [SerializeField] private float distanceX, distanceY = 0f;
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.position.x - distance, player.position.y, transform.position.z);
+        transform.position = new Vector3(player.position.x - distanceX, player.position.y - distanceY, transform.position.z);
     }
 }
