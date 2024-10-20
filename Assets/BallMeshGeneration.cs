@@ -55,19 +55,48 @@ public class BallMeshGeneration : MonoBehaviour
             direction = move;
         }
 
-        if (Vector2.Distance(previousPosition, ball.transform.position) > 2f && direction != Vector2.zero)
+        if (Vector2.Distance(previousPosition, ball.transform.position) > 0.5f && direction != Vector2.zero)
         {
             previousPosition = ball.transform.position;
-            UpdateMesh(direction.normalized);
+            if (createMesh)
+            {
+                UpdateMesh(direction.normalized);
+            }
+            else if (!createMesh)
+            {
+                DeleteMesh();
+            }
         }
+    }
+
+    private void DeleteMesh()
+    {
+        List<Vector3> verts = new List<Vector3>();
+        verts = mesh.vertices.ToList();
+
+        verts.RemoveAt(verts.Count - 1);
+        verts.RemoveAt(verts.Count - 1);
+
+        List<int> triangles = new List<int>();
+        triangles = mesh.triangles.ToList();
+
+        for (int i = 0; i < 6; i++)
+        {
+            triangles.RemoveAt(triangles.Count - 1);
+        }
+
+        mesh.SetTriangles(triangles.ToArray(), 0);
+        mesh.SetVertices(verts.ToArray());
+        mesh.MarkDynamic();
+
+
+        polygonCollider2D.points = ConvertToPolygonPoints(verts.ToArray());
     }
 
     private void FixedUpdate()
     {
-        if (Physics2D.CircleCast(ball.transform.position, ball.transform.lossyScale.x/20 , Vector3.forward))
-        { 
-/*            RaycastHit2D hit = Physics2D.Raycast(ball.transform.position, Vector3.forward, 1f);
-            Debug.Log(hit.collider.name);*/
+        if (Physics2D.Raycast(ball.transform.position, Vector3.forward))
+        {
             createMesh = false;
         }
         else
@@ -78,14 +107,12 @@ public class BallMeshGeneration : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Handles.color = Color.magenta;
-        Handles.DrawWireDisc(ball.transform.position, -Vector3.forward, ball.transform.lossyScale.x/20, 5f);
 
         if (createMesh)
         {
             Handles.color = Color.green;
         }
-        else 
+        else
         {
             Handles.color = Color.red;
         }
@@ -95,12 +122,9 @@ public class BallMeshGeneration : MonoBehaviour
 
     private void UpdateMesh(Vector3 direction)
     {
-        float x = ball.transform.position.x;
-        float y = ball.transform.position.y;
-
         Vector3 normal2D = new Vector3(0, 0, -1f);
-        Vector3 pos1 = ball.transform.position + Vector3.Cross(direction, normal2D).normalized;
-        Vector3 pos2 = ball.transform.position + Vector3.Cross(direction, -normal2D).normalized;
+        Vector3 pos1 = ball.transform.position + Vector3.Cross(direction, normal2D).normalized * ball.transform.lossyScale.x / 2;
+        Vector3 pos2 = ball.transform.position + Vector3.Cross(direction, -normal2D).normalized * ball.transform.lossyScale.x / 2;
 
         List<Vector3> vertices = new List<Vector3>();
         List<int> triangles = new List<int>();
@@ -121,15 +145,11 @@ public class BallMeshGeneration : MonoBehaviour
         triangles.Add(vertexLength - 1);
         triangles.Add(vertexLength);
 
-        mesh.vertices = vertices.ToArray();
-        mesh.triangles = triangles.ToArray();
+        mesh.SetVertices(vertices.ToArray());
+        mesh.SetTriangles(triangles.ToArray(), 0);
 
-        edgeCollider.points = ConvertToPolygonPoints(mesh.vertices);
-        Debug.Log("Call: " + mesh.vertices.Length);
-        //polygonCollider2D.points = ConvertToPolygonPoints(mesh.vertices);
+        polygonCollider2D.points = ConvertToPolygonPoints(mesh.vertices);
     }
-
-
 
     private void CreateMesh()
     {
@@ -138,13 +158,12 @@ public class BallMeshGeneration : MonoBehaviour
 
         List<Vector3> vertices = new List<Vector3>
         {
-            new Vector3(x - 1,y + 1, 0), //0
-            new Vector3(x - 1,y - 1, 0),  //1
-            new Vector3(x + 1,y + 1, 0),//2
-            new Vector3(x + 1,y - 1, 0)  //3
+            new Vector3(x - ball.transform.lossyScale.x/2, y + ball.transform.lossyScale.x/2, 0), //0
+            new Vector3(x - ball.transform.lossyScale.x/2, y - ball.transform.lossyScale.x/2, 0),  //1
+            new Vector3(x + ball.transform.lossyScale.x/2, y + ball.transform.lossyScale.x/2, 0),//2
+            new Vector3(x + ball.transform.lossyScale.x/2, y - ball.transform.lossyScale.x/2, 0)  //3
         };
 
-        //List<Vector3> normals = new List<Vector3>();
         List<int> triangles = new List<int>
         {
             0,
@@ -163,27 +182,27 @@ public class BallMeshGeneration : MonoBehaviour
 
         GetComponent<MeshFilter>().sharedMesh = mesh;
 
-        edgeCollider.points = ConvertToPolygonPoints(mesh.vertices);
-        //polygonCollider2D.points = ConvertToPolygonPoints(mesh.vertices);
+        polygonCollider2D.points = ConvertToPolygonPoints(mesh.vertices);
     }
 
     private Vector2[] ConvertToPolygonPoints(Vector3[] vertices)
     {
         List<Vector2> polygonPoints = new List<Vector2>();
 
-        for (int i = 0; i < mesh.triangles.Length; i++)
+        for (int i = 0; i < vertices.Length; i = i + 2)
         {
-            polygonPoints.Add(new Vector2(vertices[mesh.triangles[i]].x, vertices[mesh.triangles[i]].y));
+            //Debug.Log("First Loop: " + i);
+            polygonPoints.Add(new Vector2(vertices[i].x, vertices[i].y));
         }
-        Debug.Log("Polygon Points: " + polygonPoints.Count + " triangles Points: " + mesh.triangles.Length);
+        for (int i = vertices.Length - 1; i > 0; i = i - 2)
+        {
+            //Debug.Log("Second Loop: " + i);
+
+            polygonPoints.Add(new Vector2(vertices[i].x, vertices[i].y));
+
+        }
+        //Debug.Log("Polygon Points: " + polygonPoints.Count + " triangles Points: " + mesh.triangles.Length);
         return polygonPoints.ToArray();
-
-
-        //for (int i = 0; i < vertices.Length; i++)
-        //{
-        //    polygonPoints[i] = new Vector2(vertices[i].x, vertices[i].y);
-        //}
-        //return polygonPoints;
     }
 
     //mesh = new Mesh();
