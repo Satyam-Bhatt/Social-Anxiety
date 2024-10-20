@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 392777683
   m_SortingLayer: 4
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0.7118232, b: 0, a: 1}
   m_FlipX: 0
@@ -101,6 +101,10 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 4096
+  winMask:
+    serializedVersion: 2
+    m_Bits: 8192
+  ballMesh: {fileID: 7907003447558328819}
 --- !u!1 &7907003447558328821
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +118,7 @@ GameObject:
   - component: {fileID: 7907003447558328818}
   - component: {fileID: 7907003447558328819}
   - component: {fileID: 7907003447558328831}
+  - component: {fileID: 6725334230989654869}
   m_Layer: 0
   m_Name: BallMesh
   m_TagString: Untagged
@@ -199,6 +204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 7391323751109203799}
+  createMesh: 1
+  callFixedUpdate: 1
 --- !u!60 &7907003447558328831
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -229,6 +236,17 @@ PolygonCollider2D:
       - {x: -0.5877852, y: -0.80901706}
       - {x: 0.58778536, y: -0.80901694}
       - {x: 0.9510565, y: 0.30901712}
+--- !u!210 &6725334230989654869
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7907003447558328821}
+  m_Enabled: 1
+  m_SortingLayerID: 392777683
+  m_SortingLayer: 4
+  m_SortingOrder: 2
 --- !u!1 &7907003447871451270
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,15 +14,14 @@ public class BallMeshGeneration : MonoBehaviour
     private Vector3 previousPosition;
 
     private PlayerControls playerControls;
-    private EdgeCollider2D edgeCollider;
     private PolygonCollider2D polygonCollider2D;
 
-    private bool createMesh = true;
+    public bool createMesh = true;
+    public bool callFixedUpdate = true;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
-        edgeCollider = GetComponent<EdgeCollider2D>();
         polygonCollider2D = GetComponent<PolygonCollider2D>();
     }
 
@@ -95,6 +94,8 @@ public class BallMeshGeneration : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!callFixedUpdate) return;
+
         if (Physics2D.Raycast(ball.transform.position, Vector3.forward))
         {
             createMesh = false;

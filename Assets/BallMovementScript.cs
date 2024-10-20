@@ -8,6 +8,8 @@ public class BallMovementScript : MonoBehaviour
     private PlayerControls playerControls;
     [SerializeField] private float magnitude;
     [SerializeField] private LayerMask mask;
+    [SerializeField] private LayerMask winMask;
+    [SerializeField] private BallMeshGeneration ballMesh;
 
     private bool up, down, right, left = false;
 
@@ -56,6 +58,19 @@ public class BallMovementScript : MonoBehaviour
     private void FixedUpdate()
     {
         ShootRayInAllFourDirections();
+
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector3.forward, Mathf.Infinity, winMask);
+        if (hits != null)
+        {
+            foreach (RaycastHit2D hit in hits)
+            {
+                ballMesh.createMesh = true;
+                ballMesh.callFixedUpdate = false;
+                Debug.Log("Win");
+                return; // Can improve code here
+            }
+            ballMesh.callFixedUpdate = true;
+        }
     }
 
     private void ShootRayInAllFourDirections()
