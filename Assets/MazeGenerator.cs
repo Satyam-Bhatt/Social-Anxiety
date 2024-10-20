@@ -44,6 +44,10 @@ public class MazeGenerator : MonoBehaviour
 
     private PlayerControls playerControls;
 
+    [Header("Canvas")]
+    [Space(10)]
+    public GameObject arrow;
+
     private void Awake()
     {
         coffeeGame = movementSystem.GetComponent<CoffeeGame>();
@@ -185,6 +189,25 @@ public class MazeGenerator : MonoBehaviour
         }
     }
 
+    public void PointArrow()
+    {
+        GameObject obj = null;
+        foreach (GameObject g in coffeeGame.coffeeActivator)
+        {
+            if (g.activeSelf)
+            {
+                obj = g;
+                break;
+            }
+        }
+
+        arrow.SetActive(true);
+        if (obj != null)
+        { 
+            arrow.transform.position = obj.transform.position;
+        }
+    }
+
     private void MazeGeneratorComplete()
     {
         //mazeParent.transform.localScale = new Vector3(0.97f, 0.97f, 0.97f);
@@ -256,9 +279,9 @@ public class MazeGenerator : MonoBehaviour
                         mazeBall_Get.transform.localScale = new Vector3(scaleX - 1, scaleY - 1, 1f);*/
 
             //Instantiate Goal
-            //GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[UnityEngine.Random.Range(0, rows), UnityEngine.Random.Range(0, columns)].transform.position, Quaternion.identity);
-            MazeStats mazeStats = mazeParent.GetComponent<MazeStats>();
-            GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[mazeStats.goalPlacementrow, mazeStats.goalPlacementcolumn].transform.position, Quaternion.identity);
+            GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[UnityEngine.Random.Range(0, rows), UnityEngine.Random.Range(0, columns)].transform.position, Quaternion.identity);
+            //MazeStats mazeStats = mazeParent.GetComponent<MazeStats>();
+            //GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[mazeStats.goalPlacementrow, mazeStats.goalPlacementcolumn].transform.position, Quaternion.identity);
             mazeGoal_Get.transform.SetParent(mazeParent.transform);
 
             MazeGeneratorComplete();

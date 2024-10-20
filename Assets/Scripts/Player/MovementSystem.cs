@@ -236,6 +236,7 @@ public class MovementSystem : MonoBehaviour
                 else if (collider.gameObject.layer == 10)
                 {
                     gameObject.GetComponent<CoffeeGame>().enabled = true;
+                    MazeGenerator.Instance.arrow.SetActive(false);
                     if (eyePlayer.position)
                     {
                         MazeGenerator.Instance.ActiveDeactivateMaze(true);
@@ -288,6 +289,10 @@ public class MovementSystem : MonoBehaviour
             gameObject.GetComponent<CoffeeGame>().canPlay = false;
             gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(false);
             MazeGenerator.Instance.ActiveDeactivateMaze(false);
+            if (coffeeGameActive)
+            {
+                MazeGenerator.Instance.PointArrow();
+            }
         }
     }
 
@@ -371,6 +376,8 @@ public class MovementSystem : MonoBehaviour
         {
             Handles.DrawWireDisc(transform.position, new Vector3(0, 0, 1), 1.5f);
         }*/
+
+    private bool coffeeGameActive = false;
 
     public void Interact(InputAction.CallbackContext context)
     {
@@ -477,6 +484,7 @@ public class MovementSystem : MonoBehaviour
         }
         else if (coffeeGamePlaying)
         {
+            coffeeGameActive = true;
             interactPanel.SetActive(false);
             GameManager.Instance.tasks.transform.parent.gameObject.SetActive(false);
             TransitionManager.Instance.coffeeGame.transform.GetChild(0).gameObject.SetActive(false);
@@ -632,6 +640,7 @@ public class MovementSystem : MonoBehaviour
 
     public void OnCoffeeGameComplete()
     {
+        coffeeGameActive = false;
         randomThoughts.ClipPlay_Immediate(13);
         float delay = randomThoughts.audioCaption[13].clip.length;
         randomThoughts.ClipPlay_Delay(14, delay + 1f);
