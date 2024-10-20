@@ -6,18 +6,81 @@ using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour
 {
+    private static MazeGenerator instance;
+    public static MazeGenerator Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<MazeGenerator>();
+            }
+            return instance;
+        }
+    }
+
     [SerializeField]
-    private GameObject mazeCell, mazeParent, mazeBall, mazeGoal;
+    private GameObject mazeCell, mazeBall, mazeGoal;
+
+    private GameObject mazeParent;
+
+    [SerializeField]
+    private GameObject[] mazeLevels;
 
     [SerializeField]
     private int rows, columns;
 
-
     private MazeCell[,] maze;
 
     private bool done, ballSpawned = false;
+    private int level = 1;
 
     private void Start()
+    {
+        LoadMaze();
+    }
+
+    public void LoadMaze()
+    {
+        if (mazeParent != null)
+        { 
+            for (int i = 0; i < mazeParent.transform.childCount; i++)
+            { 
+                Destroy(mazeParent.transform.GetChild(i).gameObject);
+            }
+        }
+
+        if (level - 1 < mazeLevels.Length && mazeLevels[level - 1] != null)
+        {
+            rows = mazeLevels[level - 1].GetComponent<MazeStats>().rows;
+            columns = mazeLevels[level - 1].GetComponent<MazeStats>().columns;
+            CreateMaze(mazeLevels[level - 1].transform);
+            done = false; ballSpawned = false;
+            level++;
+        }
+    }
+
+    public void CreateMaze(Transform mazeParent_)
+    {
+        mazeParent = mazeParent_.gameObject;
+
+        maze = new MazeCell[rows, columns];
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                GameObject newMazeCell = Instantiate(mazeCell, new Vector3(mazeParent.transform.position.x + i, mazeParent.transform.position.y + j, 0), Quaternion.identity);
+                newMazeCell.name = "Cell (" + i + ", " + j + ")";
+                newMazeCell.transform.SetParent(mazeParent.transform);
+                maze[i, j] = newMazeCell.GetComponent<MazeCell>();
+            }
+        }
+
+        StartCoroutine(GenerateMesh(null, maze[0, 0]));
+    }
+
+/*    private void Start()
     {
         maze = new MazeCell[rows, columns];
 
@@ -34,9 +97,7 @@ public class MazeGenerator : MonoBehaviour
 
         StartCoroutine(GenerateMesh(null, maze[0, 0]));
 
-    }
-
-    MazeCell nextCellStore = null;
+    }*/
 
     private IEnumerator GenerateMesh(MazeCell previousCell, MazeCell currentCell)
     {
@@ -57,7 +118,6 @@ public class MazeGenerator : MonoBehaviour
             if (nextCell != null)
             {
                 yield return GenerateMesh(currentCell, nextCell);
-                nextCellStore = nextCell;
             }
         } while (nextCell != null);
 
@@ -80,13 +140,14 @@ public class MazeGenerator : MonoBehaviour
             mazeBall_Get.transform.SetParent(mazeParent.transform);
 
             //Set Maze ball size here
-            float scaleX = mazeBall_Get.transform.localScale.x;
+/*            float scaleX = mazeBall_Get.transform.localScale.x;
             float scaleY = mazeBall_Get.transform.localScale.y;
-            mazeBall_Get.transform.localScale = new Vector3(scaleX - 1  , scaleY - 1, 1f);
+            mazeBall_Get.transform.localScale = new Vector3(scaleX - 1, scaleY - 1, 1f);*/
 
             //Instantiate Goal
             //GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[UnityEngine.Random.Range(0, rows), UnityEngine.Random.Range(0, columns)].transform.position, Quaternion.identity);
-            GameObject mazeGoal_Get = Instantiate(mazeGoal, nextCellStore.transform.position, Quaternion.identity);
+            MazeStats mazeStats = mazeParent.GetComponent<MazeStats>();
+            GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[mazeStats.goalPlacementrow, mazeStats.goalPlacementcolumn].transform.position, Quaternion.identity);
             mazeGoal_Get.transform.SetParent(mazeParent.transform);
 
             ballSpawned = true;
