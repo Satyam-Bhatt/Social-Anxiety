@@ -6,4 +6,14 @@ public class MazeStats : MonoBehaviour
 {
     public int rows, columns;
     public int goalPlacementrow, goalPlacementcolumn;
+
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        
+    }
 }

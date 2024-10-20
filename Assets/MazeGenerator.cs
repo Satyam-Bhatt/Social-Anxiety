@@ -37,6 +37,10 @@ public class MazeGenerator : MonoBehaviour
 
     private void Start()
     {
+        foreach (GameObject g in mazeLevels)
+        {
+            g.SetActive(false);
+        }
         LoadMaze();
     }
 
@@ -50,14 +54,25 @@ public class MazeGenerator : MonoBehaviour
             }
         }
 
+        foreach (GameObject g in mazeLevels)
+        { 
+            g.SetActive(false);
+        }
+
         if (level - 1 < mazeLevels.Length && mazeLevels[level - 1] != null)
         {
+            mazeLevels[level - 1].SetActive(true);
             rows = mazeLevels[level - 1].GetComponent<MazeStats>().rows;
             columns = mazeLevels[level - 1].GetComponent<MazeStats>().columns;
             CreateMaze(mazeLevels[level - 1].transform);
             done = false; ballSpawned = false;
             level++;
         }
+    }
+
+    private void MazeGeneratorComplete()
+    {
+        //mazeParent.transform.localScale = new Vector3(0.97f, 0.97f, 0.97f);
     }
 
     public void CreateMaze(Transform mazeParent_)
@@ -79,25 +94,6 @@ public class MazeGenerator : MonoBehaviour
 
         StartCoroutine(GenerateMesh(null, maze[0, 0]));
     }
-
-/*    private void Start()
-    {
-        maze = new MazeCell[rows, columns];
-
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {
-                GameObject newMazeCell = Instantiate(mazeCell, new Vector3(mazeParent.transform.position.x + i, mazeParent.transform.position.y + j, 0), Quaternion.identity);
-                newMazeCell.name = "Cell (" + i + ", " + j + ")";
-                newMazeCell.transform.SetParent(mazeParent.transform);
-                maze[i, j] = newMazeCell.GetComponent<MazeCell>();
-            }
-        }
-
-        StartCoroutine(GenerateMesh(null, maze[0, 0]));
-
-    }*/
 
     private IEnumerator GenerateMesh(MazeCell previousCell, MazeCell currentCell)
     {
@@ -149,6 +145,8 @@ public class MazeGenerator : MonoBehaviour
             MazeStats mazeStats = mazeParent.GetComponent<MazeStats>();
             GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[mazeStats.goalPlacementrow, mazeStats.goalPlacementcolumn].transform.position, Quaternion.identity);
             mazeGoal_Get.transform.SetParent(mazeParent.transform);
+
+            MazeGeneratorComplete();
 
             ballSpawned = true;
         }
