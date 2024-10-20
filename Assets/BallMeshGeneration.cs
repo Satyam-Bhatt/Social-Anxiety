@@ -55,7 +55,7 @@ public class BallMeshGeneration : MonoBehaviour
             direction = move;
         }
 
-        if (Vector2.Distance(previousPosition, ball.transform.position) > 0.5f && direction != Vector2.zero)
+        if (Vector2.Distance(previousPosition, ball.transform.position) > 0.1f && direction != Vector2.zero)
         {
             previousPosition = ball.transform.position;
             if (createMesh)
@@ -123,8 +123,8 @@ public class BallMeshGeneration : MonoBehaviour
     private void UpdateMesh(Vector3 direction)
     {
         Vector3 normal2D = new Vector3(0, 0, -1f);
-        Vector3 pos1 = ball.transform.position + Vector3.Cross(direction, normal2D).normalized * ball.transform.lossyScale.x / 2;
-        Vector3 pos2 = ball.transform.position + Vector3.Cross(direction, -normal2D).normalized * ball.transform.lossyScale.x / 2;
+        Vector3 pos1 = ball.transform.localPosition + Vector3.Cross(direction, normal2D).normalized * ball.transform.lossyScale.x / 2;
+        Vector3 pos2 = ball.transform.localPosition + Vector3.Cross(direction, -normal2D).normalized * ball.transform.lossyScale.x / 2;
 
         List<Vector3> vertices = new List<Vector3>();
         List<int> triangles = new List<int>();
@@ -153,8 +153,8 @@ public class BallMeshGeneration : MonoBehaviour
 
     private void CreateMesh()
     {
-        float x = ball.transform.position.x;
-        float y = ball.transform.position.y;
+        float x = ball.transform.localPosition.x;
+        float y = ball.transform.localPosition.y;
 
         List<Vector3> vertices = new List<Vector3>
         {
@@ -191,24 +191,12 @@ public class BallMeshGeneration : MonoBehaviour
 
         for (int i = 0; i < vertices.Length; i = i + 2)
         {
-            //Debug.Log("First Loop: " + i);
             polygonPoints.Add(new Vector2(vertices[i].x, vertices[i].y));
         }
         for (int i = vertices.Length - 1; i > 0; i = i - 2)
         {
-            //Debug.Log("Second Loop: " + i);
-
             polygonPoints.Add(new Vector2(vertices[i].x, vertices[i].y));
-
         }
-        //Debug.Log("Polygon Points: " + polygonPoints.Count + " triangles Points: " + mesh.triangles.Length);
         return polygonPoints.ToArray();
     }
-
-    //mesh = new Mesh();
-    //mesh.SetVertices(vertices);
-    //    mesh.SetTriangles(triangles, 0);
-    //    mesh.SetNormals(desiNormal);
-
-    //    GetComponent<MeshFilter>().sharedMesh = mesh;
 }
