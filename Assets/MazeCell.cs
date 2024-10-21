@@ -6,7 +6,7 @@ using UnityEngine;
 public class MazeCell : MonoBehaviour
 {
     [SerializeField]
-    private GameObject topWall, bottomWall, leftWall, rightWall, cellCap;
+    private GameObject topWall, bottomWall, leftWall, rightWall, cellCap, bottomFloor;
 
     public bool visited = false;
 

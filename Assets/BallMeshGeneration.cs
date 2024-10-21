@@ -109,20 +109,20 @@ public class BallMeshGeneration : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
+    //private void OnDrawGizmos()
+    //{
 
-        if (createMesh)
-        {
-            Handles.color = Color.green;
-        }
-        else
-        {
-            Handles.color = Color.red;
-        }
-        Handles.DrawWireDisc(ball.transform.position, -Vector3.forward, 1.5f, 5f);
+    //    if (createMesh)
+    //    {
+    //        Handles.color = Color.green;
+    //    }
+    //    else
+    //    {
+    //        Handles.color = Color.red;
+    //    }
+    //    Handles.DrawWireDisc(ball.transform.position, -Vector3.forward, 1.5f, 5f);
 
-    }
+    //}
 
     private void UpdateMesh(Vector3 direction)
     {

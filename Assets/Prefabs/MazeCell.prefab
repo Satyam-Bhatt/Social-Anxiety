@@ -55,6 +55,7 @@ MonoBehaviour:
   leftWall: {fileID: 8113338484329848317}
   rightWall: {fileID: 3603140734132124703}
   cellCap: {fileID: 3763989222732149070}
+  bottomFloor: {fileID: 4526078875513130510}
   visited: 0
 --- !u!1 &364524026406711359
 GameObject:
@@ -513,7 +514,7 @@ GameObject:
   - component: {fileID: 7669789613371306803}
   m_Layer: 0
   m_Name: CellBottom
-  m_TagString: Untagged
+  m_TagString: CellBottom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

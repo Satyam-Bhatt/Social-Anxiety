@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,6 +24,8 @@ public class MazeGenerator : MonoBehaviour
 
     [SerializeField]
     private GameObject mazeCell, mazeBall, mazeGoal;
+
+    [SerializeField] private Color winColor;
 
     private GameObject mazeParent;
 
@@ -84,17 +87,27 @@ public class MazeGenerator : MonoBehaviour
 
     public void LoadNextMaze()
     {
+        StartCoroutine(LoadMaze_Win());
+    }
+
+    IEnumerator LoadMaze_Win()
+    {
+        GameObject[] cell = GameObject.FindGameObjectsWithTag("CellBottom");
+        foreach (GameObject m in cell)
+        { 
+            m.GetComponent<SpriteRenderer>().color = winColor;
+        }
+
+        GetComponent<AudioSource>().Play();
+
+        yield return new WaitForSeconds(0.5f);
+
         if (mazeParent != null)
         {
             for (int i = 0; i < mazeParent.transform.childCount; i++)
             {
                 Destroy(mazeParent.transform.GetChild(i).gameObject);
             }
-        }
-
-        foreach (GameObject g in mazeLevels)
-        {
-            g.SetActive(false);
         }
 
         if (level == 1)
@@ -113,8 +126,6 @@ public class MazeGenerator : MonoBehaviour
             level = 4;
         }
 
-
-
         if (level - 1 < mazeLevels.Length && mazeLevels[level - 1] != null)
         {
             mazeLevels[level - 1].SetActive(true);
@@ -123,7 +134,6 @@ public class MazeGenerator : MonoBehaviour
             CreateMaze(mazeLevels[level - 1].transform);
             done = false; ballSpawned = false;
         }
-
     }
 
     public void LoadMaze()
