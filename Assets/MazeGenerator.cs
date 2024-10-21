@@ -303,7 +303,15 @@ public class MazeGenerator : MonoBehaviour
                         mazeBall_Get.transform.localScale = new Vector3(scaleX - 1, scaleY - 1, 1f);*/
 
             //Instantiate Goal
-            GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[UnityEngine.Random.Range(0, rows), UnityEngine.Random.Range(0, columns)].transform.position, Quaternion.identity);
+            int row_Index = UnityEngine.Random.Range(0, rows);
+            int column_Index = UnityEngine.Random.Range(0, columns);
+            if (row_Index == 0 && column_Index == 0)
+            {
+                MazeStats mazeStats = mazeParent.GetComponent<MazeStats>();
+                row_Index = mazeStats.goalPlacementrow; 
+                column_Index = mazeStats.goalPlacementcolumn;
+            }
+            GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[ row_Index, column_Index].transform.position, Quaternion.identity);
             //MazeStats mazeStats = mazeParent.GetComponent<MazeStats>();
             //GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[mazeStats.goalPlacementrow, mazeStats.goalPlacementcolumn].transform.position, Quaternion.identity);
             mazeGoal_Get.transform.SetParent(mazeParent.transform);
