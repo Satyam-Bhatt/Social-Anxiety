@@ -38,6 +38,7 @@ public class Eye_Player : MonoBehaviour
     private CinemachineImpulseSource impulseSource;
 
     [SerializeField] private CinemachineVirtualCamera vcam;
+    //[SerializeField] private GameObject eyePrefab;
 
     private void Awake()
     {
@@ -212,7 +213,22 @@ public class Eye_Player : MonoBehaviour
     IEnumerator InvinsibilityFrames()
     {
         invinsible = true;
+        //SpriteRenderer[] allSprites = eyePrefab.GetComponentsInChildren<SpriteRenderer>();
+/*        foreach (SpriteRenderer sr in allSprites)
+        {
+            if (sr.color == Color.white)
+            {
+                sr.color = Color.red;
+            }
+        }*/
         yield return new WaitForSeconds(0.2f);
         invinsible = false;
+/*        foreach (SpriteRenderer sr in allSprites)
+        {
+            if (sr.color == Color.red)
+            {
+                sr.color = Color.white;
+            }
+        }*/
     }
 }

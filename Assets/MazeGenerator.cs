@@ -211,6 +211,7 @@ public class MazeGenerator : MonoBehaviour
 
         t1.SetActive(true);
         t2.SetActive(true);
+        t1.transform.parent.GetChild(0).gameObject.SetActive(false);
 
         t1.GetComponent<TMP_Text>().text = "Walk Over To -";
         if (coffeeGame.coffeeActivator[0].activeSelf)

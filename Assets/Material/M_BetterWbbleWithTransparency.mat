@@ -7,25 +7,30 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Anxiety
-  m_Shader: {fileID: 4800000, guid: 9e040f4b197c03244b18b536058696e2, type: 3}
+  m_Name: M_BetterWbbleWithTransparency
+  m_Shader: {fileID: 4800000, guid: 9949b0c0366fd1047934be5c76cf3ec1, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ab62c80cb4fdddf40a1b334cc2cf2e15, type: 3}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: 995dea85fbfaca14b8511e07495f1bb0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Anxiety: 0
+    - _MoreWhite: 0.15
+    - _Strength: 0.02
     m_Colors: []
   m_BuildTextureStacks: []

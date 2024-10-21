@@ -239,6 +239,7 @@ public class MovementSystem : MonoBehaviour
                     MazeGenerator.Instance.arrow.SetActive(false);
                     MazeGenerator.Instance.t1.SetActive(false);
                     MazeGenerator.Instance.t2.SetActive(false);
+                    MazeGenerator.Instance.t1.transform.parent.GetChild(0).gameObject.SetActive(false);
                     if (eyePlayer.position)
                     {
                         MazeGenerator.Instance.ActiveDeactivateMaze(true);

@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 2c20dc545c1c98041b625030241e58dd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -73,9 +73,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 392777683
   m_SortingLayer: 4
-  m_SortingOrder: 3
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.7118232, b: 0, a: 1}
+  m_SortingOrder: 8
+  m_Sprite: {fileID: 21300000, guid: 5a6c8752a73b8274390b6879ddb7b761, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -249,7 +249,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 392777683
   m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingOrder: 6
 --- !u!1 &7907003447871451270
 GameObject:
   m_ObjectHideFlags: 0

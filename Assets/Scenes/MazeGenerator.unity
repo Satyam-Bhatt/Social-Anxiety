@@ -197,7 +197,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -245,8 +245,13 @@ MonoBehaviour:
   - {fileID: 456811699}
   - {fileID: 1870431418}
   - {fileID: 1255522917}
+  movementSystem: {fileID: 0}
   rows: 5
   columns: 5
+  arrow: {fileID: 0}
+  xDifference: 0
+  t1: {fileID: 0}
+  t2: {fileID: 0}
 --- !u!4 &385778186
 Transform:
   m_ObjectHideFlags: 0
@@ -790,6 +795,10 @@ PrefabInstance:
     - target: {fileID: 7907003447871451270, guid: 70c3b966df9d8f44f8ee236ef373590f, type: 3}
       propertyPath: m_Name
       value: MazeBall+Mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 7907003447871451270, guid: 70c3b966df9d8f44f8ee236ef373590f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70c3b966df9d8f44f8ee236ef373590f, type: 3}
