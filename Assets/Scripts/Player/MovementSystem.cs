@@ -589,7 +589,7 @@ public class MovementSystem : MonoBehaviour
         animator.SetBool("BW", true);
         animator.SetBool("Cutscene", false);
 
-        moveSpeed = 3;
+        moveSpeed = 2;
         StartCoroutine(StopMovement());
     }
 

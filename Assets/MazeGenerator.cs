@@ -87,6 +87,7 @@ public class MazeGenerator : MonoBehaviour
 
     public void LoadNextMaze()
     {
+        StopAllCoroutines();
         StartCoroutine(LoadMaze_Win());
     }
 
@@ -100,16 +101,6 @@ public class MazeGenerator : MonoBehaviour
 
         GetComponent<AudioSource>().Play();
 
-        yield return new WaitForSeconds(0.5f);
-
-        if (mazeParent != null)
-        {
-            for (int i = 0; i < mazeParent.transform.childCount; i++)
-            {
-                Destroy(mazeParent.transform.GetChild(i).gameObject);
-            }
-        }
-
         if (level == 1)
         {
             level++;
@@ -119,6 +110,16 @@ public class MazeGenerator : MonoBehaviour
             level++;
             coffeeGame.EnableSprites();
             playOnce = false;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (mazeParent != null)
+        {
+            for (int i = 0; i < mazeParent.transform.childCount; i++)
+            {
+                Destroy(mazeParent.transform.GetChild(i).gameObject);
+            }
         }
 
         if (level > mazeLevels.Length)
@@ -138,6 +139,8 @@ public class MazeGenerator : MonoBehaviour
 
     public void LoadMaze()
     {
+        StopAllCoroutines();
+
         if (mazeParent != null)
         {
             for (int i = 0; i < mazeParent.transform.childCount; i++)
@@ -222,7 +225,7 @@ public class MazeGenerator : MonoBehaviour
 
         t1.SetActive(true);
         t2.SetActive(true);
-        t1.transform.parent.GetChild(0).gameObject.SetActive(false);
+        t1.transform.parent.GetChild(0).gameObject.SetActive(true);
 
         t1.GetComponent<TMP_Text>().text = "Walk Over To -";
         if (coffeeGame.coffeeActivator[0].activeSelf)
@@ -343,48 +346,61 @@ public class MazeGenerator : MonoBehaviour
 
     IEnumerable<MazeCell> FindAllUnvisitedNeighbors(MazeCell currentCell)
     {
-        int x = (int)(currentCell.transform.localPosition.x * mazeParent.transform.lossyScale.x);
-        int y = (int)(currentCell.transform.localPosition.y * mazeParent.transform.lossyScale.y);
-
-        if (x + 1 < rows)
+        if (currentCell == null)
         {
-            MazeCell rightCell = maze[x + 1, y];
-
-            if (!rightCell.visited)
-            {
-                yield return rightCell;
-            }
+            StopAllCoroutines();
+            LoadMaze();
+            Debug.Log("Null Cell");
+            yield return null;
         }
 
-        if (y + 1 < columns)
+        else
         {
-            MazeCell topCell = maze[x, y + 1];
+            int x = (int)(currentCell.transform.localPosition.x * mazeParent.transform.lossyScale.x);
+            int y = (int)(currentCell.transform.localPosition.y * mazeParent.transform.lossyScale.y);
 
-            if (!topCell.visited)
+            if (x + 1 < rows)
             {
-                yield return topCell;
+                MazeCell rightCell = maze[x + 1, y];
+
+                if (!rightCell.visited)
+                {
+                    yield return rightCell;
+                }
             }
+
+            if (y + 1 < columns)
+            {
+                MazeCell topCell = maze[x, y + 1];
+
+                if (!topCell.visited)
+                {
+                    yield return topCell;
+                }
+            }
+
+            if (x - 1 >= 0)
+            {
+                MazeCell leftCell = maze[x - 1, y];
+
+                if (!leftCell.visited)
+                {
+                    yield return leftCell;
+                }
+            }
+
+            if (y - 1 >= 0)
+            {
+                MazeCell mazeCell = maze[x, y - 1];
+
+                if (!mazeCell.visited)
+                {
+                    yield return mazeCell;
+                }
+            }
+
         }
 
-        if (x - 1 >= 0)
-        {
-            MazeCell leftCell = maze[x - 1, y];
-
-            if (!leftCell.visited)
-            {
-                yield return leftCell;
-            }
-        }
-
-        if (y - 1 >= 0)
-        {
-            MazeCell mazeCell = maze[x, y - 1];
-
-            if (!mazeCell.visited)
-            {
-                yield return mazeCell;
-            }
-        }
 
         //yield return null;
     }

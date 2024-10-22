@@ -185,8 +185,12 @@ public class Eye_Player : MonoBehaviour
             GameManager.Instance.GetComponent<AudioSource>().Stop();
             GameManager.Instance.GetComponent<RandomThoughts>().AudioCloseReset();
 
-            MazeGenerator.Instance.transform.GetChild(0).gameObject.SetActive(false);
-            MazeGenerator.Instance.transform.GetChild(1).gameObject.SetActive(false);
+            int childCount = MazeGenerator.Instance.transform.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                MazeGenerator.Instance.transform.GetChild(i).gameObject.SetActive(false);
+            }
+
             foreach (GameObject g in MazeGenerator.Instance.mazeLevels)
             {
                 if (g.activeSelf)
