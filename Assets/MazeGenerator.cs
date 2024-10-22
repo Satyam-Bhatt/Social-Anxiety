@@ -94,7 +94,7 @@ public class MazeGenerator : MonoBehaviour
     {
         GameObject[] cell = GameObject.FindGameObjectsWithTag("CellBottom");
         foreach (GameObject m in cell)
-        { 
+        {
             m.GetComponent<SpriteRenderer>().color = winColor;
         }
 
@@ -142,7 +142,8 @@ public class MazeGenerator : MonoBehaviour
         {
             for (int i = 0; i < mazeParent.transform.childCount; i++)
             {
-                Destroy(mazeParent.transform.GetChild(i).gameObject);
+                if (!mazeParent.transform.GetChild(i).CompareTag("Instruction"))
+                    Destroy(mazeParent.transform.GetChild(i).gameObject);
             }
         }
 
@@ -215,7 +216,7 @@ public class MazeGenerator : MonoBehaviour
 
         arrow.SetActive(true);
         if (obj != null)
-        { 
+        {
             arrow.transform.position = new Vector3(obj.transform.position.x - xDifference, obj.transform.position.y, obj.transform.position.z);
         }
 
@@ -233,7 +234,7 @@ public class MazeGenerator : MonoBehaviour
             t2.GetComponent<TMP_Text>().text = "Stove";
         }
         else if (coffeeGame.coffeeActivator[2].activeSelf)
-        { 
+        {
             t2.GetComponent<TMP_Text>().text = "Brewer";
         }
         else if (coffeeGame.coffeeActivator[3].activeSelf)
@@ -319,10 +320,10 @@ public class MazeGenerator : MonoBehaviour
             if (row_Index == 0 && column_Index == 0)
             {
                 MazeStats mazeStats = mazeParent.GetComponent<MazeStats>();
-                row_Index = mazeStats.goalPlacementrow; 
+                row_Index = mazeStats.goalPlacementrow;
                 column_Index = mazeStats.goalPlacementcolumn;
             }
-            GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[ row_Index, column_Index].transform.position, Quaternion.identity);
+            GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[row_Index, column_Index].transform.position, Quaternion.identity);
             //MazeStats mazeStats = mazeParent.GetComponent<MazeStats>();
             //GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[mazeStats.goalPlacementrow, mazeStats.goalPlacementcolumn].transform.position, Quaternion.identity);
             mazeGoal_Get.transform.SetParent(mazeParent.transform);

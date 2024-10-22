@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using Cinemachine;
+using System;
 
 public class Eye_Player : MonoBehaviour
 {
@@ -70,14 +71,22 @@ public class Eye_Player : MonoBehaviour
         playerControls.CoffeGame.EyesClose.started += SpriteChange;
         playerControls.CoffeGame.EyesClose.canceled += SpriteChange;
 
+        playerControls.CoffeGame.BallMovement.Enable();
+        playerControls.CoffeGame.BallMovement.performed += FirstBallInput;
+
         timeline.stopped += TimelineStopped;
     }
+
 
     private void OnDisable()
     {
         playerControls.CoffeGame.EyesClose.Disable();
         playerControls.CoffeGame.EyesClose.started -= SpriteChange;
         playerControls.CoffeGame.EyesClose.canceled -= SpriteChange;
+
+        playerControls.CoffeGame.BallMovement.Disable();
+        playerControls.CoffeGame.BallMovement.performed -= FirstBallInput;
+
     }
 
     private void Start()
@@ -103,6 +112,9 @@ public class Eye_Player : MonoBehaviour
         }
     }
 
+    private bool firtTimeMove = false;
+
+
     public void SpriteChange(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -111,7 +123,11 @@ public class Eye_Player : MonoBehaviour
             position = true;
 
             rmb_ToStart.SetActive(false);
-            spawner.SetActive(true);
+
+            if (firtTimeMove)
+            { 
+                spawner.SetActive(true);
+            }
 
             //Maze Code
             MazeGenerator.Instance.LoadMaze();
@@ -136,7 +152,20 @@ public class Eye_Player : MonoBehaviour
         }
     }
 
-    
+
+    private void FirstBallInput(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            firtTimeMove = true;
+            if (position)
+            { 
+                spawner.SetActive(true);
+            }
+        }
+    }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

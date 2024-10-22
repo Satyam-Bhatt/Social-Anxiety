@@ -13,6 +13,8 @@ TagManager:
   - Park_OutsideCollider
   - Trigger
   - CoffeeGame
+  - CellBottom
+  - Instruction
   layers:
   - Default
   - TransparentFX
