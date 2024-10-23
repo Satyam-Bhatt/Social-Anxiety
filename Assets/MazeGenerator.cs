@@ -167,9 +167,18 @@ public class MazeGenerator : MonoBehaviour
 
     public void ActiveDeactivateMaze(bool state)
     {
+        Debug.Log(level);
         if (level - 1 < mazeLevels.Length && mazeLevels[level - 1] != null)
         {
             mazeLevels[level - 1].SetActive(state);
+        }
+    }
+
+    public void ActiveDeactivateChild(bool state)
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(state);
         }
     }
 
@@ -180,11 +189,11 @@ public class MazeGenerator : MonoBehaviour
         {
             if (mazeLevels[level - 1].activeSelf)
             {
-                if (playOnce == false && coffeeGame.keyIndex == 1)
-                {
-                    GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(15);
-                    playOnce = true;
-                }
+                //if (playOnce == false && coffeeGame.keyIndex == 1)
+                //{
+                //    GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(15);
+                //    playOnce = true;
+                //}
 
                 if (coffeeGame.keyIndex == 2 && !playOnce)
                 {

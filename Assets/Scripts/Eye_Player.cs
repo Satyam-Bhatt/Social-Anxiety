@@ -39,6 +39,7 @@ public class Eye_Player : MonoBehaviour
     private CinemachineImpulseSource impulseSource;
 
     [SerializeField] private CinemachineVirtualCamera vcam;
+    private bool playOnce = false;
     //[SerializeField] private GameObject eyePrefab;
 
     private void Awake()
@@ -114,7 +115,6 @@ public class Eye_Player : MonoBehaviour
 
     private bool firtTimeMove = false;
 
-
     public void SpriteChange(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -130,7 +130,24 @@ public class Eye_Player : MonoBehaviour
             }
 
             //Maze Code
-            MazeGenerator.Instance.LoadMaze();
+            if (coffeeGame.keyIndex > 1)
+            { 
+                MazeGenerator.Instance.LoadMaze();
+            }
+
+            if (coffeeGame.keyIndex == 1)
+            {
+                spawner.SetActive(true);
+                MazeGenerator.Instance.ActiveDeactivateMaze(false);
+
+                if (playOnce == false && coffeeGame.keyIndex == 1)
+                {
+                    GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(15);
+                    float delay = GameManager.Instance.GetComponent<RandomThoughts>().audioCaption[15].clip.length;
+                    StartCoroutine(AudioComplete(delay + 1f));
+                    playOnce = true;
+                }
+            }
 
             if (once == false)
             {
@@ -152,6 +169,12 @@ public class Eye_Player : MonoBehaviour
         }
     }
 
+    IEnumerator AudioComplete(float delay)
+    { 
+        yield return new WaitForSeconds(delay);
+        coffeeGame.EnableSprites();
+        MazeGenerator.Instance.LoadMaze();
+    }
 
     private void FirstBallInput(InputAction.CallbackContext context)
     {
@@ -164,8 +187,6 @@ public class Eye_Player : MonoBehaviour
             }
         }
     }
-
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

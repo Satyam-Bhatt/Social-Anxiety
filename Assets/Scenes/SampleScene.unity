@@ -956,8 +956,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46165100}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.06, y: -3.2799978, z: 0}
-  m_LocalScale: {x: 0.30229408, y: 0.30229408, z: 0.30229408}
+  m_LocalPosition: {x: 0.06, y: -3.28, z: 0}
+  m_LocalScale: {x: 0.40434855, y: 0.40434855, z: 0.40434855}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1368018607}
@@ -1055,8 +1055,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.006917662, y: -0.03921899}
-  m_Size: {x: 1.8586514, y: 0.83936507}
+  m_Offset: {x: 0.006917633, y: -0.14693402}
+  m_Size: {x: 0.99900496, y: 0.9222237}
   m_Direction: 1
 --- !u!50 &46165105
 Rigidbody2D:
@@ -1371,7 +1371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &63884772
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -6834,7 +6834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &664045928
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21059,7 +21059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1950804422
 Transform:
   m_ObjectHideFlags: 0
@@ -21168,7 +21168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &2009233662
 Animator:
   serializedVersion: 5
