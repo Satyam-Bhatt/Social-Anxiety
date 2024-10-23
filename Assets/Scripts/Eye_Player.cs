@@ -40,6 +40,7 @@ public class Eye_Player : MonoBehaviour
 
     [SerializeField] private CinemachineVirtualCamera vcam;
     private bool playOnce = false;
+    private bool died = false;
     //[SerializeField] private GameObject eyePrefab;
 
     private void Awake()
@@ -147,9 +148,10 @@ public class Eye_Player : MonoBehaviour
                     StartCoroutine(AudioComplete(delay + 1f));
                     playOnce = true;
                 }
-                else { 
-                StartCoroutine(AudioComplete(10f));
-
+                else if(died == true && playOnce == true){
+                    StopAllCoroutines();
+                    StartCoroutine(AudioComplete(10f));
+                    died = false;
                 }
             }
 
@@ -302,6 +304,7 @@ public class Eye_Player : MonoBehaviour
         value = 0f;
         mat.SetFloat("_Anxiety", 0f);
         GameManager.Instance.tasks.transform.parent.gameObject.SetActive(true);
+        died = true;
     }
 
     IEnumerator InvinsibilityFrames()

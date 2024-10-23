@@ -368,10 +368,10 @@ public class MazeGenerator : MonoBehaviour
     {
         if (currentCell == null)
         {
-            StopAllCoroutines();
-            LoadMaze();
             Debug.Log("Null Cell");
-            yield return null;
+/*            StopAllCoroutines();
+            LoadMaze();
+            yield return null;*/
         }
 
         else

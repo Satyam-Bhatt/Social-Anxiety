@@ -11098,9 +11098,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
-      value: 'Thanks a lot Man! <s>You know you''ve saved my college life</s>. I
-        HAVENT SAVED AN ANT And I don''t think grateful or thank you are words enough
-        to describe how I truly feel.
+      value: 'Thanks a lot Man! <s>You know you''ve saved my college life</s>.  <b>I
+        HAVENT SAVED AN ANT</b> And I don''t think grateful or thank you are words
+        enough to describe how I truly feel.
 
 
         <margin left=70%> - Akarsh</margin>'
@@ -12447,12 +12447,13 @@ PrefabInstance:
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
       value: 'You''ve been through a lot of tough times on campus and still handled
-        it all so well! You have been a very <s>positive person</s> NEGATIVE and
-        I wish that you be that self of yours always. I''ll always remember all the
-        enthusiasm and the positive vibe you had.
+        it all so well! You have been a very <s>positive person</s> <b> NEGATIVE</b>
+        and I wish that you be that self of yours always. I''ll always remember all
+        the enthusiasm and the positive vibe you had.
 
 
-        <margin left=70%> - Kunal</margin>'
+        <margin left=70%>
+        - Kunal</margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: heading
@@ -14635,13 +14636,13 @@ PrefabInstance:
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
       value: 'You''re a great person Dhruv! I admire the fact that you have the <s>courage
-        to always stand up</s> NO NO I AM A COWARDfor what''s right - like starting
-        a GameDevSociety - and the courage to pursue what you want, like contesting
-        for President - it was one hell of a feat.
+        to always stand up</s> <b>NO NO I AM A COWARD</b> for what''s right - like
+        starting a GameDevSociety - and the courage to pursue what you want, like
+        contesting for President - it was one hell of a feat.
 
 
-        <margin left=70%> -
-        Anant</margin>'
+        <margin left=70%>
+        - Anant</margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: heading
@@ -19616,6 +19617,7 @@ MonoBehaviour:
   movementSystem: {fileID: 2068600705}
   rows: 5
   columns: 5
+  inRange: 1
   eye_Player: {fileID: 46165102}
   arrow: {fileID: 1182377568}
   xDifference: -1.3
@@ -20954,7 +20956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1950804422
 Transform:
   m_ObjectHideFlags: 0
@@ -22976,7 +22978,7 @@ PrefabInstance:
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
       value: 'Dhruv, as someone who has seen and known you so closely, I know you
-        will do <s>great things</s>  <b>LOL I HAVE DONE NO GREAT THINGS</b> Even
+        will do <s>great things</s> <b>LOL I HAVE DONE NO GREAT THINGS</b>  Even
         though you haven''t decided upon the specifics of how you will do it.
 
 
@@ -23014,8 +23016,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 0d06a59f0bae6cc428858438912097b4, type: 3}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: auddioCaption.Array.data[0].caption
-      value: Wow! People really believed in me. Just look at how much confident they
-        are
+      value: Wow! People really believed in me. Just look at how confident they are
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: auddioCaption.Array.data[1].caption
@@ -23229,10 +23230,10 @@ PrefabInstance:
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
       value: 'You really were among the first people I met at this place. You were
-        also someone <s>genuinely wanted good</s> BAD for everyone. Got to learn
-        a lot from you, <s>springing back up every time</s> COULDNT DO ANYTHINGafter
-        something goes wrong, trying to do something for the community were a few
-        of them
+        also someone who <s>genuinely wanted good</s> <b>BAD</b> for everyone. Got
+        to learn a lot from you, <s>springing back up every time</s> <b>COULDNT DO
+        ANYTHING</b> after something goes wrong, trying to do something for the community
+        were a few of them
 
 
         <margin left=70%> - Gaurav</margin>'
@@ -23244,9 +23245,9 @@ PrefabInstance:
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: beforeBW
       value: 'You really were among the first people I met at this place. You were
-        also someone genuinely wanted good for everyone. Got to learn a lot from
-        you, springing back up every time after something goes wrong, trying to do
-        something for the community were a few of them
+        also someone whio genuinely wanted good for everyone. Got to learn a lot
+        from you, springing back up every time after something goes wrong, trying
+        to do something for the community were a few of them
 
 
         <margin left=70%>
