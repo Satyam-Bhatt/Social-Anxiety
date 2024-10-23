@@ -47,6 +47,8 @@ public class MazeGenerator : MonoBehaviour
 
     private PlayerControls playerControls;
 
+    [SerializeField] private Eye_Player eye_Player;
+
     [Header("Canvas")]
     [Space(10)]
     public GameObject arrow;
@@ -112,6 +114,13 @@ public class MazeGenerator : MonoBehaviour
             playOnce = false;
         }
 
+        if (level == 3)
+        {
+            GetComponent<PlayerFollow>().distanceX = -5.5f;
+            GetComponent<PlayerFollow>().distanceY = 0;
+            eye_Player.EnableForLevel3();
+        }
+
         yield return new WaitForSeconds(0.5f);
 
         if (mazeParent != null)
@@ -167,7 +176,6 @@ public class MazeGenerator : MonoBehaviour
 
     public void ActiveDeactivateMaze(bool state)
     {
-        Debug.Log(level);
         if (level - 1 < mazeLevels.Length && mazeLevels[level - 1] != null)
         {
             mazeLevels[level - 1].SetActive(state);

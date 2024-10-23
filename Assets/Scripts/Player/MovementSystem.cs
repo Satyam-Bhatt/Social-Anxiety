@@ -252,7 +252,10 @@ public class MovementSystem : MonoBehaviour
                     }
                     else
                     {
-                        MazeGenerator.Instance.ActiveDeactivateMaze(false);
+                        if (coffeeGame.keyIndex > 2)
+                        { 
+                            MazeGenerator.Instance.ActiveDeactivateMaze(false);
+                        }
 
                         gameObject.GetComponent<CoffeeGame>().canPlay = false;
                         gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(false);

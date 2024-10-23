@@ -130,7 +130,7 @@ public class Eye_Player : MonoBehaviour
             }
 
             //Maze Code
-            if (coffeeGame.keyIndex > 1)
+            if (coffeeGame.keyIndex > 2)
             { 
                 MazeGenerator.Instance.LoadMaze();
             }
@@ -165,20 +165,49 @@ public class Eye_Player : MonoBehaviour
             spawner.SetActive(false);
 
             //Set Maze deactive
-            MazeGenerator.Instance.ActiveDeactivateMaze(false);
+            if (coffeeGame.keyIndex > 2)
+            { 
+                MazeGenerator.Instance.ActiveDeactivateMaze(false);
+            }
         }
     }
 
     IEnumerator AudioComplete(float delay)
     { 
         yield return new WaitForSeconds(delay);
+        spawner.SetActive(false);
         coffeeGame.EnableSprites();
         MazeGenerator.Instance.LoadMaze();
+        MazeGenerator.Instance.ActiveDeactivateChild(true);
+
+        Transform mainParent = transform.parent.transform.parent;
+        foreach (SpriteRenderer sr in mainParent.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.enabled = false;
+        }
+        mainParent.GetComponentInChildren<Canvas>().gameObject.SetActive(false);
+
+        PlayerFollow mazeGen_PlayerFollow = MazeGenerator.Instance.GetComponent<PlayerFollow>();
+        mazeGen_PlayerFollow.distanceX = 0.5f;
+        mazeGen_PlayerFollow.distanceY = -0.3f;
+
+        MazeGenerator.Instance.LoadMaze();
+
+    }
+
+    public void EnableForLevel3()
+    {
+        Transform mainParent = transform.parent.transform.parent;
+        foreach (SpriteRenderer sr in mainParent.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.enabled = true;
+        }
+        mainParent.GetChild(5).gameObject.SetActive(true);
     }
 
     private void FirstBallInput(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && coffeeGame.keyIndex > 2)
         {
             firtTimeMove = true;
             if (position)
