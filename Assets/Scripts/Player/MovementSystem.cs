@@ -240,6 +240,17 @@ public class MovementSystem : MonoBehaviour
                     MazeGenerator.Instance.t1.SetActive(false);
                     MazeGenerator.Instance.t2.SetActive(false);
                     MazeGenerator.Instance.t1.transform.parent.GetChild(0).gameObject.SetActive(false);
+
+                    if (coffeeGame.keyIndex == 2)
+                    { 
+                        MazeGenerator.Instance.ActiveDeactivateMaze(true);
+                    }
+
+                    if (coffeeGame.keyIndex >= 3)
+                    { 
+                        MazeGenerator.Instance.inRange = true;
+                    }
+
                     if (eyePlayer.position)
                     {
                         if (coffeeGame.keyIndex > 1)
@@ -528,6 +539,11 @@ public class MovementSystem : MonoBehaviour
         TransitionManager.Instance.coffeeGame.transform.GetChild(2).gameObject.SetActive(true);
         AudioManager.Instance.AudioPlay(AudioManager.Instance.coffeeGame_Audio);
         gameObject.GetComponent<CoffeeGame>().enabled = true;
+
+        if (coffeeGame.keyIndex > 2)
+        {
+            MazeGenerator.Instance.ActiveDeactivateChild(true);
+        }
     }
 
     [SerializeField]

@@ -44,6 +44,7 @@ public class MazeGenerator : MonoBehaviour
     private int level = 1;
 
     private bool playOnce = false;
+    [HideInInspector] public bool inRange = true;
 
     private PlayerControls playerControls;
 
@@ -224,6 +225,8 @@ public class MazeGenerator : MonoBehaviour
 
     public void PointArrow()
     {
+        inRange = false;
+
         GameObject obj = null;
         foreach (GameObject g in coffeeGame.coffeeActivator)
         {

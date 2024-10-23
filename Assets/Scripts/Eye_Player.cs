@@ -140,12 +140,16 @@ public class Eye_Player : MonoBehaviour
                 spawner.SetActive(true);
                 MazeGenerator.Instance.ActiveDeactivateMaze(false);
 
-                if (playOnce == false && coffeeGame.keyIndex == 1)
+                if (playOnce == false)
                 {
                     GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(15);
                     float delay = GameManager.Instance.GetComponent<RandomThoughts>().audioCaption[15].clip.length;
                     StartCoroutine(AudioComplete(delay + 1f));
                     playOnce = true;
+                }
+                else { 
+                StartCoroutine(AudioComplete(10f));
+
                 }
             }
 
@@ -173,8 +177,10 @@ public class Eye_Player : MonoBehaviour
     }
 
     IEnumerator AudioComplete(float delay)
-    { 
+    {
         yield return new WaitForSeconds(delay);
+
+        MazeGenerator.Instance.GetComponent<AudioSource>().Play();
         spawner.SetActive(false);
         coffeeGame.EnableSprites();
         MazeGenerator.Instance.LoadMaze();
@@ -209,6 +215,8 @@ public class Eye_Player : MonoBehaviour
     {
         if (context.performed && coffeeGame.keyIndex > 2)
         {
+            if (!MazeGenerator.Instance.inRange) return;
+
             firtTimeMove = true;
             if (position)
             { 
@@ -274,6 +282,9 @@ public class Eye_Player : MonoBehaviour
 
             var transposer = vcam.GetCinemachineComponent<CinemachineTransposer>();
             transposer.m_FollowOffset = new Vector3(0f, transposer.m_FollowOffset.y, transposer.m_FollowOffset.z);
+
+            StopAllCoroutines();
+            invinsible = false;
         }
     }
 
