@@ -110,7 +110,7 @@ public class RandomThoughts : MonoBehaviour
         foreach (char letter in dialogue.ToCharArray())
         {
             captionPanel.transform.GetChild(0).GetComponent<TMP_Text>().text += letter;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.025f);
         }
     }
 

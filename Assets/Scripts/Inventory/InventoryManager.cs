@@ -129,6 +129,7 @@ public class InventoryManager : MonoBehaviour
         while(healthValue > 0.02f)
         { 
             yield return new WaitForSeconds(1.5f);
+            healthValue = 0.02f;
             healthBar.SetFloat("_Health", healthValue -= 0.015f);
             healthText.text = "-CONFIDENCE";
             healthText.gameObject.GetComponent<Animator>().SetTrigger("Decrease");
