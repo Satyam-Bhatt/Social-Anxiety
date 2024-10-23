@@ -39,6 +39,8 @@ public class Eye_Player : MonoBehaviour
     private CinemachineImpulseSource impulseSource;
 
     [SerializeField] private CinemachineVirtualCamera vcam;
+    private bool playOnce = false;
+    private bool died = false;
     //[SerializeField] private GameObject eyePrefab;
 
     private void Awake()
@@ -114,7 +116,6 @@ public class Eye_Player : MonoBehaviour
 
     private bool firtTimeMove = false;
 
-
     public void SpriteChange(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -130,7 +131,29 @@ public class Eye_Player : MonoBehaviour
             }
 
             //Maze Code
-            MazeGenerator.Instance.LoadMaze();
+            if (coffeeGame.keyIndex > 2)
+            { 
+                MazeGenerator.Instance.LoadMaze();
+            }
+
+            if (coffeeGame.keyIndex == 1)
+            {
+                spawner.SetActive(true);
+                MazeGenerator.Instance.ActiveDeactivateMaze(false);
+
+                if (playOnce == false)
+                {
+                    GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(15);
+                    float delay = GameManager.Instance.GetComponent<RandomThoughts>().audioCaption[15].clip.length;
+                    StartCoroutine(AudioComplete(delay + 1f));
+                    playOnce = true;
+                }
+                else if(died == true && playOnce == true){
+                    StopAllCoroutines();
+                    StartCoroutine(AudioComplete(10f));
+                    died = false;
+                }
+            }
 
             if (once == false)
             {
@@ -148,15 +171,54 @@ public class Eye_Player : MonoBehaviour
             spawner.SetActive(false);
 
             //Set Maze deactive
-            MazeGenerator.Instance.ActiveDeactivateMaze(false);
+            if (coffeeGame.keyIndex > 2)
+            { 
+                MazeGenerator.Instance.ActiveDeactivateMaze(false);
+            }
         }
     }
 
+    IEnumerator AudioComplete(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        MazeGenerator.Instance.GetComponent<AudioSource>().Play();
+        spawner.SetActive(false);
+        coffeeGame.EnableSprites();
+        MazeGenerator.Instance.LoadMaze();
+        MazeGenerator.Instance.ActiveDeactivateChild(true);
+
+        Transform mainParent = transform.parent.transform.parent;
+        foreach (SpriteRenderer sr in mainParent.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.enabled = false;
+        }
+        mainParent.GetComponentInChildren<Canvas>().gameObject.SetActive(false);
+
+        PlayerFollow mazeGen_PlayerFollow = MazeGenerator.Instance.GetComponent<PlayerFollow>();
+        mazeGen_PlayerFollow.distanceX = 0.5f;
+        mazeGen_PlayerFollow.distanceY = -0.3f;
+
+        MazeGenerator.Instance.LoadMaze();
+
+    }
+
+    public void EnableForLevel3()
+    {
+        Transform mainParent = transform.parent.transform.parent;
+        foreach (SpriteRenderer sr in mainParent.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.enabled = true;
+        }
+        mainParent.GetChild(5).gameObject.SetActive(true);
+    }
 
     private void FirstBallInput(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && coffeeGame.keyIndex > 2)
         {
+            if (!MazeGenerator.Instance.inRange) return;
+
             firtTimeMove = true;
             if (position)
             { 
@@ -164,8 +226,6 @@ public class Eye_Player : MonoBehaviour
             }
         }
     }
-
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -224,6 +284,9 @@ public class Eye_Player : MonoBehaviour
 
             var transposer = vcam.GetCinemachineComponent<CinemachineTransposer>();
             transposer.m_FollowOffset = new Vector3(0f, transposer.m_FollowOffset.y, transposer.m_FollowOffset.z);
+
+            StopAllCoroutines();
+            invinsible = false;
         }
     }
 
@@ -241,6 +304,7 @@ public class Eye_Player : MonoBehaviour
         value = 0f;
         mat.SetFloat("_Anxiety", 0f);
         GameManager.Instance.tasks.transform.parent.gameObject.SetActive(true);
+        died = true;
     }
 
     IEnumerator InvinsibilityFrames()

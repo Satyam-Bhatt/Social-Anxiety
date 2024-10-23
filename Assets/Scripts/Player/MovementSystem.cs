@@ -240,16 +240,33 @@ public class MovementSystem : MonoBehaviour
                     MazeGenerator.Instance.t1.SetActive(false);
                     MazeGenerator.Instance.t2.SetActive(false);
                     MazeGenerator.Instance.t1.transform.parent.GetChild(0).gameObject.SetActive(false);
+
+                    if (coffeeGame.keyIndex == 2)
+                    { 
+                        MazeGenerator.Instance.ActiveDeactivateMaze(true);
+                    }
+
+                    if (coffeeGame.keyIndex >= 3)
+                    { 
+                        MazeGenerator.Instance.inRange = true;
+                    }
+
                     if (eyePlayer.position)
                     {
-                        MazeGenerator.Instance.ActiveDeactivateMaze(true);
+                        if (coffeeGame.keyIndex > 1)
+                        { 
+                            MazeGenerator.Instance.ActiveDeactivateMaze(true);
+                        }
 
                         gameObject.GetComponent<CoffeeGame>().canPlay = true;
                         gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(true);
                     }
                     else
                     {
-                        MazeGenerator.Instance.ActiveDeactivateMaze(false);
+                        if (coffeeGame.keyIndex > 2)
+                        { 
+                            MazeGenerator.Instance.ActiveDeactivateMaze(false);
+                        }
 
                         gameObject.GetComponent<CoffeeGame>().canPlay = false;
                         gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(false);
@@ -292,7 +309,7 @@ public class MovementSystem : MonoBehaviour
             gameObject.GetComponent<CoffeeGame>().canPlay = false;
             gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(false);
             MazeGenerator.Instance.ActiveDeactivateMaze(false);
-            if (coffeeGameActive)
+            if (coffeeGameActive && coffeeGame.keyIndex > 1)
             {
                 MazeGenerator.Instance.PointArrow();
             }
@@ -523,9 +540,9 @@ public class MovementSystem : MonoBehaviour
         AudioManager.Instance.AudioPlay(AudioManager.Instance.coffeeGame_Audio);
         gameObject.GetComponent<CoffeeGame>().enabled = true;
 
-        for (int i = 0; i < MazeGenerator.Instance.transform.childCount; i++)
+        if (coffeeGame.keyIndex > 2)
         {
-            MazeGenerator.Instance.transform.GetChild(i).gameObject.SetActive(true);
+            MazeGenerator.Instance.ActiveDeactivateChild(true);
         }
     }
 

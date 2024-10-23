@@ -44,8 +44,11 @@ public class MazeGenerator : MonoBehaviour
     private int level = 1;
 
     private bool playOnce = false;
+    [HideInInspector] public bool inRange = true;
 
     private PlayerControls playerControls;
+
+    [SerializeField] private Eye_Player eye_Player;
 
     [Header("Canvas")]
     [Space(10)]
@@ -112,6 +115,13 @@ public class MazeGenerator : MonoBehaviour
             playOnce = false;
         }
 
+        if (level == 3)
+        {
+            GetComponent<PlayerFollow>().distanceX = -5.5f;
+            GetComponent<PlayerFollow>().distanceY = 0;
+            eye_Player.EnableForLevel3();
+        }
+
         yield return new WaitForSeconds(0.5f);
 
         if (mazeParent != null)
@@ -173,6 +183,14 @@ public class MazeGenerator : MonoBehaviour
         }
     }
 
+    public void ActiveDeactivateChild(bool state)
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(state);
+        }
+    }
+
     //Plays Audio
     private void BallButtonsPressed(InputAction.CallbackContext context)
     {
@@ -180,11 +198,11 @@ public class MazeGenerator : MonoBehaviour
         {
             if (mazeLevels[level - 1].activeSelf)
             {
-                if (playOnce == false && coffeeGame.keyIndex == 1)
-                {
-                    GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(15);
-                    playOnce = true;
-                }
+                //if (playOnce == false && coffeeGame.keyIndex == 1)
+                //{
+                //    GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(15);
+                //    playOnce = true;
+                //}
 
                 if (coffeeGame.keyIndex == 2 && !playOnce)
                 {
@@ -207,6 +225,8 @@ public class MazeGenerator : MonoBehaviour
 
     public void PointArrow()
     {
+        inRange = false;
+
         GameObject obj = null;
         foreach (GameObject g in coffeeGame.coffeeActivator)
         {
@@ -348,10 +368,10 @@ public class MazeGenerator : MonoBehaviour
     {
         if (currentCell == null)
         {
-            StopAllCoroutines();
-            LoadMaze();
             Debug.Log("Null Cell");
-            yield return null;
+/*            StopAllCoroutines();
+            LoadMaze();
+            yield return null;*/
         }
 
         else

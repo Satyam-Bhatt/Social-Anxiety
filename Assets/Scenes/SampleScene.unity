@@ -956,8 +956,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46165100}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.06, y: -3.2799978, z: 0}
-  m_LocalScale: {x: 0.30229408, y: 0.30229408, z: 0.30229408}
+  m_LocalPosition: {x: 0.06, y: -3.28, z: 0}
+  m_LocalScale: {x: 0.40434855, y: 0.40434855, z: 0.40434855}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1368018607}
@@ -1055,8 +1055,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.006917662, y: -0.03921899}
-  m_Size: {x: 1.8586514, y: 0.83936507}
+  m_Offset: {x: 0.006917633, y: -0.14693402}
+  m_Size: {x: 0.99900496, y: 0.9222237}
   m_Direction: 1
 --- !u!50 &46165105
 Rigidbody2D:
@@ -3264,8 +3264,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1144509052}
-  distanceX: -3.5
-  distanceY: 0
+  distanceX: 2.5
+  distanceY: -1
 --- !u!1 &346543902
 GameObject:
   m_ObjectHideFlags: 0
@@ -11098,9 +11098,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
-      value: 'Thanks a lot Man! <s>You know you''ve saved my college life</s>. I
-        HAVENT SAVED AN ANT And I don''t think grateful or thank you are words enough
-        to describe how I truly feel.
+      value: 'Thanks a lot Man! <s>You know you''ve saved my college life</s>.  <b>I
+        HAVENT SAVED AN ANT</b> And I don''t think grateful or thank you are words
+        enough to describe how I truly feel.
 
 
         <margin left=70%> - Akarsh</margin>'
@@ -12447,12 +12447,13 @@ PrefabInstance:
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
       value: 'You''ve been through a lot of tough times on campus and still handled
-        it all so well! You have been a very <s>positive person</s> NEGATIVE and
-        I wish that you be that self of yours always. I''ll always remember all the
-        enthusiasm and the positive vibe you had.
+        it all so well! You have been a very <s>positive person</s> <b> NEGATIVE</b>
+        and I wish that you be that self of yours always. I''ll always remember all
+        the enthusiasm and the positive vibe you had.
 
 
-        <margin left=70%> - Kunal</margin>'
+        <margin left=70%>
+        - Kunal</margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: heading
@@ -13727,7 +13728,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1265013968}
-  - component: {fileID: 1265013970}
   - component: {fileID: 1265013969}
   m_Layer: 0
   m_Name: Mask
@@ -13801,58 +13801,6 @@ SpriteMask:
   m_FrontSortingOrder: 0
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
-  m_SpriteSortPoint: 0
---- !u!212 &1265013970
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265013967}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1290826733
-  m_SortingLayer: 3
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 4aca7fbd576ded040b5d25a26607baa9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1275814199
 GameObject:
@@ -14688,13 +14636,13 @@ PrefabInstance:
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
       value: 'You''re a great person Dhruv! I admire the fact that you have the <s>courage
-        to always stand up</s> NO NO I AM A COWARDfor what''s right - like starting
-        a GameDevSociety - and the courage to pursue what you want, like contesting
-        for President - it was one hell of a feat.
+        to always stand up</s> <b>NO NO I AM A COWARD</b> for what''s right - like
+        starting a GameDevSociety - and the courage to pursue what you want, like
+        contesting for President - it was one hell of a feat.
 
 
-        <margin left=70%> -
-        Anant</margin>'
+        <margin left=70%>
+        - Anant</margin>'
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: heading
@@ -14989,8 +14937,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1144509052}
-  distanceX: -4
-  distanceY: 1.5
+  distanceX: 2
+  distanceY: 1
 --- !u!1 &1404967750
 GameObject:
   m_ObjectHideFlags: 0
@@ -17222,7 +17170,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1543840946}
-  - component: {fileID: 1543840947}
   m_Layer: 0
   m_Name: RectForMouseTrack
   m_TagString: Untagged
@@ -17245,58 +17192,6 @@ Transform:
   m_Father: {fileID: 755213297}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1543840947
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1543840945}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1290826733
-  m_SortingLayer: 3
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1001 &1551716227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19722,6 +19617,8 @@ MonoBehaviour:
   movementSystem: {fileID: 2068600705}
   rows: 5
   columns: 5
+  inRange: 1
+  eye_Player: {fileID: 46165102}
   arrow: {fileID: 1182377568}
   xDifference: -1.3
   t1: {fileID: 678672954}
@@ -21059,7 +20956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1950804422
 Transform:
   m_ObjectHideFlags: 0
@@ -23081,7 +22978,7 @@ PrefabInstance:
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
       value: 'Dhruv, as someone who has seen and known you so closely, I know you
-        will do <s>great things</s>  <b>LOL I HAVE DONE NO GREAT THINGS</b> Even
+        will do <s>great things</s> <b>LOL I HAVE DONE NO GREAT THINGS</b>  Even
         though you haven''t decided upon the specifics of how you will do it.
 
 
@@ -23119,8 +23016,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 0d06a59f0bae6cc428858438912097b4, type: 3}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: auddioCaption.Array.data[0].caption
-      value: Wow! People really believed in me. Just look at how much confident they
-        are
+      value: Wow! People really believed in me. Just look at how confident they are
       objectReference: {fileID: 0}
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: auddioCaption.Array.data[1].caption
@@ -23334,10 +23230,10 @@ PrefabInstance:
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: afterBW
       value: 'You really were among the first people I met at this place. You were
-        also someone <s>genuinely wanted good</s> BAD for everyone. Got to learn
-        a lot from you, <s>springing back up every time</s> COULDNT DO ANYTHINGafter
-        something goes wrong, trying to do something for the community were a few
-        of them
+        also someone who <s>genuinely wanted good</s> <b>BAD</b> for everyone. Got
+        to learn a lot from you, <s>springing back up every time</s> <b>COULDNT DO
+        ANYTHING</b> after something goes wrong, trying to do something for the community
+        were a few of them
 
 
         <margin left=70%> - Gaurav</margin>'
@@ -23349,9 +23245,9 @@ PrefabInstance:
     - target: {fileID: 7098759616080406969, guid: 0c390130afc4700478596133fca7ad83, type: 3}
       propertyPath: beforeBW
       value: 'You really were among the first people I met at this place. You were
-        also someone genuinely wanted good for everyone. Got to learn a lot from
-        you, springing back up every time after something goes wrong, trying to do
-        something for the community were a few of them
+        also someone whio genuinely wanted good for everyone. Got to learn a lot
+        from you, springing back up every time after something goes wrong, trying
+        to do something for the community were a few of them
 
 
         <margin left=70%>
