@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerFollow : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private float distanceX, distanceY = 0f;
+    public float distanceX, distanceY = 0f;
 
     // Update is called once per frame
     void Update()
