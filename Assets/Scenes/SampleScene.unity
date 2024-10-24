@@ -23678,6 +23678,10 @@ PrefabInstance:
       propertyPath: inventoryManager
       value: 
       objectReference: {fileID: 251840069}
+    - target: {fileID: 3019389773711893266, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
+      propertyPath: afterTransition_Note
+      value: 
+      objectReference: {fileID: 21300000, guid: f48410b902db9dd4d980af86ae0462ff, type: 3}
     - target: {fileID: 3019389773711893267, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -23720,6 +23724,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3019389773711893267, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019389773711899884, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}
+      propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3019389773711899886, guid: 9292e0a60fd5b8248a66d4d41664b71e, type: 3}

@@ -573,6 +573,7 @@ public class MovementSystem : MonoBehaviour
 
     }
 
+    [SerializeField] private Sprite afterTransition_Note;
     void OnPlayableDirectorStopped(PlayableDirector timeline)
     {
         cutscenePlaying = false;
@@ -600,6 +601,10 @@ public class MovementSystem : MonoBehaviour
         {
             GameObject g = n.gameObject;
             g.GetComponent<SpriteRenderer>().material = materials[0];
+            if (g.GetComponent<Notes>().type == Notes.Type.Notes)
+            { 
+                g.GetComponent<SpriteRenderer>().sprite = afterTransition_Note;
+            }
         }
 
         AudioManager.Instance.GetComponent<AudioSource>().volume = 0.5f;
