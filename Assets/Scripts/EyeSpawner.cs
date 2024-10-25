@@ -16,8 +16,13 @@ public class EyeSpawner : MonoBehaviour
     {
         if (transform.Find("Eye Keepes") == null)
         { 
-            obj = new GameObject("Eye Keepes");
-            obj.transform.position = new Vector3(0, 0, 0);
+            obj = new GameObject("Eye Keepes")
+            {
+                transform =
+                {
+                    position = new Vector3(0, 0, 0)
+                }
+            };
 
             obj.transform.SetParent(this.transform.parent);        
         }
@@ -39,18 +44,10 @@ public class EyeSpawner : MonoBehaviour
     }
 
     private int numberToSpawn()
-    { 
-        int percentNum = Random.Range(0, 101);
+    {
+        var percentNum = Random.Range(0, 101);
 
-        if (percentNum <= 20)
-        {
-            return 3;
-        }
-        else 
-        {
-            return 2;
-        }
-
+        return percentNum <= 20 ? 3 : 2;
     }
 
     private IEnumerator Spawner()
@@ -70,8 +67,8 @@ public class EyeSpawner : MonoBehaviour
                 }
 
                 GameObject g1 = Instantiate(eye, eye_SpawnPoint[spawnPoint_1].position, Quaternion.identity);
-                GameObject g2 = Instantiate(eye, eye_SpawnPoint[spawnPoint_2].position, Quaternion.identity);
                 GameObject g3 = Instantiate(eye, eye_SpawnPoint[spawnPoint_3].position, Quaternion.identity);
+                GameObject g2 = Instantiate(eye, eye_SpawnPoint[spawnPoint_2].position, Quaternion.identity);
 
                 g1.transform.SetParent(obj.transform);
                 g2.transform.SetParent(obj.transform);
