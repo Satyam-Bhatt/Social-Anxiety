@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ using TMPro;
 using UnityEngine.Playables;
 using Unity.VisualScripting;
 using Cinemachine;
+using Random = UnityEngine.Random;
 
 public class MovementSystem : MonoBehaviour
 {
@@ -21,7 +23,7 @@ public class MovementSystem : MonoBehaviour
     private bool messageShown = false;
     public bool cutscenePlaying = false;
     private bool coffeeGamePlaying = false;
-    private bool canSleep = false;
+    private bool canSleep = true;
 
     private IEnumerator coroutine;
 
@@ -168,7 +170,7 @@ public class MovementSystem : MonoBehaviour
             interactPanel.SetActive(true);
             interactText.text = "Press E to pickup item";
         }
-        else if (noteScript != null)
+        else if (noteScript)
         {
             interactPanel.SetActive(!messageShown);
             interactText.text = "Press E to Interact";

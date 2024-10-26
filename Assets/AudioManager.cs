@@ -10,7 +10,7 @@ public class AudioManager : MonoBehaviour
         get
         {
             _instance = FindObjectOfType<AudioManager>();
-            if (_instance == null)
+            if (!_instance)
             {
                 _instance = GameObject.FindObjectOfType<AudioManager>();
             }
@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip coffeeGame_Audio;
     public AudioClip afterBW_Clip;
     public AudioClip beforeBW_Clip;
+    public AudioClip breathing;
 
     private void Awake()
     {

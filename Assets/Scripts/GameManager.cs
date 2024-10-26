@@ -137,9 +137,9 @@ public class GameManager : MonoBehaviour
         }
         else if (counter == 3)
         {
-            open.SetActive(true);
+            //open.SetActive(true);
             gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(11);
-            AudioManager.Instance.AudioPlay(AudioManager.Instance.beforeBW_Clip);
+            //AudioManager.Instance.AudioPlay(AudioManager.Instance.beforeBW_Clip);
         }
         //InventoryManager.Instance.AfterSleep();
 
