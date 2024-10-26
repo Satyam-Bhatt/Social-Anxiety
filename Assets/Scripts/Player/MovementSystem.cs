@@ -23,7 +23,7 @@ public class MovementSystem : MonoBehaviour
     private bool messageShown = false;
     public bool cutscenePlaying = false;
     private bool coffeeGamePlaying = false;
-    private bool canSleep = true;
+    private bool canSleep = false;
 
     private IEnumerator coroutine;
 

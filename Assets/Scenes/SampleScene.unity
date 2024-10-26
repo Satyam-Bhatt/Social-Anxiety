@@ -1371,7 +1371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &63884772
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -6836,7 +6836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &664045928
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21240,7 +21240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &2009233662
 Animator:
   serializedVersion: 5
@@ -22241,7 +22241,7 @@ MonoBehaviour:
   room: {fileID: 346543902}
   rotateDelta: 5
   spriteMask: {fileID: 1968990301}
-  scalingSpeed: 0
+  scalingSpeed: 0.2
   _input: 0
 --- !u!1 &2070393186 stripped
 GameObject:
