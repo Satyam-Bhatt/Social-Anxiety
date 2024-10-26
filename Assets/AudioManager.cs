@@ -19,7 +19,8 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource1;
+    [SerializeField] private AudioSource audioSource2;
 
     public AudioClip coffeeGame_Audio;
     public AudioClip afterBW_Clip;
@@ -28,13 +29,13 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
     }
 
     public void AudioPlay(AudioClip clip)
     {
-        audioSource.Stop();
-        audioSource.clip = clip;
-        audioSource.Play();
+        audioSource1.Stop();
+        audioSource1.clip = clip;
+        audioSource1.Play();
     }
 }
