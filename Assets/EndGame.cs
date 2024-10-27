@@ -185,7 +185,7 @@ public class EndGame : MonoBehaviour
 
     private IEnumerator InputCheckStart()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(1f);
         _inputCheckStart = true;
     }
 
@@ -196,7 +196,7 @@ public class EndGame : MonoBehaviour
         yield return new WaitForSeconds(2f);
         AudioManager.Instance.AudioPlay2(AudioManager.Instance.breathing_Easy);
         AudioManager.Instance.audioSource2.volume = 0.6f;
-       // _rotationSpeed = 4f;
+        _spriteMaskGrowCoroutine = StartCoroutine(SpriteMaskGrowCoroutine());
         yield return new WaitForSeconds(1f);
         _winStateStart = true;
         while (!MyApproximation(room.transform.eulerAngles.z, 90, 0.1f) || room.transform.localScale != _originalScale)
@@ -209,24 +209,26 @@ public class EndGame : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
-
-        _spriteMaskGrowCoroutine = StartCoroutine(SpriteMaskGrowCoroutine());
         _animator.SetBool("BW", false);
     }
 
     private IEnumerator SpriteMaskGrowCoroutine()
     {
+        //yield return new WaitForSeconds(4.35f);
         while (spriteMask.transform.localScale.x < 30f)
         {
+            Debug.Log("Call");
             var nextScale = spriteMask.transform.localScale.x + 5f;
-            while (spriteMask.transform.localScale.x < nextScale - 0.05f)
-            {
+            //while (spriteMask.transform.localScale.x < nextScale - 0.5f)
+            //{
                 var newScale = new Vector3(nextScale, nextScale, 0f);
-                spriteMask.transform.localScale = Vector3.Lerp(spriteMask.transform.localScale, newScale, Time.deltaTime * 4f);
-                yield return new WaitForEndOfFrame();
-            }
+                //spriteMask.transform.localScale = Vector3.Lerp(spriteMask.transform.localScale, newScale, Time.deltaTime * 4f);
+                spriteMask.transform.localScale = newScale;
 
-            yield return new WaitForSeconds(0.5f);
+                //yield return null;
+            //}
+
+            yield return new WaitForSeconds(AudioManager.Instance.breathing_Easy.length/2);
         }
 
         _win = true; //Make Input always false
