@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private int counter = 0;
 
     [SerializeField] private GameObject deathPanel;
+    [SerializeField] private GameObject winPanel;
 
     public AudioSource audioSrc;
     public static GameManager Instance
@@ -77,11 +78,12 @@ public class GameManager : MonoBehaviour
 
         deathPanel.SetActive(false);
         pausePanel.SetActive(false);
+        winPanel.SetActive(false);
     }
 
-    private void Update()
+    public void ActivateWinPane()
     {
-        
+        winPanel.SetActive(true);
     }
 
     public void BW_Transition()

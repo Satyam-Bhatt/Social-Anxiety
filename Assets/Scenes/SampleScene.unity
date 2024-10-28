@@ -1371,7 +1371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!320 &63884772
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -2805,8 +2805,10 @@ MonoBehaviour:
   ItemInSlot: {fileID: 4300220134231791880, guid: 9542195abc7b35741a7023a5a1d44146, type: 3}
   timeline: {fileID: 1362781696}
   healthBar: {fileID: 2100000, guid: bd23ac21d1a0e3747989764501b834b5, type: 2}
+  healthValue: 0.4
   healthText: {fileID: 1357504969}
   killPanel: {fileID: 517586384}
+  confidenceFallTime: 1.5
 --- !u!1 &264814332
 GameObject:
   m_ObjectHideFlags: 0
@@ -6836,7 +6838,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &664045928
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9814,7 +9816,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Saying No will win You over the Anxiety
+  m_text: Focus on what is natural to you
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10004,7 +10006,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 32d2e5237c1fb1847bc36a417efb78f5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9869bab2a574578429396e3e43082f42, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -19067,7 +19069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.68235296}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -20358,7 +20360,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c2e9494c7871f6147b3d0aa2890108be, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -20731,6 +20733,7 @@ MonoBehaviour:
   coffeeGameDone: 0
   tasks: {fileID: 1426833712}
   deathPanel: {fileID: 904578965}
+  winPanel: {fileID: 1746023437}
   audioSrc: {fileID: 1934066016}
   pausePanel: {fileID: 1930044189}
 --- !u!4 &1934066015
@@ -21335,7 +21338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &2009233662
 Animator:
   serializedVersion: 5
@@ -22337,7 +22340,8 @@ MonoBehaviour:
   rotateDelta: 5
   spriteMask: {fileID: 1968990301}
   virtualCamera: {fileID: 1144509051}
-  scalingSpeed: 0.01
+  postProcessVolume: {fileID: 1258791407}
+  scalingSpeed: 0.02
   _input: 0
 --- !u!4 &2068600718 stripped
 Transform:

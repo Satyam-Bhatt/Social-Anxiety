@@ -21,7 +21,7 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField]
     private Material healthBar;
-    private float healthValue = 0.4f;
+    public float healthValue = 0.4f;
 
     [SerializeField]
     private TMP_Text healthText;
@@ -119,16 +119,22 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public float confidenceFallTime = 1.5f;
     public void BWTransition(PlayableDirector timeline)
     { 
         StartCoroutine(ConfidenceFall());
     }
 
-    IEnumerator ConfidenceFall()
+    public void StopConfidenceCoroutine()
+    {
+        StopAllCoroutines();
+    }
+
+    public IEnumerator ConfidenceFall()
     { 
         while(healthValue > 0.02f)
         { 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(confidenceFallTime);
             //healthValue = 0.02f;
             healthBar.SetFloat("_Health", healthValue -= 0.015f);
             healthText.text = "-CONFIDENCE";
@@ -142,11 +148,31 @@ public class InventoryManager : MonoBehaviour
         {
             if (healthValue <= 1f)
             { 
-                healthBar.SetFloat("_Health", healthValue += 0.1f);
+                healthBar.SetFloat("_Health", healthValue += 0.075f);
             }
             healthText.text = "+CONFIDENCE";
             healthText.gameObject.GetComponent<Animator>().SetTrigger("Increase");
         }
+    }
+
+    public void ConfidenceIncreaseEndGame()
+    {
+        if (healthValue <= 1f)
+        { 
+            healthBar.SetFloat("_Health", healthValue += 0.1f);
+        }
+        healthText.text = "+CONFIDENCE";
+        healthText.gameObject.GetComponent<Animator>().SetTrigger("Increase");
+    }
+
+    public void ConfidenceDecreaseEndGame()
+    {
+        if (healthValue >= 0f)
+        {
+            healthBar.SetFloat("_Health", healthValue -= 0.05f);
+        }
+        healthText.text = "-CONFIDENCE";
+        healthText.gameObject.GetComponent<Animator>().SetTrigger("Decrease");
     }
 
 

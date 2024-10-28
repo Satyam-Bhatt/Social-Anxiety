@@ -576,6 +576,7 @@ public class MovementSystem : MonoBehaviour
     }
 
     [SerializeField] private Sprite afterTransition_Note;
+    private Coroutine _stopCoroutine;
     void OnPlayableDirectorStopped(PlayableDirector timeline)
     {
         cutscenePlaying = false;
@@ -614,7 +615,7 @@ public class MovementSystem : MonoBehaviour
         animator.SetBool("Cutscene", false);
 
         moveSpeed = 2;
-        StartCoroutine(StopMovement());
+        _stopCoroutine = StartCoroutine(StopMovement());
     }
 
     IEnumerator EnableChild(int index)
@@ -640,10 +641,22 @@ public class MovementSystem : MonoBehaviour
         {
             room.transform.GetChild(i).gameObject.SetActive(false);
         }
+        
+        room.transform.GetChild(room.transform.childCount - 1).gameObject.SetActive(true);
+        room.transform.GetChild(room.transform.childCount - 2).gameObject.SetActive(true);
+
 
         room.transform.Find("Knife").gameObject.SetActive(true);
 
         randomThoughts.ClipPlay_Delay(7, 2f);
+
+        if (_stopCoroutine != null)
+        {
+            StopCoroutine(_stopCoroutine);
+            moveStopper = false;
+            takeInput = true;
+        }
+
     }
 
     IEnumerator DisableChild(int index)
@@ -663,6 +676,10 @@ public class MovementSystem : MonoBehaviour
         transform.position = new Vector3(10.46f, -31.0f, 0f);
         outside.transform.GetChild(0).gameObject.SetActive(false);
         kitchen.transform.GetChild(1).gameObject.SetActive(false);
+        
+        InventoryManager.Instance.StopConfidenceCoroutine();
+        InventoryManager.Instance.confidenceFallTime = 5f;
+        StartCoroutine(InventoryManager.Instance.ConfidenceFall());
     }
 
     public void OnCoffeeGameComplete()

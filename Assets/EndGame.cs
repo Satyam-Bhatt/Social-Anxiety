@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using Cinemachine;
+using UnityEngine.Rendering;
 
 public class EndGame : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class EndGame : MonoBehaviour
     [SerializeField] private float rotateDelta;
     [SerializeField] private GameObject spriteMask;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private Volume postProcessVolume;
 
     [Space(10)] [Header("Parameters")] [SerializeField]
     private float scalingSpeed;
@@ -54,16 +56,6 @@ public class EndGame : MonoBehaviour
         _roomOriginalRotationInZ = room.transform.eulerAngles.z;
         _rotationInZ = room.transform.eulerAngles.z - rotateDelta;
         _originalScale = room.transform.localScale;
-
-        StartCoroutine(InputCheckStart());
-
-        //Audio Start
-        AudioManager.Instance.AudioPlay2(AudioManager.Instance.breathing_Heavy);
-        //AudioManager.Instance.audioSource2.volume = 0.5f;
-
-        //Camera Set
-        virtualCamera.Follow = room.transform;
-        virtualCamera.m_Lens.OrthographicSize = 8.6f;
     }
 
     private bool _sleepTimerEnded = false;
@@ -74,10 +66,11 @@ public class EndGame : MonoBehaviour
     private bool _winStateStart = false;
     private Coroutine _winStatEnumerator = null;
     private Coroutine _spriteMaskGrowCoroutine = null;
+    private Coroutine _postProcessVolumeCoroutine = null;
 
     private void Update()
     {
-        //if(!__sleepTimerEnded) return;
+        if(!_sleepTimerEnded) return;
         if (_win) return;
 
         var value = AudioManager.Instance.audioSource1.volume;
@@ -98,7 +91,7 @@ public class EndGame : MonoBehaviour
         {
             //Handles Rotation of the room
             if (_rotationInZ < 120f)
-                _rotationSpeed += 0.5f * Time.deltaTime;
+                _rotationSpeed += Time.deltaTime;
             if (!MyApproximation(room.transform.eulerAngles.z, _rotationInZ, 0.1f))
             {
                 room.transform.rotation = Quaternion.RotateTowards(room.transform.rotation,
@@ -117,10 +110,23 @@ public class EndGame : MonoBehaviour
             var audioSrc = AudioManager.Instance.audioSource2;
             if (audioSrc && audioSrc.volume < 0.7f)
                 audioSrc.volume += 0.05f * Time.deltaTime;
+            
+            //Decrease confidence
+            if (InventoryManager.Instance.healthValue > 0)
+            {
+                InventoryManager.Instance.ConfidenceDecreaseEndGame();
+            }
+            
+            //Increase post process weight
+            if (postProcessVolume.weight < 1)
+            {
+                postProcessVolume.weight += Time.deltaTime;
+            }
 
             //Stop Win State
             if (_winStatEnumerator != null) StopCoroutine(_winStatEnumerator);
             if (_spriteMaskGrowCoroutine != null) StopCoroutine(_spriteMaskGrowCoroutine);
+            if(_postProcessVolumeCoroutine != null) StopCoroutine(_postProcessVolumeCoroutine);
             if (AudioManager.Instance.audioSource2.clip != AudioManager.Instance.breathing_Heavy)
             {
                 AudioManager.Instance.AudioPlay2(AudioManager.Instance.breathing_Heavy); //Audio Reset
@@ -129,6 +135,7 @@ public class EndGame : MonoBehaviour
 
             if (AudioManager.Instance.audioSource1.volume < 0.1f) AudioManager.Instance.audioSource1.volume = 0.1f;
             spriteMask.transform.localScale = Vector3.Lerp(spriteMask.transform.localScale, Vector3.zero, Time.deltaTime);
+            _animator.SetBool("BW", true);
             _winStateStart = false;
             _onceWinStateCheck = true; //Add code for resetting stuff like audio and sprite mask
         }
@@ -139,7 +146,7 @@ public class EndGame : MonoBehaviour
                 //Handles Rotation of the room
                 if (_rotationSpeed > 0)
                 {
-                    _rotationSpeed -= 2f * Time.deltaTime; //Changes how fast should we revert to rotation
+                    _rotationSpeed -= 6f * Time.deltaTime; //Changes how fast should we revert to rotation
                 }
                 else
                 {
@@ -185,7 +192,7 @@ public class EndGame : MonoBehaviour
 
     private IEnumerator InputCheckStart()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(10f);
         _inputCheckStart = true;
     }
 
@@ -194,48 +201,66 @@ public class EndGame : MonoBehaviour
     {
         Debug.Log("Win State Start");
         yield return new WaitForSeconds(2f);
-        AudioManager.Instance.AudioPlay2(AudioManager.Instance.breathing_Easy);
-        AudioManager.Instance.audioSource2.volume = 0.6f;
-        _spriteMaskGrowCoroutine = StartCoroutine(SpriteMaskGrowCoroutine());
-        yield return new WaitForSeconds(1f);
         _winStateStart = true;
-        while (!MyApproximation(room.transform.eulerAngles.z, 90, 0.1f) || room.transform.localScale != _originalScale)
+        while (!MyApproximation(room.transform.eulerAngles.z, 90, 0.1f) || !MyApproximation(room.transform.localScale.x, _originalScale.x, 0.05f))
         {
             //scale
             room.transform.localScale = Vector3.Lerp(room.transform.localScale, _originalScale, Time.deltaTime);
 
             //rotation
-                room.transform.rotation = Quaternion.RotateTowards(room.transform.rotation, Quaternion.Euler(0, 0, 90), Time.deltaTime);
+            room.transform.rotation = Quaternion.RotateTowards(room.transform.rotation, Quaternion.Euler(0, 0, 90), Time.deltaTime);
 
             yield return new WaitForEndOfFrame();
         }
+
+        AudioManager.Instance.AudioPlay2(AudioManager.Instance.breathing_Easy);
+        AudioManager.Instance.audioSource2.volume = 0.6f;
+        _spriteMaskGrowCoroutine = StartCoroutine(SpriteMaskGrowCoroutine());
+        _postProcessVolumeCoroutine = StartCoroutine(PostProcessDecrease());
         _animator.SetBool("BW", false);
     }
 
+    private Coroutine _scaleUpCoroutine = null;
+
     private IEnumerator SpriteMaskGrowCoroutine()
     {
-        //yield return new WaitForSeconds(4.35f);
+        var incrementValue = 2f;
         while (spriteMask.transform.localScale.x < 30f)
         {
             Debug.Log("Call");
-            var nextScale = spriteMask.transform.localScale.x + 5f;
-            //while (spriteMask.transform.localScale.x < nextScale - 0.5f)
-            //{
-                var newScale = new Vector3(nextScale, nextScale, 0f);
-                //spriteMask.transform.localScale = Vector3.Lerp(spriteMask.transform.localScale, newScale, Time.deltaTime * 4f);
-                spriteMask.transform.localScale = newScale;
-
-                //yield return null;
-            //}
-
-            yield return new WaitForSeconds(AudioManager.Instance.breathing_Easy.length/2);
+            var nextScale = spriteMask.transform.localScale.x + incrementValue;
+            var newScale = new Vector3(nextScale, nextScale, 0f);
+            if (_scaleUpCoroutine != null) StopCoroutine(_scaleUpCoroutine);
+            _scaleUpCoroutine = StartCoroutine(ScaleUp(spriteMask.transform.localScale, newScale));
+            incrementValue += 1f;
+            InventoryManager.Instance.ConfidenceIncreaseEndGame();
+            yield return new WaitForSeconds(AudioManager.Instance.breathing_Easy.length / 2);
         }
 
         _win = true; //Make Input always false
 
         //Final Win Panel and Dialogue
+        GameManager.Instance.ActivateWinPane();
         /*GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(11);
         AudioManager.Instance.AudioPlay(AudioManager.Instance.beforeBW_Clip);*/
+    }
+
+    private IEnumerator ScaleUp(Vector3 currentScale, Vector3 scaleUp)
+    {
+        while (true)
+        {
+            spriteMask.transform.localScale = Vector3.Lerp(spriteMask.transform.localScale, scaleUp, Time.deltaTime * 0.5f);
+            yield return null;
+        }
+    }
+
+    private IEnumerator PostProcessDecrease()
+    {
+        while (postProcessVolume.weight > 0)
+        {
+            postProcessVolume.weight -= Time.deltaTime * 0.05f;
+            yield return null;
+        }
     }
 
     //For switching rotation after a delay
@@ -261,10 +286,19 @@ public class EndGame : MonoBehaviour
         _input = ctx.performed;
     }
 
-
     private void OnSleepTimelineEnds(PlayableDirector playable)
     {
         _sleepTimerEnded = true;
+        
+        StartCoroutine(InputCheckStart());
+
+        //Audio Start
+        AudioManager.Instance.AudioPlay2(AudioManager.Instance.breathing_Heavy);
+        //AudioManager.Instance.audioSource2.volume = 0.5f;
+
+        //Camera Set
+        virtualCamera.Follow = room.transform;
+        virtualCamera.m_Lens.OrthographicSize = 8.6f;
     }
 
     private bool MyApproximation(float a, float b, float tolerance)
