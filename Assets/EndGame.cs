@@ -105,7 +105,7 @@ public class EndGame : MonoBehaviour
 
             //Handles Scale
             room.transform.localScale = Vector3.Lerp(room.transform.localScale, new Vector3(0.05f, 0.05f, 0f), Time.deltaTime * scalingSpeed);
-
+            
             //Audio Increasing
             var audioSrc = AudioManager.Instance.audioSource2;
             if (audioSrc && audioSrc.volume < 0.7f)
@@ -120,21 +120,27 @@ public class EndGame : MonoBehaviour
             //Increase post process weight
             if (postProcessVolume.weight < 1)
             {
-                postProcessVolume.weight += Time.deltaTime;
+                postProcessVolume.weight += 0.5f * Time.deltaTime;
             }
 
             //Stop Win State
             if (_winStatEnumerator != null) StopCoroutine(_winStatEnumerator);
             if (_spriteMaskGrowCoroutine != null) StopCoroutine(_spriteMaskGrowCoroutine);
             if(_postProcessVolumeCoroutine != null) StopCoroutine(_postProcessVolumeCoroutine);
+            if (_scaleUpCoroutine != null) StopCoroutine(_scaleUpCoroutine);
+
             if (AudioManager.Instance.audioSource2.clip != AudioManager.Instance.breathing_Heavy)
             {
                 AudioManager.Instance.AudioPlay2(AudioManager.Instance.breathing_Heavy); //Audio Reset
                 AudioManager.Instance.audioSource2.volume = 0f;
             }
 
-            if (AudioManager.Instance.audioSource1.volume < 0.1f) AudioManager.Instance.audioSource1.volume = 0.1f;
+            if (AudioManager.Instance.audioSource1.volume < 0.1f)
+            {
+                AudioManager.Instance.audioSource1.volume = 0.1f;
+            }
             spriteMask.transform.localScale = Vector3.Lerp(spriteMask.transform.localScale, Vector3.zero, Time.deltaTime);
+
             _animator.SetBool("BW", true);
             _winStateStart = false;
             _onceWinStateCheck = true; //Add code for resetting stuff like audio and sprite mask
@@ -227,7 +233,6 @@ public class EndGame : MonoBehaviour
         var incrementValue = 2f;
         while (spriteMask.transform.localScale.x < 30f)
         {
-            Debug.Log("Call");
             var nextScale = spriteMask.transform.localScale.x + incrementValue;
             var newScale = new Vector3(nextScale, nextScale, 0f);
             if (_scaleUpCoroutine != null) StopCoroutine(_scaleUpCoroutine);

@@ -655,8 +655,8 @@ public class MovementSystem : MonoBehaviour
             StopCoroutine(_stopCoroutine);
             moveStopper = false;
             takeInput = true;
+            animator.SetBool("Confused", false);
         }
-
     }
 
     IEnumerator DisableChild(int index)
