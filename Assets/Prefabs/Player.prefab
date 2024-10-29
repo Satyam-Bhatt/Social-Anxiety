@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1699989183}
   - component: {fileID: 5829015448629055320}
   - component: {fileID: 3019389771881059093}
+  - component: {fileID: 2068600712}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -107,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutscenePlaying: 0
-  moveSpeed: 10
+  moveSpeed: 8
   inventoryManager: {fileID: 0}
   eyePlayer: {fileID: 0}
   kitchen: {fileID: 0}
@@ -125,6 +126,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: c62234b0dcaa46443ae6793637c7e3b8, type: 2}
   vcam: {fileID: 0}
   unknownGuy: {fileID: 0}
+  afterTransition_Note: {fileID: 21300000, guid: f48410b902db9dd4d980af86ae0462ff, type: 3}
 --- !u!50 &3019389773711893265
 Rigidbody2D:
   serializedVersion: 4
@@ -220,6 +222,26 @@ MonoBehaviour:
   eyeGame: {fileID: 0}
   incrementValue: 0.007
   firstAudioPlay: 0
+--- !u!114 &2068600712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3019389773711899886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b14bacf35721bf49aff4eac4dbea492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sleepTimeline: {fileID: 0}
+  room: {fileID: 0}
+  rotateDelta: 5
+  spriteMask: {fileID: 0}
+  virtualCamera: {fileID: 0}
+  postProcessVolume: {fileID: 0}
+  scalingSpeed: 0.02
+  _input: 0
 --- !u!1001 &3019389772258769594
 PrefabInstance:
   m_ObjectHideFlags: 0

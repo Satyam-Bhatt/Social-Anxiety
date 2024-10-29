@@ -198,7 +198,7 @@ public class EndGame : MonoBehaviour
 
     private IEnumerator InputCheckStart()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(15f);
         _inputCheckStart = true;
     }
 
@@ -206,7 +206,7 @@ public class EndGame : MonoBehaviour
     private IEnumerator WinState()
     {
         Debug.Log("Win State Start");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         _winStateStart = true;
         while (!MyApproximation(room.transform.eulerAngles.z, 90, 0.1f) || !MyApproximation(room.transform.localScale.x, _originalScale.x, 0.05f))
         {
@@ -284,7 +284,7 @@ public class EndGame : MonoBehaviour
         }
     }
 
-    public bool _input = false;
+    private bool _input = false;
 
     private void MoveInput(InputAction.CallbackContext ctx)
     {
@@ -294,6 +294,7 @@ public class EndGame : MonoBehaviour
     private void OnSleepTimelineEnds(PlayableDirector playable)
     {
         _sleepTimerEnded = true;
+        GameManager.Instance.endGame = true;
         
         StartCoroutine(InputCheckStart());
 
@@ -306,7 +307,7 @@ public class EndGame : MonoBehaviour
         virtualCamera.m_Lens.OrthographicSize = 8.6f;
     }
 
-    private bool MyApproximation(float a, float b, float tolerance)
+    private static bool MyApproximation(float a, float b, float tolerance)
     {
         return (Mathf.Abs(a - b) < tolerance);
     }

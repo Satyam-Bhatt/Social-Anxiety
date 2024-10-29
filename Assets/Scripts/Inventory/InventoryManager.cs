@@ -157,9 +157,9 @@ public class InventoryManager : MonoBehaviour
 
     public void ConfidenceIncreaseEndGame()
     {
-        if (healthValue <= 1f)
+        if (healthValue < 1f)
         { 
-            healthBar.SetFloat("_Health", healthValue += 0.1f);
+            healthBar.SetFloat("_Health", healthValue += 0.2f);
         }
         healthText.text = "+CONFIDENCE";
         healthText.gameObject.GetComponent<Animator>().SetTrigger("Increase");

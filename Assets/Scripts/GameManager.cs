@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public bool eyesShut { get; private set; } = false;
 
     public bool isBW;// { get; private set; } = false;
+    public bool endGame = false;
 
     //[HideInInspector]
     public bool coffeeGameDone = false;
