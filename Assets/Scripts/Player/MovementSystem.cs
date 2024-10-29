@@ -138,11 +138,13 @@ public class MovementSystem : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
-        room.transform.GetChild(1).gameObject.SetActive(false);
+        //room.transform.GetChild(1).gameObject.SetActive(false);
         coffeeGame.enabled = false;
 
         room.transform.Find("Knife").gameObject.SetActive(false);
-
+        
+        animator.SetBool("BW", true);
+        moveSpeed = 2;
     }
 
     private bool moveStopper = false;

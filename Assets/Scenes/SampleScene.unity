@@ -1371,7 +1371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &63884772
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -3311,7 +3311,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 268a3af1f5e157444b484bc265768278, type: 2}
+  - {fileID: 2100000, guid: 530d984593ad660429d9728e8fc8dd7d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3332,7 +3332,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c2e9494c7871f6147b3d0aa2890108be, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d87551b0bbc06e4f987ff2825d66069, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3385,7 +3385,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 21.054108, y: 20.17}
+    oldSize: {x: 22.44, y: 21.00463}
     newSize: {x: 21.054108, y: 20.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3411,7 +3411,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 21.054108, y: 20.17}
+    oldSize: {x: 22.44, y: 21.00463}
     newSize: {x: 21.054108, y: 20.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3437,7 +3437,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 21.054108, y: 20.17}
+    oldSize: {x: 22.44, y: 21.00463}
     newSize: {x: 21.054108, y: 20.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3463,7 +3463,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 21.054108, y: 20.17}
+    oldSize: {x: 22.44, y: 21.00463}
     newSize: {x: 21.054108, y: 20.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3489,7 +3489,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 21.054108, y: 20.17}
+    oldSize: {x: 22.44, y: 21.00463}
     newSize: {x: 21.054108, y: 20.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6838,7 +6838,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &664045928
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10006,7 +10006,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9869bab2a574578429396e3e43082f42, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 32d2e5237c1fb1847bc36a417efb78f5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -13770,7 +13770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1258791407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13786,7 +13786,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 0
+  weight: 1
   sharedProfile: {fileID: 11400000, guid: 9bf13f0d157eb4c40ba16089235fa8a2, type: 2}
 --- !u!4 &1258791408
 Transform:
@@ -21334,7 +21334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &2009233662
 Animator:
   serializedVersion: 5
