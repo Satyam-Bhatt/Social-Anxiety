@@ -169,7 +169,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (healthValue >= 0f)
         {
-            healthBar.SetFloat("_Health", healthValue -= 0.05f);
+            healthBar.SetFloat("_Health", healthValue -= 0.05f * Time.deltaTime);
         }
         healthText.text = "-CONFIDENCE";
         healthText.gameObject.GetComponent<Animator>().SetTrigger("Decrease");
