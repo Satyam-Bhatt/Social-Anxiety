@@ -209,6 +209,8 @@ public class MovementSystem : MonoBehaviour
         }
     }
 
+    private bool _loadedMaze = false;
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -242,6 +244,11 @@ public class MovementSystem : MonoBehaviour
                     MazeGenerator.Instance.t1.SetActive(false);
                     MazeGenerator.Instance.t2.SetActive(false);
                     MazeGenerator.Instance.t1.transform.parent.GetChild(0).gameObject.SetActive(false);
+                    if (coffeeGame.keyIndex > 2 && !_loadedMaze)
+                    {
+                        MazeGenerator.Instance.LoadMaze();
+                        _loadedMaze = true;
+                    }
 
                     if (coffeeGame.keyIndex == 2)
                     { 
@@ -310,12 +317,14 @@ public class MovementSystem : MonoBehaviour
             //Turnig off Coffee Game
             gameObject.GetComponent<CoffeeGame>().canPlay = false;
             gameObject.GetComponent<CoffeeGame>().image.gameObject.SetActive(false);
+            _loadedMaze = false;
             MazeGenerator.Instance.ActiveDeactivateMaze(false);
             if (coffeeGameActive && coffeeGame.keyIndex > 1)
             {
                 MazeGenerator.Instance.PointArrow();
             }
         }
+        
     }
 
     private int ArrayChecker(Collider2D[] collider2Ds)

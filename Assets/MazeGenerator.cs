@@ -185,12 +185,13 @@ public class MazeGenerator : MonoBehaviour
 
     public void ActiveDeactivateChild(bool state)
     {
+        StopAllCoroutines();
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(state);
         }
     }
-
+    
     //Plays Audio
     private void BallButtonsPressed(InputAction.CallbackContext context)
     {
@@ -346,10 +347,13 @@ public class MazeGenerator : MonoBehaviour
                 row_Index = mazeStats.goalPlacementrow;
                 column_Index = mazeStats.goalPlacementcolumn;
             }
-            GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[row_Index, column_Index].transform.position, Quaternion.identity);
+
+            GameObject mazeGoal_Get = null;
+            if(maze[row_Index, column_Index] != null)
+                mazeGoal_Get = Instantiate(mazeGoal, maze[row_Index, column_Index].transform.position, Quaternion.identity);
             //MazeStats mazeStats = mazeParent.GetComponent<MazeStats>();
             //GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[mazeStats.goalPlacementrow, mazeStats.goalPlacementcolumn].transform.position, Quaternion.identity);
-            mazeGoal_Get.transform.SetParent(mazeParent.transform);
+            if(mazeGoal_Get) mazeGoal_Get.transform.SetParent(mazeParent.transform);
 
             MazeGeneratorComplete();
 
@@ -369,6 +373,7 @@ public class MazeGenerator : MonoBehaviour
         if (currentCell == null)
         {
             Debug.Log("Null Cell");
+            yield return null;
 /*            StopAllCoroutines();
             LoadMaze();
             yield return null;*/
