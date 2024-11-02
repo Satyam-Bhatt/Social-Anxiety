@@ -2805,7 +2805,7 @@ MonoBehaviour:
   ItemInSlot: {fileID: 4300220134231791880, guid: 9542195abc7b35741a7023a5a1d44146, type: 3}
   timeline: {fileID: 1362781696}
   healthBar: {fileID: 2100000, guid: bd23ac21d1a0e3747989764501b834b5, type: 2}
-  healthValue: 0.4
+  healthValue: 0.05
   healthText: {fileID: 1357504969}
   killPanel: {fileID: 517586384}
   confidenceFallTime: 1.5
@@ -19366,8 +19366,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 174.68489, y: -19.5}
-  m_SizeDelta: {x: 315.6818, y: 30.4512}
+  m_AnchoredPosition: {x: 174.83, y: -19.08}
+  m_SizeDelta: {x: 315.39, y: 30.451}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1757713050
 MonoBehaviour:
@@ -19577,8 +19577,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -2.43, y: 10.37}
-  m_SizeDelta: {x: 4.4587, y: 1.8229}
+  m_AnchoredPosition: {x: -2.526, y: 10.644}
+  m_SizeDelta: {x: 4.175, y: 1.7069}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1786570821
 MonoBehaviour:
@@ -19609,8 +19609,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278327837
-  m_fontColor: {r: 0.11320752, g: 0.10036224, b: 0.0069419737, a: 1}
+    rgba: 4280100195
+  m_fontColor: {r: 0.3882353, g: 0.14509805, b: 0.11372549, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -19633,7 +19633,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 5
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
