@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3789324798424173165}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.12, y: 0, z: 0}
+  m_LocalPosition: {x: -0.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -180,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 5937796949465606078}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.101, y: 0, z: 0}
-  m_LocalScale: {x: 0.42936224, y: 0.94459695, z: 0.42936224}
+  m_LocalScale: {x: 0.35040253, y: 0.79988474, z: 0.42936224}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5937796950045662826}
@@ -300,8 +300,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.21169195, y: -0.005103767}
-  m_Size: {x: 0.35570818, y: 0.7431772}
+  m_Offset: {x: -0.18537337, y: -0.005103767}
+  m_Size: {x: 0.24735606, y: 0.64118016}
   m_Direction: 0
 --- !u!70 &5326105288736554982
 CapsuleCollider2D:
@@ -316,8 +316,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.21993409, y: 0.00012677908}
-  m_Size: {x: 0.35811785, y: 0.8048657}
+  m_Offset: {x: 0.1903257, y: 0.00012683868}
+  m_Size: {x: 0.25273114, y: 0.63378227}
   m_Direction: 0
 --- !u!1 &5937796950034139462
 GameObject:
@@ -345,7 +345,7 @@ Transform:
   m_GameObject: {fileID: 5937796950034139462}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0924, y: 0, z: 0}
-  m_LocalScale: {x: 0.41280052, y: 0.90816104, z: 0.41280052}
+  m_LocalScale: {x: 0.34700012, y: 0.8029052, z: 0.41280052}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3789324798424173074}
@@ -428,7 +428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5937796950045662829}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.12, y: 0, z: 0}
+  m_LocalPosition: {x: 0.094, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
