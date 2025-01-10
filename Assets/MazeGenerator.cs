@@ -117,7 +117,7 @@ public class MazeGenerator : MonoBehaviour
 
         if (level == 3)
         {
-            GetComponent<PlayerFollow>().distanceX = -5.5f;
+            GetComponent<PlayerFollow>().distanceX = -4.34f;
             GetComponent<PlayerFollow>().distanceY = 0;
             eye_Player.EnableForLevel3();
         }
