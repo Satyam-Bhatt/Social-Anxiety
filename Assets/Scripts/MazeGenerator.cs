@@ -50,6 +50,8 @@ public class MazeGenerator : MonoBehaviour
 
     [SerializeField] private Eye_Player eye_Player;
 
+    private float scaleOfMazeCell = 1f;
+
     [Header("Canvas")]
     [Space(10)]
     public GameObject arrow;
@@ -79,6 +81,8 @@ public class MazeGenerator : MonoBehaviour
 
     private void Start()
     {
+        scaleOfMazeCell = mazeCell.transform.localScale.x;
+
         foreach (GameObject g in mazeLevels)
         {
             g.SetActive(false);
@@ -88,7 +92,7 @@ public class MazeGenerator : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
-        LoadMaze();
+        //LoadMaze();
     }
 
     public void LoadNextMaze()
@@ -286,11 +290,9 @@ public class MazeGenerator : MonoBehaviour
         {
             for (int j = 0; j < columns; j++)
             {
-                GameObject newMazeCell = Instantiate(mazeCell, new Vector3((mazeParent.transform.position.x + i * 0.5f) , (mazeParent.transform.position.y + j * 0.5f), 0), Quaternion.identity);
+                GameObject newMazeCell = Instantiate(mazeCell, new Vector3((mazeParent.transform.position.x + i * scaleOfMazeCell) , (mazeParent.transform.position.y + j * scaleOfMazeCell), 0), Quaternion.identity);
                 newMazeCell.name = "Cell (" + i + ", " + j + ")";
-                Debug.Log(name + "POS 1: " + newMazeCell.transform.localPosition);
                 newMazeCell.transform.SetParent(mazeParent.transform);
-                Debug.Log(name + "pos 2: " + newMazeCell.transform.localPosition);
                 maze[i, j] = newMazeCell.GetComponent<MazeCell>();
             }
         }
@@ -386,9 +388,9 @@ public class MazeGenerator : MonoBehaviour
 
         else
         {
-            int x = (int)(currentCell.transform.localPosition.x * 2);
-            int y = (int)(currentCell.transform.localPosition.y * 2);
-            //Debug.Log("Local Position: " + currentCell.transform.localPosition  + "x: " + x + " y: " + y);
+            int x = (int)(currentCell.transform.localPosition.x * (1/scaleOfMazeCell));
+            int y = (int)(currentCell.transform.localPosition.y * (1/scaleOfMazeCell));
+            Debug.Log("localPostion: " + currentCell.transform.localPosition + " x: " + x + " y: " + y);
 
             if (x + 1 < rows)
             {
