@@ -60,7 +60,7 @@ public class MazeGenerator : MonoBehaviour
 
     private void Awake()
     {
-        if(movementSystem != null)
+        if (movementSystem != null)
         {
             coffeeGame = movementSystem.GetComponent<CoffeeGame>();
         }
@@ -92,7 +92,7 @@ public class MazeGenerator : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
-        LoadMaze();
+        //LoadMaze();
     }
 
     public void LoadNextMaze()
@@ -198,7 +198,7 @@ public class MazeGenerator : MonoBehaviour
             transform.GetChild(i).gameObject.SetActive(state);
         }
     }
-    
+
     //Plays Audio
     private void BallButtonsPressed(InputAction.CallbackContext context)
     {
@@ -282,6 +282,9 @@ public class MazeGenerator : MonoBehaviour
 
     public void CreateMaze(Transform mazeParent_)
     {
+        Debug.Log("Disable Call");
+        movementSystem.DisableEnableMovementInput(false);
+
         mazeParent = mazeParent_.gameObject;
 
         maze = new MazeCell[rows, columns];
@@ -290,11 +293,11 @@ public class MazeGenerator : MonoBehaviour
         {
             for (int j = 0; j < columns; j++)
             {
-                GameObject newMazeCell = Instantiate(mazeCell, new Vector3((mazeParent.transform.position.x + i * scaleOfMazeCell) , (mazeParent.transform.position.y + j * scaleOfMazeCell), 0), Quaternion.identity);
+                GameObject newMazeCell = Instantiate(mazeCell, new Vector3((mazeParent.transform.position.x + i * scaleOfMazeCell), (mazeParent.transform.position.y + j * scaleOfMazeCell), 0), Quaternion.identity);
                 newMazeCell.name = "Cell (" + i + ", " + j + ")";
                 newMazeCell.transform.SetParent(mazeParent.transform);
                 maze[i, j] = newMazeCell.GetComponent<MazeCell>();
-                maze[i,j].coordinates = new Vector2Int(i, j);
+                maze[i, j].coordinates = new Vector2Int(i, j);
             }
         }
 
@@ -358,11 +361,11 @@ public class MazeGenerator : MonoBehaviour
             }
 
             GameObject mazeGoal_Get = null;
-            if(maze[row_Index, column_Index] != null)
+            if (maze[row_Index, column_Index] != null)
                 mazeGoal_Get = Instantiate(mazeGoal, maze[row_Index, column_Index].transform.position, Quaternion.identity);
             //MazeStats mazeStats = mazeParent.GetComponent<MazeStats>();
             //GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[mazeStats.goalPlacementrow, mazeStats.goalPlacementcolumn].transform.position, Quaternion.identity);
-            if(mazeGoal_Get) mazeGoal_Get.transform.SetParent(mazeParent.transform);
+            if (mazeGoal_Get) mazeGoal_Get.transform.SetParent(mazeParent.transform);
             mazeGoal_Get.transform.localScale = mazeCell.transform.localScale;
 
             MazeGeneratorComplete();
@@ -384,9 +387,9 @@ public class MazeGenerator : MonoBehaviour
         {
             Debug.Log("Null Cell");
             yield return null;
-/*            StopAllCoroutines();
-            LoadMaze();
-            yield return null;*/
+            /*            StopAllCoroutines();
+                        LoadMaze();
+                        yield return null;*/
         }
 
         else

@@ -251,19 +251,19 @@ public class MovementSystem : MonoBehaviour
                     }
 
                     if (coffeeGame.keyIndex == 2)
-                    { 
+                    {
                         MazeGenerator.Instance.ActiveDeactivateMaze(true);
                     }
 
                     if (coffeeGame.keyIndex >= 3)
-                    { 
+                    {
                         MazeGenerator.Instance.inRange = true;
                     }
 
                     if (eyePlayer.position)
                     {
                         if (coffeeGame.keyIndex > 1)
-                        { 
+                        {
                             MazeGenerator.Instance.ActiveDeactivateMaze(true);
                         }
 
@@ -273,7 +273,7 @@ public class MovementSystem : MonoBehaviour
                     else
                     {
                         if (coffeeGame.keyIndex > 2)
-                        { 
+                        {
                             MazeGenerator.Instance.ActiveDeactivateMaze(false);
                         }
 
@@ -324,7 +324,7 @@ public class MovementSystem : MonoBehaviour
                 MazeGenerator.Instance.PointArrow();
             }
         }
-        
+
     }
 
     private int ArrayChecker(Collider2D[] collider2Ds)
@@ -614,7 +614,7 @@ public class MovementSystem : MonoBehaviour
             GameObject g = n.gameObject;
             g.GetComponent<SpriteRenderer>().material = materials[0];
             if (g.GetComponent<Notes>().type == Notes.Type.Notes)
-            { 
+            {
                 g.GetComponent<SpriteRenderer>().sprite = afterTransition_Note;
             }
         }
@@ -650,7 +650,7 @@ public class MovementSystem : MonoBehaviour
         {
             room.transform.GetChild(i).gameObject.SetActive(false);
         }
-        
+
         room.transform.GetChild(room.transform.childCount - 1).gameObject.SetActive(true);
         room.transform.GetChild(room.transform.childCount - 2).gameObject.SetActive(true);
 
@@ -685,7 +685,7 @@ public class MovementSystem : MonoBehaviour
         transform.position = new Vector3(10.46f, -31.0f, 0f);
         outside.transform.GetChild(0).gameObject.SetActive(false);
         kitchen.transform.GetChild(1).gameObject.SetActive(false);
-        
+
         InventoryManager.Instance.StopConfidenceCoroutine();
         InventoryManager.Instance.confidenceFallTime = 5f;
         StartCoroutine(InventoryManager.Instance.ConfidenceFall());
@@ -727,6 +727,14 @@ public class MovementSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         GameManager.Instance.gameObject.GetComponent<RandomThoughts>().ClipPlay_Immediate(clipIndex);
+    }
+
+    public void DisableEnableMovementInput(bool enable)
+    {
+        if(enable)
+            playerControls.Movement.Move.Enable();
+        else
+            playerControls.Movement.Move.Disable();
     }
 
 }

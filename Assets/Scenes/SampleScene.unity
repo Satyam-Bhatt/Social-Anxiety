@@ -1542,7 +1542,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &94282591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1587,8 +1587,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1144509052}
-  distanceX: -3.5
-  distanceY: 2.5
+  distanceX: -2.9
+  distanceY: 1.94
 --- !u!1 &95908479
 GameObject:
   m_ObjectHideFlags: 0
@@ -3220,7 +3220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &338432841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3266,7 +3266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1144509052}
-  distanceX: 2.5
+  distanceX: 2
   distanceY: -1
 --- !u!1 &346543902
 GameObject:
@@ -15103,7 +15103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1385154695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15148,7 +15148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1144509052}
-  distanceX: 2
+  distanceX: 1.56
   distanceY: 1
 --- !u!1 &1404967750
 GameObject:
@@ -18957,7 +18957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1730842710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19003,8 +19003,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1144509052}
-  distanceX: -3.5
-  distanceY: 2
+  distanceX: -2.9
+  distanceY: 1.35
 --- !u!1 &1743269155
 GameObject:
   m_ObjectHideFlags: 0

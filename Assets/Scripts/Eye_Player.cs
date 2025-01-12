@@ -88,7 +88,6 @@ public class Eye_Player : MonoBehaviour
 
         playerControls.CoffeGame.BallMovement.Disable();
         playerControls.CoffeGame.BallMovement.performed -= FirstBallInput;
-
     }
 
     private void Start()
@@ -145,7 +144,7 @@ public class Eye_Player : MonoBehaviour
                 {
                     GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(15);
                     float delay = GameManager.Instance.GetComponent<RandomThoughts>().audioCaption[15].clip.length;
-                    StartCoroutine(AudioComplete(delay + 1f));
+                    StartCoroutine(AudioComplete(2f));//delay + 1f));
                     playOnce = true;
                 }
                 else if(died == true && playOnce == true){
@@ -163,6 +162,11 @@ public class Eye_Player : MonoBehaviour
         }
         else
         {
+            if(coffeeGame.keyIndex != 2)
+            {
+                movementSystem.DisableEnableMovementInput(true);
+            }
+
             //Position is checked in the player movement script to enable disable stuff
             s.sprite = EyesClose_Open[0];
             position = false;
@@ -185,7 +189,7 @@ public class Eye_Player : MonoBehaviour
         MazeGenerator.Instance.GetComponent<AudioSource>().Play();
         spawner.SetActive(false);
         coffeeGame.EnableSprites();
-        MazeGenerator.Instance.LoadMaze();
+        //MazeGenerator.Instance.LoadMaze();
         MazeGenerator.Instance.ActiveDeactivateChild(true);
 
         Transform mainParent = transform.parent.transform.parent;

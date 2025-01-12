@@ -186,6 +186,7 @@ public class CoffeeGame : MonoBehaviour
 
             coffeeActivator[0].SetActive(false);
             coffeeActivator[1].SetActive(true);
+
         }
         else if (keyIndex == 2)
         {
@@ -213,6 +214,8 @@ public class CoffeeGame : MonoBehaviour
 
             onCoffeeGameCompleted?.Invoke();
         }
+
+        GetComponent<MovementSystem>().DisableEnableMovementInput(true);
 
         StopAllCoroutines();
 
