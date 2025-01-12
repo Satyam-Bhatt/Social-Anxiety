@@ -92,7 +92,7 @@ public class MazeGenerator : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
-        //LoadMaze();
+        LoadMaze();
     }
 
     public void LoadNextMaze()
@@ -294,6 +294,7 @@ public class MazeGenerator : MonoBehaviour
                 newMazeCell.name = "Cell (" + i + ", " + j + ")";
                 newMazeCell.transform.SetParent(mazeParent.transform);
                 maze[i, j] = newMazeCell.GetComponent<MazeCell>();
+                maze[i,j].coordinates = new Vector2Int(i, j);
             }
         }
 
@@ -388,9 +389,8 @@ public class MazeGenerator : MonoBehaviour
 
         else
         {
-            int x = (int)(currentCell.transform.localPosition.x * (1/scaleOfMazeCell));
-            int y = (int)(currentCell.transform.localPosition.y * (1/scaleOfMazeCell));
-            Debug.Log("localPostion: " + currentCell.transform.localPosition + " x: " + x + " y: " + y);
+            int x = currentCell.coordinates.x;
+            int y = currentCell.coordinates.y;
 
             if (x + 1 < rows)
             {

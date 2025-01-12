@@ -10,6 +10,8 @@ public class MazeCell : MonoBehaviour
 
     public bool visited = false;
 
+    public Vector2Int coordinates;
+
     public void Visit()
     { 
         visited = true;
