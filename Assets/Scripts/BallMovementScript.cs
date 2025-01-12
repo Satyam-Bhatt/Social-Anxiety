@@ -108,74 +108,74 @@ public class BallMovementScript : MonoBehaviour
         }
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    if (right)
-    //    {
-    //        Handles.color = Color.green;
-    //        Vector3 pos1 = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y / 2, transform.position.z);
-    //        Vector3 pos2 = new Vector3(transform.position.x, transform.position.y - transform.lossyScale.y / 2, transform.position.z);
-    //        Handles.DrawLine(pos1, pos1 + transform.right * transform.lossyScale.x, 10f);
-    //        Handles.DrawLine(pos2, pos2 + transform.right * transform.lossyScale.x, 10f);
-    //    }
-    //    else if (!right)
-    //    {
-    //        Handles.color = Color.red;
-    //        Vector3 pos1 = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y / 2, transform.position.z);
-    //        Vector3 pos2 = new Vector3(transform.position.x, transform.position.y - transform.lossyScale.y / 2, transform.position.z);
-    //        Handles.DrawLine(pos1, pos1 + transform.right * transform.lossyScale.x, 10f);
-    //        Handles.DrawLine(pos2, pos2 + transform.right * transform.lossyScale.x, 10f);
-    //    }
+    private void OnDrawGizmos()
+    {
+        if (right)
+        {
+            Handles.color = Color.green;
+            Vector3 pos1 = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y / 2, transform.position.z);
+            Vector3 pos2 = new Vector3(transform.position.x, transform.position.y - transform.lossyScale.y / 2, transform.position.z);
+            Handles.DrawLine(pos1, pos1 + transform.right * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 + transform.right * transform.lossyScale.x, 10f);
+        }
+        else if (!right)
+        {
+            Handles.color = Color.red;
+            Vector3 pos1 = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y / 2, transform.position.z);
+            Vector3 pos2 = new Vector3(transform.position.x, transform.position.y - transform.lossyScale.y / 2, transform.position.z);
+            Handles.DrawLine(pos1, pos1 + transform.right * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 + transform.right * transform.lossyScale.x, 10f);
+        }
 
-    //    if (left)
-    //    {
-    //        Handles.color = Color.green;
-    //        Vector3 pos1 = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y / 2, transform.position.z);
-    //        Vector3 pos2 = new Vector3(transform.position.x, transform.position.y - transform.lossyScale.y / 2, transform.position.z);
-    //        Handles.DrawLine(pos1, pos1 - transform.right * transform.lossyScale.x, 10f);
-    //        Handles.DrawLine(pos2, pos2 - transform.right * transform.lossyScale.x, 10f);
-    //    }
-    //    else if (!left)
-    //    {
-    //        Handles.color = Color.red;
-    //        Vector3 pos1 = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y / 2, transform.position.z);
-    //        Vector3 pos2 = new Vector3(transform.position.x, transform.position.y - transform.lossyScale.y / 2, transform.position.z);
-    //        Handles.DrawLine(pos1, pos1 - transform.right * transform.lossyScale.x, 10f);
-    //        Handles.DrawLine(pos2, pos2 - transform.right * transform.lossyScale.x, 10f);
-    //    }
+        if (left)
+        {
+            Handles.color = Color.green;
+            Vector3 pos1 = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y / 2, transform.position.z);
+            Vector3 pos2 = new Vector3(transform.position.x, transform.position.y - transform.lossyScale.y / 2, transform.position.z);
+            Handles.DrawLine(pos1, pos1 - transform.right * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 - transform.right * transform.lossyScale.x, 10f);
+        }
+        else if (!left)
+        {
+            Handles.color = Color.red;
+            Vector3 pos1 = new Vector3(transform.position.x, transform.position.y + transform.lossyScale.y / 2, transform.position.z);
+            Vector3 pos2 = new Vector3(transform.position.x, transform.position.y - transform.lossyScale.y / 2, transform.position.z);
+            Handles.DrawLine(pos1, pos1 - transform.right * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 - transform.right * transform.lossyScale.x, 10f);
+        }
 
-    //    if (up)
-    //    {
-    //        Handles.color = Color.green;
-    //        Vector3 pos1 = new Vector3(transform.position.x + transform.lossyScale.x / 2, transform.position.y, transform.position.z);
-    //        Vector3 pos2 = new Vector3(transform.position.x - transform.lossyScale.x / 2, transform.position.y, transform.position.z);
-    //        Handles.DrawLine(pos1, pos1 + transform.up * transform.lossyScale.x, 10f);
-    //        Handles.DrawLine(pos2, pos2 + transform.up * transform.lossyScale.x, 10f);
-    //    }
-    //    else if (!up)
-    //    {
-    //        Handles.color = Color.red;
-    //        Vector3 pos1 = new Vector3(transform.position.x + transform.lossyScale.x / 2, transform.position.y, transform.position.z);
-    //        Vector3 pos2 = new Vector3(transform.position.x - transform.lossyScale.x / 2, transform.position.y, transform.position.z);
-    //        Handles.DrawLine(pos1, pos1 + transform.up * transform.lossyScale.x, 10f);
-    //        Handles.DrawLine(pos2, pos2 + transform.up * transform.lossyScale.x, 10f);
-    //    }
+        if (up)
+        {
+            Handles.color = Color.green;
+            Vector3 pos1 = new Vector3(transform.position.x + transform.lossyScale.x / 2, transform.position.y, transform.position.z);
+            Vector3 pos2 = new Vector3(transform.position.x - transform.lossyScale.x / 2, transform.position.y, transform.position.z);
+            Handles.DrawLine(pos1, pos1 + transform.up * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 + transform.up * transform.lossyScale.x, 10f);
+        }
+        else if (!up)
+        {
+            Handles.color = Color.red;
+            Vector3 pos1 = new Vector3(transform.position.x + transform.lossyScale.x / 2, transform.position.y, transform.position.z);
+            Vector3 pos2 = new Vector3(transform.position.x - transform.lossyScale.x / 2, transform.position.y, transform.position.z);
+            Handles.DrawLine(pos1, pos1 + transform.up * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 + transform.up * transform.lossyScale.x, 10f);
+        }
 
-    //    if (down)
-    //    {
-    //        Handles.color = Color.green;
-    //        Vector3 pos1 = new Vector3(transform.position.x + transform.lossyScale.x / 2, transform.position.y, transform.position.z);
-    //        Vector3 pos2 = new Vector3(transform.position.x - transform.lossyScale.x / 2, transform.position.y, transform.position.z);
-    //        Handles.DrawLine(pos1, pos1 - transform.up * transform.lossyScale.x, 10f);
-    //        Handles.DrawLine(pos2, pos2 - transform.up * transform.lossyScale.x, 10f);
-    //    }
-    //    else if (!down)
-    //    {
-    //        Handles.color = Color.red;
-    //        Vector3 pos1 = new Vector3(transform.position.x + transform.lossyScale.x / 2, transform.position.y, transform.position.z);
-    //        Vector3 pos2 = new Vector3(transform.position.x - transform.lossyScale.x / 2, transform.position.y, transform.position.z);
-    //        Handles.DrawLine(pos1, pos1 - transform.up * transform.lossyScale.x, 10f);
-    //        Handles.DrawLine(pos2, pos2 - transform.up * transform.lossyScale.x, 10f);
-    //    }
-    //}
+        if (down)
+        {
+            Handles.color = Color.green;
+            Vector3 pos1 = new Vector3(transform.position.x + transform.lossyScale.x / 2, transform.position.y, transform.position.z);
+            Vector3 pos2 = new Vector3(transform.position.x - transform.lossyScale.x / 2, transform.position.y, transform.position.z);
+            Handles.DrawLine(pos1, pos1 - transform.up * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 - transform.up * transform.lossyScale.x, 10f);
+        }
+        else if (!down)
+        {
+            Handles.color = Color.red;
+            Vector3 pos1 = new Vector3(transform.position.x + transform.lossyScale.x / 2, transform.position.y, transform.position.z);
+            Vector3 pos2 = new Vector3(transform.position.x - transform.lossyScale.x / 2, transform.position.y, transform.position.z);
+            Handles.DrawLine(pos1, pos1 - transform.up * transform.lossyScale.x, 10f);
+            Handles.DrawLine(pos2, pos2 - transform.up * transform.lossyScale.x, 10f);
+        }
+    }
 }

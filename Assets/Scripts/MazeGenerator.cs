@@ -340,6 +340,7 @@ public class MazeGenerator : MonoBehaviour
         {
             GameObject mazeBall_Get = Instantiate(mazeBall, new Vector3(mazeParent.transform.position.x, mazeParent.transform.position.y, 0), Quaternion.identity);
             mazeBall_Get.transform.SetParent(mazeParent.transform);
+            mazeBall_Get.transform.GetChild(0).transform.localScale = mazeCell.transform.localScale;
 
             //Set Maze ball size here
             /*            float scaleX = mazeBall_Get.transform.localScale.x;
@@ -362,6 +363,7 @@ public class MazeGenerator : MonoBehaviour
             //MazeStats mazeStats = mazeParent.GetComponent<MazeStats>();
             //GameObject mazeGoal_Get = Instantiate(mazeGoal, maze[mazeStats.goalPlacementrow, mazeStats.goalPlacementcolumn].transform.position, Quaternion.identity);
             if(mazeGoal_Get) mazeGoal_Get.transform.SetParent(mazeParent.transform);
+            mazeGoal_Get.transform.localScale = mazeCell.transform.localScale;
 
             MazeGeneratorComplete();
 
