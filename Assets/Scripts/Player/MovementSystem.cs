@@ -323,6 +323,7 @@ public class MovementSystem : MonoBehaviour
             {
                 MazeGenerator.Instance.PointArrow();
             }
+            DisableEnableMovementInput(true);
         }
 
     }
