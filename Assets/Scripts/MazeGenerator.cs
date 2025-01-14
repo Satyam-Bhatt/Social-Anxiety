@@ -282,9 +282,6 @@ public class MazeGenerator : MonoBehaviour
 
     public void CreateMaze(Transform mazeParent_)
     {
-        Debug.Log("Disable Call");
-        movementSystem.DisableEnableMovementInput(false);
-
         mazeParent = mazeParent_.gameObject;
 
         maze = new MazeCell[rows, columns];

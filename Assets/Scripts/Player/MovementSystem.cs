@@ -253,6 +253,7 @@ public class MovementSystem : MonoBehaviour
                     if (coffeeGame.keyIndex == 2)
                     {
                         MazeGenerator.Instance.ActiveDeactivateMaze(true);
+                        DisableEnableMovementInput(false);
                     }
 
                     if (coffeeGame.keyIndex >= 3)
@@ -265,6 +266,7 @@ public class MovementSystem : MonoBehaviour
                         if (coffeeGame.keyIndex > 1)
                         {
                             MazeGenerator.Instance.ActiveDeactivateMaze(true);
+                            DisableEnableMovementInput(false);
                         }
 
                         gameObject.GetComponent<CoffeeGame>().canPlay = true;
