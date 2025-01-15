@@ -144,7 +144,7 @@ public class Eye_Player : MonoBehaviour
                 {
                     GameManager.Instance.GetComponent<RandomThoughts>().ClipPlay_Immediate(15);
                     float delay = GameManager.Instance.GetComponent<RandomThoughts>().audioCaption[15].clip.length;
-                    StartCoroutine(AudioComplete(2f));//delay + 1f));
+                    StartCoroutine(AudioComplete(delay + 1f));
                     playOnce = true;
                 }
                 else if(died == true && playOnce == true){

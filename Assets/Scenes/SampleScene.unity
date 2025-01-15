@@ -9743,7 +9743,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.6047978, y: 26.595}
+  m_AnchoredPosition: {x: -2.6047978, y: 26.17}
   m_SizeDelta: {x: -8.5956, y: -25.749}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &904137937
@@ -20831,9 +20831,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSystem: {fileID: 2068600705}
-  isBW: 0
-  endGame: 0
-  coffeeGameDone: 0
+  isBW: 1
+  endGame: 1
+  coffeeGameDone: 1
   tasks: {fileID: 1426833712}
   deathPanel: {fileID: 904578965}
   winPanel: {fileID: 1746023437}

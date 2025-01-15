@@ -98,9 +98,9 @@ public class EyeSpawner : MonoBehaviour
     { 
         while (true)
         {
-            yield return new WaitForSeconds(15f);
+            yield return new WaitForSeconds(10f);
 
-            if(spawnTime > 1f)
+            if(spawnTime > 0.6f)
             {
                 spawnTime -= 0.2f;
             }
