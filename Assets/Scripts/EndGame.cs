@@ -152,7 +152,7 @@ public class EndGame : MonoBehaviour
                 //Handles Rotation of the room
                 if (_rotationSpeed > 0)
                 {
-                    _rotationSpeed -= 6f * Time.deltaTime; //Changes how fast should we revert to rotation
+                    _rotationSpeed -= 8f * Time.deltaTime; //Changes how fast should we revert to rotation
                 }
                 else
                 {
@@ -176,12 +176,12 @@ public class EndGame : MonoBehaviour
                 }
 
                 //Handles Scale
-                room.transform.localScale = Vector3.Lerp(room.transform.localScale, _originalScale, Time.deltaTime * 0.1f);
+                room.transform.localScale = Vector3.Lerp(room.transform.localScale, _originalScale, Time.deltaTime * 0.2f);
 
                 //Audio Decreasing
                 var audioSrc = AudioManager.Instance.audioSource2;
                 if (audioSrc && audioSrc.volume > 0)
-                    audioSrc.volume -= 0.1f * Time.deltaTime;
+                    audioSrc.volume -= 0.2f * Time.deltaTime;
                 if (audioSrc.volume < 0.3f && AudioManager.Instance.audioSource1.volume > 0)
                     AudioManager.Instance.audioSource1.volume -= 0.1f * Time.deltaTime;
             }
@@ -198,7 +198,7 @@ public class EndGame : MonoBehaviour
 
     private IEnumerator InputCheckStart()
     {
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(10f);
         _inputCheckStart = true;
     }
 
@@ -206,7 +206,7 @@ public class EndGame : MonoBehaviour
     private IEnumerator WinState()
     {
         Debug.Log("Win State Start");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         _winStateStart = true;
         while (!MyApproximation(room.transform.eulerAngles.z, 90, 0.1f) || !MyApproximation(room.transform.localScale.x, _originalScale.x, 0.05f))
         {
