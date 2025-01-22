@@ -108,6 +108,7 @@ public class BallMovementScript : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (right)
@@ -178,4 +179,5 @@ public class BallMovementScript : MonoBehaviour
             Handles.DrawLine(pos2, pos2 - transform.up * transform.lossyScale.x, 10f);
         }
     }
+#endif
 }
